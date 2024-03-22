@@ -1,0 +1,163 @@
+[gd_scene load_steps=11 format=3 uid="uid://nju2gnnh6ujx"]
+
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_v2eao"]
+[ext_resource type="Script" path="res://smoother.gd" id="2_pb4ly"]
+[ext_resource type="Texture2D" uid="uid://cytnkfct8uh1j" path="res://Assets/Sprites/Weapons/Pistol/spritesheet.png" id="2_y18h1"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3bm3w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_61c08"]
+atlas = ExtResource("2_y18h1")
+region = Rect2(0, 0, 320, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wx2r7"]
+atlas = ExtResource("2_y18h1")
+region = Rect2(320, 0, 320, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7qv64"]
+atlas = ExtResource("2_y18h1")
+region = Rect2(640, 0, 320, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a3b8f"]
+atlas = ExtResource("2_y18h1")
+region = Rect2(960, 0, 320, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tfti0"]
+atlas = ExtResource("2_y18h1")
+region = Rect2(0, 0, 320, 200)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ndofp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_61c08")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wx2r7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7qv64")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a3b8f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tfti0")
+}],
+"loop": false,
+"name": &"shoot",
+"speed": 10.0
+}]
+
+[node name="Player" type="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_v2eao")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_3bm3w")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+target_position = Vector3(0, 0, -1000)
+collision_mask = 3
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+fov = 90.3
+script = ExtResource("2_pb4ly")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GunBase" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/GunBase"]
+position = Vector2(0, -171.192)
+scale = Vector2(2, 2.11807)
+sprite_frames = SubResource("SpriteFrames_ndofp")
+animation = &"shoot"
+autoplay = "idle"
+
+[node name="Crosshair" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.568627)
+
+[node name="DeathScreen" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="CanvasLayer/DeathScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -165.0
+offset_top = -77.0
+offset_right = 165.0
+offset_bottom = 77.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/DeathScreen/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -43.5
+offset_right = 20.0
+offset_bottom = -20.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "DED!"
+
+[node name="Button" type="Button" parent="CanvasLayer/DeathScreen/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.5
+offset_top = 16.5
+offset_right = 32.5
+offset_bottom = 47.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Restart"
