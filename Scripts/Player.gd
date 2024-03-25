@@ -1,7 +1,10 @@
 extends CharacterBody3D
 
+var bullet = load("res://Scenes/bullet.tscn")
+var instance
+
 @onready var sprite3d = $CanvasLayer/GunBase/AnimatedSprite2D
-@onready var raycast = $RayCast3D
+@onready var raycastgun = $RayCast3D
 
 
 const SPEED = 5.0
@@ -57,9 +60,12 @@ func shoot():
 		return
 	can_shoot = false
 	sprite3d.play("shoot")
+	instance = bullet.instantiate()
+	instance.position = raycastgun.global_position
+	instance.transform.basis = raycastgun.global_transform.basis
+	get_parent_node_3d().add_child(instance)
 	
-	if raycast.is_colliding() and raycast.get_collider().has_method("kill"):
-		raycast.get_collider().kill()
+
 
 func shoot_anim_done():
 	can_shoot = true

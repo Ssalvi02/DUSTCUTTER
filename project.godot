@@ -13,7 +13,7 @@ config_version=5
 config/name="DUSTCUTTER"
 run/main_scene="res://Scenes/teste.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-run/max_fps=60
+run/max_fps=120
 
 [debug]
 
@@ -61,3 +61,7 @@ shoot={
 
 3d_physics/layer_1="enviroment"
 3d_physics/layer_2="characters"
+
+[physics]
+
+common/physics_ticks_per_second=120
