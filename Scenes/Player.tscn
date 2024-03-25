@@ -1,28 +1,68 @@
-[gd_scene load_steps=10 format=3 uid="uid://nju2gnnh6ujx"]
+[gd_scene load_steps=20 format=3 uid="uid://nju2gnnh6ujx"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_v2eao"]
-[ext_resource type="Texture2D" uid="uid://cytnkfct8uh1j" path="res://Assets/Sprites/Weapons/Pistol/spritesheet.png" id="2_y18h1"]
+[ext_resource type="Texture2D" uid="uid://cytnkfct8uh1j" path="res://Assets/Sprites/Weapons/Pistol/shoot.png" id="2_ka6fp"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3bm3w"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_61c08"]
-atlas = ExtResource("2_y18h1")
+atlas = ExtResource("2_ka6fp")
 region = Rect2(0, 0, 320, 200)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_w65hp"]
+atlas = ExtResource("2_ka6fp")
+region = Rect2(2240, 0, 320, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5724q"]
+atlas = ExtResource("2_ka6fp")
+region = Rect2(2560, 0, 320, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fvvxl"]
+atlas = ExtResource("2_ka6fp")
+region = Rect2(2880, 0, 320, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hur73"]
+atlas = ExtResource("2_ka6fp")
+region = Rect2(3200, 0, 320, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jsdh7"]
+atlas = ExtResource("2_ka6fp")
+region = Rect2(3520, 0, 320, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2tj0t"]
+atlas = ExtResource("2_ka6fp")
+region = Rect2(3840, 0, 320, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6yxbb"]
+atlas = ExtResource("2_ka6fp")
+region = Rect2(4160, 0, 320, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_coob8"]
+atlas = ExtResource("2_ka6fp")
+region = Rect2(4480, 0, 320, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0yw1c"]
+atlas = ExtResource("2_ka6fp")
+region = Rect2(4800, 0, 320, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gy5g1"]
+atlas = ExtResource("2_ka6fp")
+region = Rect2(1600, 0, 320, 200)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_wx2r7"]
-atlas = ExtResource("2_y18h1")
+atlas = ExtResource("2_ka6fp")
 region = Rect2(320, 0, 320, 200)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7qv64"]
-atlas = ExtResource("2_y18h1")
+atlas = ExtResource("2_ka6fp")
 region = Rect2(640, 0, 320, 200)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a3b8f"]
-atlas = ExtResource("2_y18h1")
+atlas = ExtResource("2_ka6fp")
 region = Rect2(960, 0, 320, 200)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tfti0"]
-atlas = ExtResource("2_y18h1")
+atlas = ExtResource("2_ka6fp")
 region = Rect2(0, 0, 320, 200)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ndofp"]
@@ -33,7 +73,42 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
-"speed": 5.0
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w65hp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5724q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fvvxl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hur73")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jsdh7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2tj0t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6yxbb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_coob8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0yw1c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gy5g1")
+}],
+"loop": false,
+"name": &"reload",
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -63,13 +138,13 @@ metadata/_edit_vertical_guides_ = [576.0]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_3bm3w")
 
-[node name="RayCast3D" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.15, 0)
-target_position = Vector3(0, 0, -1)
-collision_mask = 3
-
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.35, -0.78997)
+target_position = Vector3(0, 0, -1)
+collision_mask = 3
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -90,7 +165,7 @@ grow_vertical = 0
 position = Vector2(20, -208)
 scale = Vector2(2.34, 2.478)
 sprite_frames = SubResource("SpriteFrames_ndofp")
-animation = &"shoot"
+animation = &"reload"
 autoplay = "idle"
 flip_h = true
 
@@ -160,3 +235,21 @@ offset_bottom = 47.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "Restart"
+
+[node name="AmmoCount" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -100.0
+offset_right = 229.0
+grow_vertical = 0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/AmmoCount"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "7/7"

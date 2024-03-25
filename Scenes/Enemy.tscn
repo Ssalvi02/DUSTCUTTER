@@ -12,8 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://cl2y5uwec8uer" path="res://Assets/Sprites/Enemies/Death/TROOM0.png" id="5_5p47p"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0mf31"]
-radius = 0.65634
-height = 1.91454
+radius = 0.712438
+height = 2.02662
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0xwge"]
 atlas = ExtResource("1_my20t")
