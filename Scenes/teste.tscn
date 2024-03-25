@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://b2pp6c1s5ts4m"]
+[gd_scene load_steps=9 format=3 uid="uid://b2pp6c1s5ts4m"]
 
 [ext_resource type="PackedScene" uid="uid://nju2gnnh6ujx" path="res://Scenes/Player.tscn" id="1_ue3he"]
+[ext_resource type="PackedScene" uid="uid://gnoc5ii4lq0h" path="res://Scenes/Enemy.tscn" id="2_2ec88"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_awjon"]
 albedo_color = Color(1, 0.356863, 0.454902, 1)
@@ -20,6 +21,9 @@ background_mode = 1
 background_color = Color(0.219608, 0.219608, 0.219608, 1)
 
 [node name="World" type="Node3D"]
+
+[node name="Player" parent="." groups=["player"] instance=ExtResource("1_ue3he")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75114, 0, 0)
 
 [node name="Map" type="Node3D" parent="."]
 
@@ -85,5 +89,14 @@ environment = SubResource("Environment_2jqoc")
 transform = Transform3D(0.213181, 0.834752, -0.507684, -0.323184, 0.550626, 0.769651, 0.922012, -1.3739e-08, 0.387162, 0, 3.1615, 0)
 shadow_enabled = true
 
-[node name="Player" parent="." instance=ExtResource("1_ue3he")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75114, 0, 0)
+[node name="Enemy" parent="." instance=ExtResource("2_2ec88")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -4)
+
+[node name="Enemy2" parent="." instance=ExtResource("2_2ec88")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.15241, 0, 0.565727)
+
+[node name="Enemy3" parent="." instance=ExtResource("2_2ec88")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.15241, 0, -6.03008)
+
+[node name="Enemy4" parent="." instance=ExtResource("2_2ec88")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.66465, 0, -5.97802)

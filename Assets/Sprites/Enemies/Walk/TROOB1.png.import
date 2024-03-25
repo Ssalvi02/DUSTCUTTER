@@ -2,21 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://7opjvsip002b"
-path.s3tc="res://.godot/imported/spritesheet.png-06fc18e22b9c34b2aefc727a1d8d6f8f.s3tc.ctex"
+uid="uid://djrnbp7hvytyk"
+path="res://.godot/imported/TROOB1.png-8addedbd6ac2c6dddedde565181c430e.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Enemies/spritesheet.png"
-dest_files=["res://.godot/imported/spritesheet.png-06fc18e22b9c34b2aefc727a1d8d6f8f.s3tc.ctex"]
+source_file="res://Assets/Sprites/Enemies/Walk/TROOB1.png"
+dest_files=["res://.godot/imported/TROOB1.png-8addedbd6ac2c6dddedde565181c430e.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
