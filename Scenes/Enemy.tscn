@@ -1,40 +1,115 @@
-[gd_scene load_steps=7 format=3 uid="uid://gnoc5ii4lq0h"]
+[gd_scene load_steps=17 format=3 uid="uid://gnoc5ii4lq0h"]
 
-[ext_resource type="Texture2D" uid="uid://bgh1ox26p2duj" path="res://Assets/Sprites/Enemies/spritesheet.png" id="1_hm4tj"]
+[ext_resource type="Texture2D" uid="uid://7opjvsip002b" path="res://Assets/Sprites/Enemies/spritesheet.png" id="1_hm4tj"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0mf31"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5b75h"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_tau5j"]
 atlas = ExtResource("1_hm4tj")
-region = Rect2(0, 0, 38, 57)
+region = Rect2(483, 0, 156, 177)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rv6n2"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_3kv2t"]
 atlas = ExtResource("1_hm4tj")
-region = Rect2(38, 0, 38, 57)
+region = Rect2(805, 0, 156, 177)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fgobs"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_jyyaq"]
 atlas = ExtResource("1_hm4tj")
-region = Rect2(76, 0, 38, 57)
+region = Rect2(966, 0, 156, 177)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ae4d"]
+atlas = ExtResource("1_hm4tj")
+region = Rect2(1127, 0, 156, 177)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iy1ix"]
+atlas = ExtResource("1_hm4tj")
+region = Rect2(1288, 0, 156, 177)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8wwcx"]
+atlas = ExtResource("1_hm4tj")
+region = Rect2(1449, 0, 156, 177)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o0nrb"]
+atlas = ExtResource("1_hm4tj")
+region = Rect2(1610, 0, 156, 177)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q34tq"]
+atlas = ExtResource("1_hm4tj")
+region = Rect2(1771, 0, 156, 177)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fy66j"]
+atlas = ExtResource("1_hm4tj")
+region = Rect2(644, 0, 156, 177)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ngcy3"]
+atlas = ExtResource("1_hm4tj")
+region = Rect2(0, 0, 164, 177)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ffcu8"]
+atlas = ExtResource("1_hm4tj")
+region = Rect2(0, 0, 158, 177)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_68ug5"]
+atlas = ExtResource("1_hm4tj")
+region = Rect2(158, 0, 158, 177)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ongmk"]
+atlas = ExtResource("1_hm4tj")
+region = Rect2(316, 0, 158, 177)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_b3jhd"]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tau5j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3kv2t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jyyaq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ae4d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iy1ix")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8wwcx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o0nrb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q34tq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fy66j")
+}],
 "loop": true,
 "name": &"death",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5b75h")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rv6n2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fgobs")
+"texture": SubResource("AtlasTexture_ngcy3")
 }],
 "loop": true,
 "name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ffcu8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_68ug5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ongmk")
+}],
+"loop": true,
+"name": &"walk",
 "speed": 5.0
 }]
 
@@ -45,10 +120,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_0mf31")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
-transform = Transform3D(3.41, 0, 0, 0, 3.41, 0, 0, 0, 3.41, 0, 0.946218, 0)
+transform = Transform3D(3.29, 0, 0, 0, 3.29, 0, 0, 0, 3.29, 0.0974541, 0.946218, 0)
 billboard = 2
 shaded = true
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_b3jhd")
 animation = &"death"
 autoplay = "idle"
+frame = 1
+frame_progress = 0.286393

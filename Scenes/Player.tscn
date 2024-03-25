@@ -1,7 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://nju2gnnh6ujx"]
+[gd_scene load_steps=10 format=3 uid="uid://nju2gnnh6ujx"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_v2eao"]
-[ext_resource type="Script" path="res://smoother.gd" id="2_pb4ly"]
 [ext_resource type="Texture2D" uid="uid://cytnkfct8uh1j" path="res://Assets/Sprites/Weapons/Pistol/spritesheet.png" id="2_y18h1"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3bm3w"]
@@ -58,6 +57,7 @@ animations = [{
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_v2eao")
+metadata/_edit_vertical_guides_ = [576.0]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -70,8 +70,6 @@ collision_mask = 3
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
-fov = 90.3
-script = ExtResource("2_pb4ly")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -89,11 +87,12 @@ grow_horizontal = 2
 grow_vertical = 0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/GunBase"]
-position = Vector2(0, -171.192)
-scale = Vector2(2, 2.11807)
+position = Vector2(20, -208)
+scale = Vector2(2.34, 2.478)
 sprite_frames = SubResource("SpriteFrames_ndofp")
 animation = &"shoot"
 autoplay = "idle"
+flip_h = true
 
 [node name="Crosshair" type="ColorRect" parent="CanvasLayer"]
 anchors_preset = 8
@@ -101,10 +100,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -4.0
-offset_top = -4.0
-offset_right = 4.0
-offset_bottom = 4.0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 1.0
+offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 1, 1, 0.568627)
