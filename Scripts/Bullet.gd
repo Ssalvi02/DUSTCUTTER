@@ -1,6 +1,7 @@
 extends Node3D
 
 @onready var pierce = get_parent().pierce
+@export var pierce_limit = 2
 
 @onready var SPEED = get_parent().bullet_speed
 
@@ -16,19 +17,21 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	position += transform.basis * Vector3(0,0,-SPEED) * delta
-	
 	if ray.is_colliding():
+		pierce_limit -= 1
 		if ray.get_collider().has_method("kill"):
 			ray.get_collider().kill()
 			
-		if(!pierce):
+		if(!pierce or !ray.get_collider().is_in_group("enemies")):
 			mesh.visible = false
 			ray.enabled = false
 			particle.emitting = true
 			await get_tree().create_timer(1.0).timeout
 			queue_free()
-		else:
+		elif(pierce and pierce_limit > 0 and 
+		ray.get_collider().is_in_group("enemies")):
 			await get_tree().create_timer(1.0).timeout
+			particle.emitting = true
 			queue_free()
 
 
