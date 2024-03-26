@@ -192,10 +192,10 @@ height = 100
 
 [node name="Gun" type="CanvasLayer"]
 script = ExtResource("1_bcdc7")
-bullet_speed = 360
+bullet_speed = 60
 max_ammo = 6
-reserve_ammo = 3
-fire_rate = 0.5
+reserve_ammo = 23
+fire_rate = 0.1
 pierce = true
 
 [node name="GunBase" type="Control" parent="."]
