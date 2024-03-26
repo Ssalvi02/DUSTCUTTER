@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://nju2gnnh6ujx"]
+[gd_scene load_steps=4 format=3 uid="uid://nju2gnnh6ujx"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_v2eao"]
-[ext_resource type="PackedScene" uid="uid://c7s7muyhqqa3v" path="res://Scenes/Weapons/WeaponPistol.tscn" id="2_51amx"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3bm3w"]
 
@@ -24,8 +23,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.35, -0.78997)
 target_position = Vector3(0, 0, -1)
 collision_mask = 3
-
-[node name="Gun" parent="." instance=ExtResource("2_51amx")]
 
 [node name="PickupArea" type="Area3D" parent="."]
 

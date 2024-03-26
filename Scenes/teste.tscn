@@ -113,7 +113,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.15241, 0, -6.03008)
 [node name="Enemy4" parent="." instance=ExtResource("2_2ec88")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.66465, 0, -5.97802)
 
-[node name="Pickup" parent="." instance=ExtResource("3_qemru")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.994507, 0.301564, 3.65163)
+[node name="Pickup" parent="." groups=["weapons"] instance=ExtResource("3_qemru")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.994507, 0.301564, 4.65163)
 
-[connection signal="change_weapons" from="Pickup" to="Player" method="_on_pickup_change_weapons"]
+[connection signal="can_pickup" from="Pickup" to="Player" method="_on_pickup_can_pickup"]

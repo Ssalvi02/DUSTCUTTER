@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://b4gbly8hfmdwe"]
+[gd_scene load_steps=29 format=3 uid="uid://b4gbly8hfmdwe"]
 
 [ext_resource type="Script" path="res://Scripts/Weapon.gd" id="1_bcdc7"]
 [ext_resource type="Texture2D" uid="uid://b3cei78fnmvye" path="res://Assets/Sprites/Weapons/Revolver/revolver_spritesheet.png" id="2_5iyhl"]
@@ -66,6 +66,10 @@ region = Rect2(6080, 0, 320, 200)
 [sub_resource type="AtlasTexture" id="AtlasTexture_ex1xx"]
 atlas = ExtResource("2_5iyhl")
 region = Rect2(6400, 0, 320, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p1olq"]
+atlas = ExtResource("2_5iyhl")
+region = Rect2(0, 0, 320, 200)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b0ccb"]
 atlas = ExtResource("2_5iyhl")
@@ -146,6 +150,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ex1xx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p1olq")
 }],
 "loop": false,
 "name": &"reload",
@@ -185,9 +192,9 @@ height = 100
 
 [node name="Gun" type="CanvasLayer"]
 script = ExtResource("1_bcdc7")
-bullet_speed = 120.0
+bullet_speed = 360
 max_ammo = 6
-reserve_ammo = 0
+reserve_ammo = 3
 fire_rate = 0.5
 pierce = true
 
@@ -208,9 +215,10 @@ grow_vertical = 0
 position = Vector2(20, -208)
 scale = Vector2(2.34, 2.478)
 sprite_frames = SubResource("SpriteFrames_ndofp")
-animation = &"idle"
+animation = &"reload"
 autoplay = "idle"
-frame_progress = 0.641317
+frame = 15
+frame_progress = 1.0
 
 [node name="Crosshair" type="ColorRect" parent="."]
 anchors_preset = 8
