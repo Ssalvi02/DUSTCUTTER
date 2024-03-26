@@ -28,7 +28,7 @@ func _process(delta):
 			particle.emitting = true
 			await get_tree().create_timer(1.0).timeout
 			queue_free()
-		elif(pierce and pierce_limit > 0 and 
+		elif(pierce and pierce_limit > 0 and
 		ray.get_collider().is_in_group("enemies")):
 			await get_tree().create_timer(1.0).timeout
 			particle.emitting = true

@@ -33,11 +33,11 @@ mesh = SubResource("BoxMesh_4p3ba")
 surface_material_override/0 = SubResource("StandardMaterial3D_qv84q")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.138252)
-target_position = Vector3(0, 0, -1.6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.431455)
+target_position = Vector3(0, 0, -1)
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.733582)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.149913)
 material_override = SubResource("StandardMaterial3D_dgj2h")
 cast_shadow = 0
 emitting = false

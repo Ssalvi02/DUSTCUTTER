@@ -20,8 +20,8 @@ shape = SubResource("CapsuleShape3D_3bm3w")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
 [node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.35, -0.78997)
-target_position = Vector3(0, 0, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.35, -0.650615)
+target_position = Vector3(0, 0, -0.085)
 collision_mask = 3
 
 [node name="PickupArea" type="Area3D" parent="."]
