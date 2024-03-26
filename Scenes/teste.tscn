@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://b2pp6c1s5ts4m"]
+[gd_scene load_steps=11 format=3 uid="uid://b2pp6c1s5ts4m"]
 
 [ext_resource type="PackedScene" uid="uid://nju2gnnh6ujx" path="res://Scenes/Player.tscn" id="1_ue3he"]
 [ext_resource type="PackedScene" uid="uid://gnoc5ii4lq0h" path="res://Scenes/Enemy.tscn" id="2_2ec88"]
+[ext_resource type="PackedScene" uid="uid://buiy7bbtjm7hw" path="res://Scenes/Pickup.tscn" id="3_qemru"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_awjon"]
 albedo_color = Color(1, 0.847059, 0.764706, 1)
@@ -111,3 +112,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.15241, 0, -6.03008)
 
 [node name="Enemy4" parent="." instance=ExtResource("2_2ec88")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.66465, 0, -5.97802)
+
+[node name="Pickup" parent="." instance=ExtResource("3_qemru")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.994507, 0.301564, 3.65163)
+
+[connection signal="change_weapons" from="Pickup" to="Player" method="_on_pickup_change_weapons"]

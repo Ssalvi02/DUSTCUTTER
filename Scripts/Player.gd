@@ -3,19 +3,17 @@ extends CharacterBody3D
 var bullet = load("res://Scenes/bullet.tscn")
 var instance
 
-@onready var sprite3d = $CanvasLayer/GunBase/AnimatedSprite2D
+var revolver = load("res://Scenes/Weapons/WeaponRevolver.tscn")
+
+@onready var sprite3d = $Gun/GunBase/AnimatedSprite2D
 @onready var raycastgun = $Camera3D/RayCast3D
 
 @export_category("Attributes")
 @export var move_speed = 5.0
 
-@export_category("Gun Attributes")
-@export var bullet_speed = 40.0
-@export var max_ammo = 7
-var current_ammo = max_ammo
-@export var reserve_ammo = 14
-@export var reload_time = 7
-@export var fire_rate = 1
+@onready var gun = $Gun
+@onready var ammo_bar = $Gun/AmmoCount/TextureProgressBar
+@onready var ammo_text = $Gun/AmmoCount/Label
 
 
 const MOUSE_SENS = 0.1
@@ -26,7 +24,7 @@ var dead = false
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	sprite3d.animation_finished.connect(shoot_anim_done)
-	$CanvasLayer/DeathScreen/Panel/Button.button_up.connect(restart)
+	update_bullet_ui()
 	
 func _input(event):
 	if(dead):
@@ -39,17 +37,17 @@ func _process(delta):
 	if(Input.is_action_just_pressed("exit")):
 		get_tree().quit()
 	if(Input.is_action_just_pressed("restart")):
-		sprite3d.speed_scale = fire_rate
+		sprite3d.speed_scale = gun.fire_rate
 		
 	if dead:
 		return
 		
 	if(Input.is_action_just_pressed("shoot")):
-		if current_ammo > 0:
+		if gun.current_ammo > 0:
 			shoot()
 		else:
 			reload()
-	elif Input.is_action_just_pressed("reload") && current_ammo < max_ammo:
+	elif Input.is_action_just_pressed("reload") && gun.current_ammo < gun.max_ammo:
 		reload()
 
 func _physics_process(delta):
@@ -73,26 +71,34 @@ func shoot():
 	if !can_shoot:
 		return
 	can_shoot = false
-	current_ammo -= 1
+	gun.current_ammo -= 1
 	sprite3d.play("shoot")
+	update_bullet_ui()
+	
+	#INSTANCIA A BALA
 	instance = bullet.instantiate()
 	instance.position = raycastgun.global_position
 	instance.transform.basis = raycastgun.global_transform.basis
 	get_parent_node_3d().add_child(instance)
 	
 func reload():
+	if gun.reserve_ammo <= 0:
+		return
+		
 	can_shoot = false
 	
-	var ammo_missing = max_ammo - current_ammo
+	var ammo_missing = gun.max_ammo - gun.current_ammo
 	
-	if reserve_ammo >= ammo_missing:
-		reserve_ammo -= ammo_missing
-		current_ammo = max_ammo
+	if gun.reserve_ammo >= ammo_missing:
+		gun.reserve_ammo -= ammo_missing
+		gun.current_ammo = gun.max_ammo
 	else:
-		current_ammo += reserve_ammo
-		reserve_ammo = 0
+		gun.current_ammo += gun.reserve_ammo
+		gun.reserve_ammo = 0
+	update_bullet_ui()
 	
 	sprite3d.play("reload")
+	
 	return
 
 func shoot_anim_done():
@@ -100,5 +106,17 @@ func shoot_anim_done():
 
 func kill():
 	dead = true
-	$CanvasLayer/DeathScreen.show()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE 
+
+func update_bullet_ui():
+	ammo_text.text = "%s/%s" % [gun.current_ammo, gun.reserve_ammo]
+	ammo_bar.value = gun.current_ammo
+
+
+
+
+
+func _on_pickup_change_weapons():
+	$Gun.queue_free()
+	var i = revolver.instantiate()
+	add_child(i)

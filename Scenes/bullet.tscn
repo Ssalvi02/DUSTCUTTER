@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://xvf3n5boaopr"]
 
-[ext_resource type="Script" path="res://Scripts/bullet.gd" id="1_sjcw8"]
+[ext_resource type="Script" path="res://Scripts/Bullet.gd" id="1_5vl21"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_4p3ba"]
 size = Vector3(0.05, 0.05, 0.3)
@@ -26,7 +26,7 @@ initial_velocity_max = 5.0
 size = Vector3(0.05, 0.05, 0.05)
 
 [node name="Bullet" type="Node3D"]
-script = ExtResource("1_sjcw8")
+script = ExtResource("1_5vl21")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_4p3ba")
