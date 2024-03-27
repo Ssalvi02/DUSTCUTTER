@@ -2,23 +2,36 @@ extends CharacterBody3D
 
 var revolver = load("res://Scenes/Weapons/WeaponRevolver.tscn")
 var pistol = load("res://Scenes/Weapons/WeaponPistol.tscn")
+var sshotgun = load("res://Scenes/Weapons/WeaponSuperShotgun.tscn")
+
+signal add_ammo(ammo_amount) 
 
 @onready var raycastgun = $Camera3D/RayCast3D
 
 @export_category("Attributes")
 @export var move_speed = 5.0
+
 @onready var weapons = {
 	"pistol": pistol,
-	"revolver": revolver 
+	"revolver": revolver,
+	"supershotgun": sshotgun
 }
 var gun
+@export var current_gun = ""
 
 const MOUSE_SENS = 0.1
 
 var can_shoot = true
 var dead = false
 
+var pickups
+
 func _ready():
+	pickups = get_tree().get_nodes_in_group("pickup")
+	
+	for i in pickups:
+		i.can_pickup.connect(_on_can_pickup)
+	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	instantiate_gun("pistol")
 
@@ -53,6 +66,7 @@ func restart():
 	get_tree().reload_current_scene()
 
 func instantiate_gun(gunName):
+	current_gun = gunName
 	gun = weapons.get(gunName).instantiate()
 	add_child(gun)
 
@@ -64,8 +78,15 @@ func kill():
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE 
 
 
-func _on_pickup_can_pickup(pickup_name):
-	if (pickup_name.is_in_group("weapons") and 
+func _on_can_pickup(pickup):
+	
+	if (pickup.is_in_group("consumables")):
+		if(current_gun == pickup.pickup_name):
+			add_ammo.emit(pickup.ammo_value)
+			pickup.queue_free()
+
+	if (pickup.is_in_group("weapons") and 
 	Input.is_action_just_pressed("interact")):
 		gun.queue_free()
-		instantiate_gun("revolver")
+		pickup.queue_free()
+		instantiate_gun(pickup.pickup_name)

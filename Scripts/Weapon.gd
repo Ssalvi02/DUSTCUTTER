@@ -18,6 +18,8 @@ var current_ammo = max_ammo
 @onready var player = get_parent()
 
 func _ready():
+	ammo_bar.max_value = max_ammo
+	player.connect("add_ammo", _add_ammo_pickup)
 	$GunBase/AnimatedSprite2D.animation_finished.connect(get_parent().shoot_anim_done)
 	update_bullet_ui()
 
@@ -35,6 +37,10 @@ func _process(delta):
 func update_bullet_ui():
 	ammo_text.text = "%s/%s" % [current_ammo, reserve_ammo]
 	ammo_bar.value = current_ammo
+
+func _add_ammo_pickup(amount):
+	reserve_ammo += amount
+	update_bullet_ui()
 
 func shoot():
 	if !get_parent().can_shoot:

@@ -5,8 +5,9 @@
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_oeq5t"]
 
-[node name="Pickup" type="Node3D"]
+[node name="Pickup" type="Node3D" groups=["pickup"]]
 script = ExtResource("1_xrwpw")
+pickup_name = "revolver"
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(2.82721, 0, 0, 0, 2.82721, 0, 0, 0, 1, 0, 0, 0)

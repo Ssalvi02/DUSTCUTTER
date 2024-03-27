@@ -18,7 +18,6 @@ func _ready():
 func _process(delta):
 	position += transform.basis * Vector3(0,0,-SPEED) * delta
 	if ray.is_colliding():
-		pierce_limit -= 1
 		if ray.get_collider().has_method("kill"):
 			ray.get_collider().kill()
 			
@@ -30,9 +29,11 @@ func _process(delta):
 			queue_free()
 		elif(pierce and pierce_limit > 0 and
 		ray.get_collider().is_in_group("enemies")):
-			await get_tree().create_timer(1.0).timeout
+			pierce_limit -= 1
+			print(pierce_limit)
 			particle.emitting = true
-			queue_free()
+			if(pierce_limit < 1):
+				queue_free()
 
 
 func _on_timer_timeout():
