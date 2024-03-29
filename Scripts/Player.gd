@@ -3,6 +3,7 @@ extends CharacterBody3D
 var revolver = load("res://Scenes/Weapons/WeaponRevolver.tscn")
 var pistol = load("res://Scenes/Weapons/WeaponPistol.tscn")
 var sshotgun = load("res://Scenes/Weapons/WeaponSuperShotgun.tscn")
+var autorifle = load("res://Scenes/Weapons/WeaponAutoRifle.tscn")
 
 signal add_ammo(ammo_amount) 
 
@@ -14,7 +15,8 @@ signal add_ammo(ammo_amount)
 @onready var weapons = {
 	"pistol": pistol,
 	"revolver": revolver,
-	"supershotgun": sshotgun
+	"supershotgun": sshotgun,
+	"autorifle": autorifle
 }
 var gun
 @export var current_gun = ""

@@ -139,7 +139,7 @@ script = ExtResource("1_qgorw")
 bullet_speed = 40
 max_ammo = 7
 reserve_ammo = 24
-fire_rate = 1000.0
+fire_rate = 1.0
 
 [node name="GunBase" type="Control" parent="."]
 layout_mode = 3

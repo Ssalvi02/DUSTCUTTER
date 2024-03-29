@@ -10,7 +10,9 @@ var current_ammo = max_ammo
 @export var reserve_ammo = 0
 @export var fire_rate:float = 0
 @export var spread = false
+@export var spread_count = 0 
 @export var pierce = false
+@export var automatic = false
 
 @onready var sprite = $GunBase/AnimatedSprite2D
 @onready var ammo_bar = $AmmoCount/TextureProgressBar
@@ -49,8 +51,23 @@ func shoot():
 	current_ammo -= 1
 	update_bullet_ui()
 	sprite.play("shoot")
-	
-	instantiate_bullet()
+	if(!spread):
+		instantiate_bullet()
+	else:
+		instantiate_bullet_spread()
+		pass
+
+func instantiate_bullet_spread():
+	var xaxis = Vector3(1,0,0)
+	var yaxis = Vector3(0,1,0)
+	for n in spread_count:
+		var yrot_amount = deg_to_rad(randf_range(-10, 10))
+		var xrot_amount = deg_to_rad(randf_range(-10, 10))
+		instance = bullet.instantiate()
+		instance.position = player.raycastgun.global_position
+		instance.transform.basis = player.raycastgun.global_transform.basis.rotated(xaxis, xrot_amount)
+		instance.transform.basis = instance.transform.basis.rotated(yaxis, yrot_amount)
+		add_child(instance)
 
 func instantiate_bullet():
 	instance = bullet.instantiate()

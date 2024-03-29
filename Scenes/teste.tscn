@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b2pp6c1s5ts4m"]
+[gd_scene load_steps=19 format=3 uid="uid://b2pp6c1s5ts4m"]
 
 [ext_resource type="PackedScene" uid="uid://nju2gnnh6ujx" path="res://Scenes/Player.tscn" id="1_ue3he"]
 [ext_resource type="PackedScene" uid="uid://gnoc5ii4lq0h" path="res://Scenes/Enemy.tscn" id="2_2ec88"]
@@ -8,7 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://crkf4bi6njt5u" path="res://Assets/Sprites/Pickups/Shotgun/PSSGZ0.png" id="5_ucbjb"]
 [ext_resource type="Texture2D" uid="uid://bpdv065vs0u0b" path="res://Assets/Sprites/Pickups/Revolver/SPDLA0.png" id="6_pnbsi"]
 [ext_resource type="Texture2D" uid="uid://b0kdjti0s81io" path="res://Assets/Sprites/Pickups/Pistol/TBULA0.png" id="7_e66bo"]
+[ext_resource type="Texture2D" uid="uid://ch38j0ho4kwue" path="res://Assets/Sprites/Pickups/AutoRifle/HCHGZ0.png" id="7_lq375"]
 [ext_resource type="Texture2D" uid="uid://dhnt0ofko021e" path="res://Assets/Sprites/Pickups/Shotgun/HSHEB0.png" id="8_0cmup"]
+[ext_resource type="Texture2D" uid="uid://bjncoo4ihfgnt" path="res://Assets/Sprites/Pickups/AutoRifle/HCELB0.png" id="10_j8fyh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_awjon"]
 albedo_color = Color(1, 0.847059, 0.764706, 1)
@@ -119,6 +121,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.15241, 0, -6.03008)
 [node name="Enemy4" parent="." instance=ExtResource("2_2ec88")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.66465, 0, -5.97802)
 
+[node name="Enemy5" parent="." instance=ExtResource("2_2ec88")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.788917, 0, -11.1588)
+
+[node name="Enemy6" parent="." instance=ExtResource("2_2ec88")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.36349, 0, -6.59304)
+
+[node name="Enemy7" parent="." instance=ExtResource("2_2ec88")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.36349, 0, -13.1888)
+
+[node name="Enemy8" parent="." instance=ExtResource("2_2ec88")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.45357, 0, -13.1368)
+
 [node name="Pickup" parent="." instance=ExtResource("3_qemru")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0405045, 0.266754, 4.99317)
 sprite = ExtResource("4_285rd")
@@ -136,6 +150,12 @@ pickup_name = "pistol"
 sprite = ExtResource("5_4r2q2")
 group = "weapons"
 
+[node name="Pickup7" parent="." instance=ExtResource("3_qemru")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5911, 0.266754, 6.32175)
+pickup_name = "autorifle"
+sprite = ExtResource("7_lq375")
+group = "weapons"
+
 [node name="Pickup3" parent="." instance=ExtResource("3_qemru")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9595, 0.266754, 4.99317)
 ammo_value = 6
@@ -147,6 +167,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.68678, 0.266754, 6.08029)
 pickup_name = "pistol"
 ammo_value = 7
 sprite = ExtResource("7_e66bo")
+group = "consumables"
+
+[node name="Pickup8" parent="." instance=ExtResource("3_qemru")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.57753, 0.266754, 6.08029)
+pickup_name = "autorifle"
+ammo_value = 15
+sprite = ExtResource("10_j8fyh")
 group = "consumables"
 
 [node name="Pickup6" parent="." instance=ExtResource("3_qemru")]
