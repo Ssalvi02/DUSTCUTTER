@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ouq4r2gcp7jm"
-path="res://.godot/imported/autorifle_spritesheet.png-a8dac3262d49c6f9930646ad961b6ba5.ctex"
+uid="uid://d2lpklawjijgq"
+path="res://.godot/imported/sprite_sheet.png-cca392dca021c95777c9dfeaec8afc21.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Weapons/AutoRifle/autorifle_spritesheet.png"
-dest_files=["res://.godot/imported/autorifle_spritesheet.png-a8dac3262d49c6f9930646ad961b6ba5.ctex"]
+source_file="res://Assets/Sprites/Weapons/AutoRifle/sprite_sheet.png"
+dest_files=["res://.godot/imported/sprite_sheet.png-cca392dca021c95777c9dfeaec8afc21.ctex"]
 
 [params]
 
