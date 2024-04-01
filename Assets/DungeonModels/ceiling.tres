@@ -1,11 +1,17 @@
-[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://dogt7gmvynypt"]
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://dogt7gmvynypt"]
 
 [ext_resource type="Texture2D" uid="uid://cvewhq4x36jhm" path="res://Assets/DungeonModels/DunCell_TexturesCom_Pavement_CobblestoneStreet5_2x2_1K_albedo.png" id="1_sv531"]
 [ext_resource type="Texture2D" uid="uid://cmnikjkgv3d16" path="res://Assets/DungeonModels/DunCell_TexturesCom_Pavement_CobblestoneStreet5_2x2_1K_normals.png" id="2_0jan0"]
+[ext_resource type="Shader" path="res://Assets/Shaders/pixelation.gdshader" id="2_yu1yr"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kvdvn"]
+render_priority = 0
+shader = ExtResource("2_yu1yr")
+shader_parameter/pixel_size = 4
 
 [resource]
 resource_name = "ceiling"
+next_pass = SubResource("ShaderMaterial_kvdvn")
 cull_mode = 2
 vertex_color_use_as_albedo = true
 albedo_texture = ExtResource("1_sv531")

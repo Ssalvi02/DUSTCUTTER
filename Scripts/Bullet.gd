@@ -30,7 +30,6 @@ func _process(delta):
 		elif(pierce and pierce_limit > 0 and
 		ray.get_collider().is_in_group("enemies")):
 			pierce_limit -= 1
-			print(pierce_limit)
 			particle.emitting = true
 			if(pierce_limit < 1):
 				queue_free()

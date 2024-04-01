@@ -22,6 +22,7 @@ var gun
 @export var current_gun = ""
 
 const MOUSE_SENS = 0.1
+const JOY_SENS = 0.05
 
 var can_shoot = true
 var dead = false
@@ -49,6 +50,15 @@ func _process(delta):
 		get_tree().quit()
 	if dead:
 		return
+	
+	joystick_controller_camera()
+
+func joystick_controller_camera():
+	$Camera3D.rotate_x(Input.get_action_strength("look_up") * JOY_SENS)
+	$Camera3D.rotate_x(Input.get_action_strength("look_down") * JOY_SENS * -1)
+	rotate_y(Input.get_action_strength("look_left") * JOY_SENS)
+	rotate_y(Input.get_action_strength("look_right") * JOY_SENS * -1)
+	pass
 
 func _physics_process(delta):
 	if dead:

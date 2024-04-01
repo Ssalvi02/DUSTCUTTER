@@ -45,7 +45,34 @@ func handle_21(cell:Node3D,dir:String):
 func handle_22(cell:Node3D,dir:String):
 	cell.call("remove_wall_"+dir)
 	cell.call("remove_door_"+dir)
-
+func handle_25(cell:Node3D,dir:String):
+	cell.call("remove_wall_"+dir)
+	cell.call("remove_door_"+dir)
+func handle_24(cell:Node3D,dir:String):
+	cell.call("remove_wall_"+dir)
+	cell.call("remove_door_"+dir)
+func handle_14(cell:Node3D,dir:String):
+	cell.call("remove_wall_"+dir)
+	cell.call("remove_door_"+dir)
+func handle_15(cell:Node3D,dir:String):
+	cell.call("remove_wall_"+dir)
+	cell.call("remove_door_"+dir)
+func handle_55(cell:Node3D,dir:String):
+	cell.call("remove_wall_"+dir)
+	cell.call("remove_door_"+dir)
+func handle_52(cell:Node3D,dir:String):
+	cell.call("remove_wall_"+dir)
+	cell.call("remove_door_"+dir)
+func handle_44(cell:Node3D,dir:String):
+	cell.call("remove_wall_"+dir)
+	cell.call("remove_door_"+dir)
+func handle_42(cell:Node3D,dir:String):
+	cell.call("remove_wall_"+dir)
+	cell.call("remove_door_"+dir)
+func handle_41(cell:Node3D,dir:String):
+	cell.call("remove_wall_"+dir)
+func handle_51(cell:Node3D,dir:String):
+	cell.call("remove_wall_"+dir)
 func create_dungeon():
 	for c in get_children():
 		remove_child(c)
@@ -53,8 +80,9 @@ func create_dungeon():
 	var t : int = 0
 	for cell in grid_map.get_used_cells():
 		var cell_index : int = grid_map.get_cell_item(cell)
-		if cell_index <=2\
-		&& cell_index >=0:
+		if cell_index <=5\
+		&& cell_index >=0\
+		&& cell_index != 3:
 			var dun_cell : Node3D = dun_cell_scene.instantiate()
 			dun_cell.position = Vector3(cell) + Vector3(0.5,0,0.5)
 			t +=1

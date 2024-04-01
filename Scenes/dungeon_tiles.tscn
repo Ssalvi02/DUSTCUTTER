@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bnk0rj8hcw6kx"]
+[gd_scene load_steps=8 format=3 uid="uid://bnk0rj8hcw6kx"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_aefi7"]
 
@@ -10,6 +10,12 @@ albedo_color = Color(0.52549, 0, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vy02n"]
 albedo_color = Color(0, 0, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_grctn"]
+albedo_color = Color(0.972549, 0.941176, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h3ly1"]
+albedo_color = Color(0.537255, 0, 1, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_paf3f"]
 albedo_color = Color(0.721569, 0.290196, 0, 1)
@@ -27,6 +33,14 @@ surface_material_override/0 = SubResource("StandardMaterial3D_0cr31")
 [node name="DoorTile" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_aefi7")
 surface_material_override/0 = SubResource("StandardMaterial3D_vy02n")
+
+[node name="TreasureRoomTile" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_aefi7")
+surface_material_override/0 = SubResource("StandardMaterial3D_grctn")
+
+[node name="BossRoomTile" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_aefi7")
+surface_material_override/0 = SubResource("StandardMaterial3D_h3ly1")
 
 [node name="BorderTile" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_aefi7")

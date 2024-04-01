@@ -7,6 +7,8 @@ extends Node3D
 
 
 func set_start(val:bool)->void:
+	treasure_count = 2
+	boss_count = 1
 	if Engine.is_editor_hint():
 		generate()
 
@@ -22,10 +24,16 @@ func set_border_size(val : int)->void:
 @export var room_recursion : int = 15
 @export var min_room_size : int = 2 
 @export var max_room_size : int = 4
+@export var treasure_count : int = 1
+@export var boss_count : int = 1
+
 @export_multiline var custom_seed : String = "" : set = set_seed 
 func set_seed(val:String)->void:
 	custom_seed = val
 	seed(val.hash())
+
+func set_treasure(val:int)->void:
+	treasure_count = val
 
 var room_tiles : Array[PackedVector3Array] = []
 var room_positions : PackedVector3Array = []
@@ -103,7 +111,7 @@ func create_hallways(hallway_graph:AStar2D):
 	var hallways : Array[PackedVector3Array] = []
 	for p in hallway_graph.get_point_ids():
 		for c in hallway_graph.get_point_connections(p):
-			if c>p:
+			if c > p:
 				var room_from : PackedVector3Array = room_tiles[p]
 				var room_to : PackedVector3Array = room_tiles[c]
 				var tile_from : Vector3 = room_from[0]
@@ -138,17 +146,9 @@ func create_hallways(hallway_graph:AStar2D):
 		
 		for t in hall:
 			var pos : Vector3i = Vector3i(t.x,0,t.y)
-			if grid_map.get_cell_item(pos) <0:
+			if grid_map.get_cell_item(pos) < 0:
 				grid_map.set_cell_item(pos,1)
-		if _t%16 == 15: await  get_tree().create_timer(0).timeout
-	
-	
-	
-
-	
-	
-	
-
+		if _t%10 == 15: await  get_tree().create_timer(0).timeout
 
 func make_room(rec:int):
 	if !rec>0:
@@ -164,7 +164,7 @@ func make_room(rec:int):
 	for r in range(-room_margin,height+room_margin):
 		for c in range(-room_margin,width+room_margin):
 			var pos : Vector3i = start_pos + Vector3i(c,0,r)
-			if grid_map.get_cell_item(pos) == 0:
+			if grid_map.get_cell_item(pos) == 0 or grid_map.get_cell_item(pos) == 4 or grid_map.get_cell_item(pos) == 5:
 				make_room(rec-1)
 				return
 	
@@ -173,8 +173,15 @@ func make_room(rec:int):
 		for c in width:
 			var pos : Vector3i = start_pos + Vector3i(c,0,r)
 			grid_map.set_cell_item(pos,0)
+			if treasure_count == 0:
+				grid_map.set_cell_item(pos,4)
+			if boss_count == 0:
+				grid_map.set_cell_item(pos,5)
 			room.append(pos)
+	treasure_count -= 1
+	boss_count -= 1
 	room_tiles.append(room)
+	
 	var avg_x : float = start_pos.x + (float(width)/2)
 	var avg_z : float = start_pos.z + (float(height)/2)
 	var pos : Vector3 = Vector3(avg_x,0,avg_z)

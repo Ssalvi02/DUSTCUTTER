@@ -21,6 +21,9 @@ emission_energy_multiplier = 12.0
 direction = Vector3(0, 0, 1)
 initial_velocity_min = 3.0
 initial_velocity_max = 5.0
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.4
 
 [sub_resource type="BoxMesh" id="BoxMesh_6rrnv"]
 size = Vector3(0.05, 0.05, 0.05)
@@ -33,7 +36,7 @@ mesh = SubResource("BoxMesh_4p3ba")
 surface_material_override/0 = SubResource("StandardMaterial3D_qv84q")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.431455)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0721956)
 target_position = Vector3(0, 0, -1)
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
@@ -44,7 +47,6 @@ emitting = false
 amount = 16
 one_shot = true
 explosiveness = 1.0
-collision_base_size = 27.16
 process_material = SubResource("ParticleProcessMaterial_tr5fw")
 draw_pass_1 = SubResource("BoxMesh_6rrnv")
 
