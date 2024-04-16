@@ -3,7 +3,6 @@ extends CharacterBody3D
 var revolver = load("res://Scenes/Weapons/WeaponRevolver.tscn")
 var pistol = load("res://Scenes/Weapons/WeaponPistol.tscn")
 var sshotgun = load("res://Scenes/Weapons/WeaponSuperShotgun.tscn")
-var autorifle = load("res://Scenes/Weapons/WeaponAutoRifle.tscn")
 
 signal add_ammo(ammo_amount) 
 
@@ -15,8 +14,7 @@ signal add_ammo(ammo_amount)
 @onready var weapons = {
 	"pistol": pistol,
 	"revolver": revolver,
-	"supershotgun": sshotgun,
-	"autorifle": autorifle
+	"supershotgun": sshotgun
 }
 var gun
 @export var current_gun = ""
@@ -63,6 +61,10 @@ func joystick_controller_camera():
 func _physics_process(delta):
 	if dead:
 		return
+	move()
+	move_and_slide()
+
+func move():
 	var input_dir = Input.get_vector("move_left", "move_right", "move_foward", "move_backward")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
@@ -71,8 +73,6 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, move_speed)
 		velocity.z = move_toward(velocity.z, 0, move_speed)
-
-	move_and_slide()
 
 func restart():
 	get_tree().reload_current_scene()

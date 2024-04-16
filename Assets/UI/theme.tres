@@ -1,0 +1,34 @@
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://bdxeh87c5j7qn"]
+
+[ext_resource type="FontFile" uid="uid://bxq2fb8f7p6sd" path="res://Assets/Fonts/MiniMOOD.ttf" id="1_rma8t"]
+[ext_resource type="Texture2D" uid="uid://l28nn54x1yuy" path="res://Assets/UI/grabber.png" id="2_n4j7i"]
+[ext_resource type="Texture2D" uid="uid://3cttlke633ml" path="res://Assets/UI/grabberhigh.png" id="3_pyy8y"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2pn3i"]
+bg_color = Color(0.72549, 0.054902, 0.290196, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ktrcg"]
+bg_color = Color(0.917647, 0.164706, 0.32549, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m4gl8"]
+bg_color = Color(0.133333, 0.0705882, 0.172549, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_741tf"]
+bg_color = Color(0.376471, 0.298039, 0.490196, 1)
+
+[resource]
+Button/fonts/font = ExtResource("1_rma8t")
+HSlider/icons/grabber = ExtResource("2_n4j7i")
+HSlider/icons/grabber_highlight = ExtResource("3_pyy8y")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_2pn3i")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_ktrcg")
+Label/font_sizes/font_size = 24
+Label/fonts/font = ExtResource("1_rma8t")
+LineEdit/fonts/font = ExtResource("1_rma8t")
+OptionButton/fonts/font = ExtResource("1_rma8t")
+ProgressBar/colors/font_outline_color = Color(0, 0, 0, 1)
+ProgressBar/constants/outline_size = 12
+ProgressBar/fonts/font = ExtResource("1_rma8t")
+ProgressBar/styles/background = SubResource("StyleBoxFlat_m4gl8")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_741tf")
+TextEdit/fonts/font = ExtResource("1_rma8t")

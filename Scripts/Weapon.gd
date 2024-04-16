@@ -4,15 +4,18 @@ var bullet = load("res://Scenes/Bullet.tscn")
 var instance
 
 @export_category("Gun Attributes")
-@export var bullet_speed = 0
-@export var max_ammo = 0
+@export var bullet_speed : float = 0
+@export var max_ammo : int = 0
 var current_ammo = max_ammo
-@export var reserve_ammo = 0
-@export var fire_rate:float = 0
-@export var spread = false
-@export var spread_count = 0 
-@export var pierce = false
-@export var automatic = false
+@export var reserve_ammo : int = 0
+@export var fire_rate : float = 0
+@export var spread : bool = false
+@export var spread_count : int = 0 
+@export var pierce : bool = false
+@export var automatic :bool = false
+@export_category("Gun UI/Texture")
+@export var texture : SpriteFrames = null
+@export var cross_texture : Texture = null
 
 @onready var sprite = $GunBase/AnimatedSprite2D
 @onready var ammo_bar = $AmmoCount/TextureProgressBar
@@ -20,6 +23,8 @@ var current_ammo = max_ammo
 @onready var player = get_parent()
 
 func _ready():
+	sprite.sprite_frames = texture
+	$Crosshair.texture = cross_texture
 	ammo_bar.max_value = max_ammo
 	player.connect("add_ammo", _add_ammo_pickup)
 	$GunBase/AnimatedSprite2D.animation_finished.connect(get_parent().shoot_anim_done)

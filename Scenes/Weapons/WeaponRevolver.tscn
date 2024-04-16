@@ -1,186 +1,11 @@
-[gd_scene load_steps=29 format=3 uid="uid://b4gbly8hfmdwe"]
+[gd_scene load_steps=8 format=3 uid="uid://b4gbly8hfmdwe"]
 
 [ext_resource type="Script" path="res://Scripts/Weapon.gd" id="1_bcdc7"]
-[ext_resource type="Texture2D" uid="uid://b3cei78fnmvye" path="res://Assets/Sprites/Weapons/Revolver/revolver_spritesheet.png" id="2_5iyhl"]
+[ext_resource type="SpriteFrames" uid="uid://dweu54di5n6p6" path="res://Assets/Sprites/Weapons/Revolver/Revolverframes.tres" id="2_fduya"]
+[ext_resource type="Theme" uid="uid://bdxeh87c5j7qn" path="res://Assets/UI/theme.tres" id="3_ivqsr"]
+[ext_resource type="Texture2D" uid="uid://bvwtfmtwro7vo" path="res://Assets/UI/Crosshairs/revolvercrosshair.png" id="3_xdlye"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_b1153"]
-atlas = ExtResource("2_5iyhl")
-region = Rect2(0, 0, 320, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_61g47"]
-atlas = ExtResource("2_5iyhl")
-region = Rect2(1920, 0, 320, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7dna6"]
-atlas = ExtResource("2_5iyhl")
-region = Rect2(2240, 0, 320, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_nnds0"]
-atlas = ExtResource("2_5iyhl")
-region = Rect2(2560, 0, 320, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4hl31"]
-atlas = ExtResource("2_5iyhl")
-region = Rect2(2880, 0, 320, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dbkkx"]
-atlas = ExtResource("2_5iyhl")
-region = Rect2(3200, 0, 320, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mnkdf"]
-atlas = ExtResource("2_5iyhl")
-region = Rect2(3520, 0, 320, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_oi7q6"]
-atlas = ExtResource("2_5iyhl")
-region = Rect2(3840, 0, 320, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qynxl"]
-atlas = ExtResource("2_5iyhl")
-region = Rect2(4160, 0, 320, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4yway"]
-atlas = ExtResource("2_5iyhl")
-region = Rect2(4480, 0, 320, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6hdsj"]
-atlas = ExtResource("2_5iyhl")
-region = Rect2(4800, 0, 320, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3e8ns"]
-atlas = ExtResource("2_5iyhl")
-region = Rect2(5120, 0, 320, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_545kc"]
-atlas = ExtResource("2_5iyhl")
-region = Rect2(5440, 0, 320, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_g5vja"]
-atlas = ExtResource("2_5iyhl")
-region = Rect2(5760, 0, 320, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_m2k2w"]
-atlas = ExtResource("2_5iyhl")
-region = Rect2(6080, 0, 320, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ex1xx"]
-atlas = ExtResource("2_5iyhl")
-region = Rect2(6400, 0, 320, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_p1olq"]
-atlas = ExtResource("2_5iyhl")
-region = Rect2(0, 0, 320, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_b0ccb"]
-atlas = ExtResource("2_5iyhl")
-region = Rect2(0, 0, 320, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2rqmv"]
-atlas = ExtResource("2_5iyhl")
-region = Rect2(320, 0, 320, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_nthmx"]
-atlas = ExtResource("2_5iyhl")
-region = Rect2(640, 0, 320, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rgkyq"]
-atlas = ExtResource("2_5iyhl")
-region = Rect2(960, 0, 320, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vq0db"]
-atlas = ExtResource("2_5iyhl")
-region = Rect2(1280, 0, 320, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_17lnp"]
-atlas = ExtResource("2_5iyhl")
-region = Rect2(1600, 0, 320, 200)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_ndofp"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_b1153")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_61g47")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7dna6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nnds0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4hl31")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dbkkx")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mnkdf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_oi7q6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qynxl")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4yway")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6hdsj")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3e8ns")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_545kc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_g5vja")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_m2k2w")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ex1xx")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_p1olq")
-}],
-"loop": false,
-"name": &"reload",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_b0ccb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2rqmv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nthmx")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rgkyq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vq0db")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_17lnp")
-}],
-"loop": false,
-"name": &"shoot",
-"speed": 10.0
-}]
+[sub_resource type="SpriteFrames" id="SpriteFrames_snpeu"]
 
 [sub_resource type="Gradient" id="Gradient_upyau"]
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
@@ -197,6 +22,8 @@ max_ammo = 6
 reserve_ammo = 23
 fire_rate = 0.1
 pierce = true
+texture = ExtResource("2_fduya")
+cross_texture = ExtResource("3_xdlye")
 
 [node name="GunBase" type="Control" parent="."]
 layout_mode = 3
@@ -214,13 +41,9 @@ grow_vertical = 0
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="GunBase"]
 position = Vector2(20, -208)
 scale = Vector2(2.34, 2.478)
-sprite_frames = SubResource("SpriteFrames_ndofp")
-animation = &"reload"
-autoplay = "idle"
-frame = 15
-frame_progress = 1.0
+sprite_frames = SubResource("SpriteFrames_snpeu")
 
-[node name="Crosshair" type="ColorRect" parent="."]
+[node name="Crosshair" type="TextureRect" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -232,7 +55,6 @@ offset_right = 1.0
 offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(1, 1, 1, 0.568627)
 
 [node name="AmmoCount" type="Control" parent="."]
 layout_mode = 3
@@ -261,9 +83,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("3_ivqsr")
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 3
-theme_override_font_sizes/font_size = 54
-text = "7/7"
+text = "0/0"
 horizontal_alignment = 1
 vertical_alignment = 1
