@@ -3,7 +3,7 @@ extends Node3D
 @export var pickup_name = ""
 @export var ammo_value = 0
 
-@export var sprite:Texture = null
+@export var sprite : Texture = null
 @export_enum("consumables", "weapons") var group : String
 
 signal can_pickup(pickup)

@@ -1,13 +1,13 @@
 extends Node3D
 
-@onready var pierce = get_parent().pierce
-@export var pierce_limit = 2
+@onready var pierce : bool = get_parent().pierce
+@export var pierce_limit : int = 2
 
-@onready var SPEED = get_parent().bullet_speed
+@onready var SPEED : int = get_parent().bullet_speed
 
-@onready var mesh = $MeshInstance3D
-@onready var ray = $RayCast3D
-@onready var particle = $GPUParticles3D
+@onready var mesh : MeshInstance3D = $MeshInstance3D
+@onready var ray : RayCast3D = $RayCast3D
+@onready var particle : GPUParticles3D = $GPUParticles3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

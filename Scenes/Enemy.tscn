@@ -1,95 +1,14 @@
-[gd_scene load_steps=20 format=3 uid="uid://gnoc5ii4lq0h"]
+[gd_scene load_steps=5 format=3 uid="uid://gnoc5ii4lq0h"]
 
 [ext_resource type="Script" path="res://Scripts/Enemy.gd" id="1_bp34t"]
-[ext_resource type="Texture2D" uid="uid://gepxrj4bkgp2" path="res://Assets/Sprites/Enemies/Death/TROOI0.png" id="1_my20t"]
-[ext_resource type="Texture2D" uid="uid://b7atv8yutkj8x" path="res://Assets/Sprites/Enemies/Walk/TROOA1.png" id="1_qierc"]
-[ext_resource type="Texture2D" uid="uid://dacrjp0w4u61s" path="res://Assets/Sprites/Enemies/Death/TROOJ0.png" id="2_8534f"]
-[ext_resource type="Texture2D" uid="uid://djrnbp7hvytyk" path="res://Assets/Sprites/Enemies/Walk/TROOB1.png" id="2_oca02"]
-[ext_resource type="Texture2D" uid="uid://b4koeneatfguw" path="res://Assets/Sprites/Enemies/Death/TROOK0.png" id="3_d66j2"]
-[ext_resource type="Texture2D" uid="uid://cnh6057jqpgci" path="res://Assets/Sprites/Enemies/Walk/TROOC1.png" id="3_o1c6b"]
-[ext_resource type="Texture2D" uid="uid://ba00nv3d14b8o" path="res://Assets/Sprites/Enemies/Death/TROOL0.png" id="4_67e2f"]
-[ext_resource type="Texture2D" uid="uid://8my68n4c04dk" path="res://Assets/Sprites/Enemies/Walk/TROOD1.png" id="4_smbdd"]
-[ext_resource type="Texture2D" uid="uid://cl2y5uwec8uer" path="res://Assets/Sprites/Enemies/Death/TROOM0.png" id="5_5p47p"]
+[ext_resource type="SpriteFrames" uid="uid://ck1w8h0licbr6" path="res://Assets/Sprites/Enemies/SpriteFrames/PLACEHOLDER_sprite_frames.tres" id="2_sxa6j"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0mf31"]
 radius = 0.712438
 height = 2.02662
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0xwge"]
-atlas = ExtResource("1_my20t")
-region = Rect2(0, 0, 42, 62)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_r0vlg"]
-atlas = ExtResource("2_8534f")
-region = Rect2(0, 0, 41, 59)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rb0lw"]
-atlas = ExtResource("3_d66j2")
-region = Rect2(0, 0, 40, 54)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ossab"]
-atlas = ExtResource("1_qierc")
-region = Rect2(0, 0, 41, 57)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mok3g"]
-atlas = ExtResource("2_oca02")
-region = Rect2(0, 0, 39, 56)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_n1djd"]
-atlas = ExtResource("3_o1c6b")
-region = Rect2(0, 0, 39, 60)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_23mh5"]
-atlas = ExtResource("4_smbdd")
-region = Rect2(0, 0, 37, 57)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_b3jhd"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0xwge")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_r0vlg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rb0lw")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_d66j2")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_67e2f")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_5p47p")
-}],
-"loop": false,
-"name": &"death",
-"speed": 8.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ossab")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mok3g")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_n1djd")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_23mh5")
-}],
-"loop": true,
-"name": &"walk",
-"speed": 5.0
-}]
+[sub_resource type="BoxShape3D" id="BoxShape3D_mn6l3"]
+size = Vector3(5, 1, 5)
 
 [node name="Enemy" type="CharacterBody3D" groups=["enemies"]]
 script = ExtResource("1_bp34t")
@@ -103,6 +22,15 @@ transform = Transform3D(3.2, 0, 0, 0, 3.2, 0, 0, 0, 3.2, 0, 0.950101, 0)
 billboard = 2
 shaded = true
 texture_filter = 0
-sprite_frames = SubResource("SpriteFrames_b3jhd")
-animation = &"death"
-autoplay = "walk"
+sprite_frames = ExtResource("2_sxa6j")
+
+[node name="sensePlayer" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.74707)
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="sensePlayer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("BoxShape3D_mn6l3")
+
+[connection signal="area_entered" from="sensePlayer" to="." method="_on_sense_player_area_entered"]
+[connection signal="area_exited" from="sensePlayer" to="." method="_on_sense_player_area_exited"]

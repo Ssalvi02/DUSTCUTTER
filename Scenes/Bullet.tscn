@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/Bullet.gd" id="1_5vl21"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_4p3ba"]
-size = Vector3(0.05, 0.05, 0.3)
+size = Vector3(0.03, 0.03, 0.05)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qv84q"]
 albedo_color = Color(1, 0.478431, 0.0980392, 1)
@@ -26,7 +26,7 @@ collision_friction = 0.0
 collision_bounce = 0.4
 
 [sub_resource type="BoxMesh" id="BoxMesh_6rrnv"]
-size = Vector3(0.05, 0.05, 0.05)
+size = Vector3(0.03, 0.03, 0.03)
 
 [node name="Bullet" type="Node3D"]
 script = ExtResource("1_5vl21")
@@ -36,7 +36,7 @@ mesh = SubResource("BoxMesh_4p3ba")
 surface_material_override/0 = SubResource("StandardMaterial3D_qv84q")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0721956)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0280629)
 target_position = Vector3(0, 0, -1)
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
@@ -44,7 +44,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.149913)
 material_override = SubResource("StandardMaterial3D_dgj2h")
 cast_shadow = 0
 emitting = false
-amount = 16
+amount = 12
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_tr5fw")

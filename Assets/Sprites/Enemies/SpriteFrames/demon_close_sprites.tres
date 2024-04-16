@@ -1,0 +1,87 @@
+[gd_resource type="SpriteFrames" load_steps=17 format=3 uid="uid://ceqcyiigjyh5e"]
+
+[ext_resource type="Texture2D" uid="uid://gepxrj4bkgp2" path="res://Assets/Sprites/Enemies/Death/TROOI0.png" id="1_13wi3"]
+[ext_resource type="Texture2D" uid="uid://dacrjp0w4u61s" path="res://Assets/Sprites/Enemies/Death/TROOJ0.png" id="2_6skcv"]
+[ext_resource type="Texture2D" uid="uid://b4koeneatfguw" path="res://Assets/Sprites/Enemies/Death/TROOK0.png" id="3_gmol0"]
+[ext_resource type="Texture2D" uid="uid://ba00nv3d14b8o" path="res://Assets/Sprites/Enemies/Death/TROOL0.png" id="4_ag841"]
+[ext_resource type="Texture2D" uid="uid://cl2y5uwec8uer" path="res://Assets/Sprites/Enemies/Death/TROOM0.png" id="5_foj2u"]
+[ext_resource type="Texture2D" uid="uid://b7atv8yutkj8x" path="res://Assets/Sprites/Enemies/Walk/TROOA1.png" id="6_nnqnt"]
+[ext_resource type="Texture2D" uid="uid://djrnbp7hvytyk" path="res://Assets/Sprites/Enemies/Walk/TROOB1.png" id="7_4ca4h"]
+[ext_resource type="Texture2D" uid="uid://cnh6057jqpgci" path="res://Assets/Sprites/Enemies/Walk/TROOC1.png" id="8_jda1g"]
+[ext_resource type="Texture2D" uid="uid://8my68n4c04dk" path="res://Assets/Sprites/Enemies/Walk/TROOD1.png" id="9_obuwf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0xwge"]
+atlas = ExtResource("1_13wi3")
+region = Rect2(0, 0, 42, 62)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r0vlg"]
+atlas = ExtResource("2_6skcv")
+region = Rect2(0, 0, 41, 59)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rb0lw"]
+atlas = ExtResource("3_gmol0")
+region = Rect2(0, 0, 40, 54)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ossab"]
+atlas = ExtResource("6_nnqnt")
+region = Rect2(0, 0, 41, 57)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mok3g"]
+atlas = ExtResource("7_4ca4h")
+region = Rect2(0, 0, 39, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n1djd"]
+atlas = ExtResource("8_jda1g")
+region = Rect2(0, 0, 39, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_23mh5"]
+atlas = ExtResource("9_obuwf")
+region = Rect2(0, 0, 37, 57)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0xwge")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r0vlg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rb0lw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_gmol0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ag841")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_foj2u")
+}],
+"loop": false,
+"name": &"death",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ossab")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mok3g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n1djd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_23mh5")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
