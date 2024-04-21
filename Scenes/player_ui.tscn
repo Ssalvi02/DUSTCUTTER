@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3 uid="uid://5qhiwbuy1k0f"]
+
+[ext_resource type="Script" path="res://Scripts/playerUIHandler.gd" id="1_keby0"]
+
+[sub_resource type="Animation" id="Animation_g0lnd"]
+resource_name = "screenflicker_ammo"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xhnx5"]
+_data = {
+"screenflicker_ammo": SubResource("Animation_g0lnd")
+}
+
+[node name="PlayerUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_keby0")
+
+[node name="HFlowContainer" type="HFlowContainer" parent="."]
+layout_mode = 2
+offset_left = 40.0
+offset_top = 40.0
+offset_right = 42.0
+offset_bottom = 130.0
+theme_override_constants/h_separation = 45
+theme_override_constants/v_separation = 45
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_xhnx5")
+}

@@ -7,9 +7,12 @@ var sshotgun = load("res://Scenes/Weapons/WeaponSuperShotgun.tscn")
 signal add_ammo(ammo_amount) 
 
 @onready var raycastgun = $Camera3D/RayCast3D
+@onready var ui = $PlayerUI
 
 @export_category("Attributes")
 @export var move_speed = 5.0
+@export var max_health = 6
+@export var current_health = max_health
 
 @onready var weapons = {
 	"pistol": pistol,
@@ -50,6 +53,16 @@ func _process(delta):
 		return
 	
 	joystick_controller_camera()
+
+	if Input.is_action_just_pressed("DEBUG_L"):
+		max_health -= 2
+		ui.lose_heart()
+		if current_health > max_health:
+			current_health = max_health
+	
+	if Input.is_action_just_pressed("DEBUG_P"):
+		current_health -= 1
+		ui.take_damage()
 
 func joystick_controller_camera():
 	$Camera3D.rotate_x(Input.get_action_strength("look_up") * JOY_SENS)
