@@ -1,23 +1,19 @@
-[gd_scene load_steps=8 format=3 uid="uid://b10bf8sgmt6bi"]
+[gd_scene load_steps=10 format=3 uid="uid://b10bf8sgmt6bi"]
 
 [ext_resource type="Script" path="res://Scripts/Weapon.gd" id="1_cog8v"]
 [ext_resource type="SpriteFrames" uid="uid://csqqfsmani078" path="res://Assets/Sprites/Weapons/SuperShotgun/SuperShotgunframes.tres" id="2_bkw3k"]
 [ext_resource type="Theme" uid="uid://bdxeh87c5j7qn" path="res://Assets/UI/theme.tres" id="2_syvrt"]
 [ext_resource type="Texture2D" uid="uid://bmco7ddg8sddx" path="res://Assets/UI/Crosshairs/shotguncrosshair.png" id="3_116rg"]
+[ext_resource type="Script" path="res://Scripts/BulletUIHandler.gd" id="4_4f0ky"]
+[ext_resource type="Texture2D" uid="uid://mr80pjf7jmjn" path="res://Assets/UI/Crosshairs/pistolcrosshair.png" id="4_anawy"]
+[ext_resource type="Texture2D" uid="uid://bq57lsolpwvij" path="res://Assets/UI/Bullets/bulletcount_bg.png" id="5_5tufy"]
+[ext_resource type="Texture2D" uid="uid://10fymd03upbc" path="res://Assets/UI/Bullets/shotgunshells_spritesheet.png" id="5_k6ge1"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_c0ap0"]
 
-[sub_resource type="Gradient" id="Gradient_upyau"]
-colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_7rtnw"]
-gradient = SubResource("Gradient_upyau")
-width = 230
-height = 100
-
 [node name="Gun" type="CanvasLayer"]
 script = ExtResource("1_cog8v")
-bullet_speed = 60
+bullet_speed = 100.0
 max_ammo = 2
 reserve_ammo = 6
 fire_rate = 0.05
@@ -45,19 +41,23 @@ scale = Vector2(2.34, 2.478)
 sprite_frames = SubResource("SpriteFrames_c0ap0")
 
 [node name="Crosshair" type="TextureRect" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -1.0
-offset_top = -1.0
-offset_right = 1.0
-offset_bottom = 1.0
+texture_filter = 1
+anchors_preset = -1
+anchor_left = 0.495
+anchor_top = 0.491
+anchor_right = 0.505
+anchor_bottom = 0.509
+offset_left = -0.240051
+offset_top = -0.16803
+offset_right = 0.23999
+offset_bottom = 0.167999
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("4_anawy")
+stretch_mode = 3
 
 [node name="AmmoCount" type="Control" parent="."]
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 2
 anchor_top = 1.0
@@ -65,23 +65,16 @@ anchor_bottom = 1.0
 offset_top = -100.0
 offset_right = 229.0
 grow_vertical = 0
-
-[node name="TextureProgressBar" type="TextureProgressBar" parent="AmmoCount"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-max_value = 7.0
-value = 7.0
-texture_progress = SubResource("GradientTexture2D_7rtnw")
+script = ExtResource("4_4f0ky")
+bullet_texture = ExtResource("5_k6ge1")
 
 [node name="Label" type="Label" parent="AmmoCount"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -64.0
+offset_bottom = -64.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_syvrt")
@@ -90,3 +83,29 @@ theme_override_constants/shadow_offset_x = 3
 text = "0/0"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="AmmoCount"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_5tufy")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="AmmoCount/TextureRect"]
+layout_direction = 2
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 0.991
+anchor_bottom = 0.515
+offset_right = 0.0699921
+offset_bottom = 1.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+alignment = 1
+metadata/_edit_use_anchors_ = true

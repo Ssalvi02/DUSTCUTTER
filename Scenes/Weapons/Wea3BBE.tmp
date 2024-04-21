@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c7s7muyhqqa3v"]
+[gd_scene load_steps=8 format=3 uid="uid://c7s7muyhqqa3v"]
 
 [ext_resource type="Script" path="res://Scripts/Weapon.gd" id="1_qgorw"]
 [ext_resource type="Theme" uid="uid://bdxeh87c5j7qn" path="res://Assets/UI/theme.tres" id="2_dj3tv"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://mr80pjf7jmjn" path="res://Assets/UI/Crosshairs/pistolcrosshair.png" id="3_cmt6q"]
 [ext_resource type="Script" path="res://Scripts/BulletUIHandler.gd" id="4_kr041"]
 [ext_resource type="Texture2D" uid="uid://bq57lsolpwvij" path="res://Assets/UI/Bullets/bulletcount_bg.png" id="5_c5uli"]
-[ext_resource type="Texture2D" uid="uid://dvbcb173xlqw2" path="res://Assets/UI/Bullets/bullet_spritesheet.png" id="5_nhs04"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_tlncn"]
 
@@ -15,7 +14,7 @@ script = ExtResource("1_qgorw")
 bullet_speed = 40.0
 max_ammo = 7
 reserve_ammo = 24
-fire_rate = 50.0
+fire_rate = 1.0
 texture = ExtResource("2_eh2rl")
 cross_texture = ExtResource("3_cmt6q")
 
@@ -39,21 +38,17 @@ sprite_frames = SubResource("SpriteFrames_tlncn")
 flip_h = true
 
 [node name="Crosshair" type="TextureRect" parent="."]
-texture_filter = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -5.0
-offset_top = -5.0
-offset_right = 5.0
-offset_bottom = 5.0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 1.0
+offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_cmt6q")
-expand_mode = 1
-stretch_mode = 5
 
 [node name="AmmoCount" type="Control" parent="."]
 layout_mode = 3
@@ -64,7 +59,6 @@ offset_top = -100.0
 offset_right = 229.0
 grow_vertical = 0
 script = ExtResource("4_kr041")
-bullet_texture = ExtResource("5_nhs04")
 
 [node name="Label" type="Label" parent="AmmoCount"]
 layout_mode = 1

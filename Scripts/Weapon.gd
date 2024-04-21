@@ -17,18 +17,19 @@ var current_ammo = max_ammo
 @export var texture : SpriteFrames = null
 @export var cross_texture : Texture = null
 
+
 @onready var sprite = $GunBase/AnimatedSprite2D
-@onready var ammo_bar = $AmmoCount/TextureProgressBar
-@onready var ammo_text = $AmmoCount/Label
 @onready var player = get_parent()
+
+@onready var ui = $AmmoCount
 
 func _ready():
 	sprite.sprite_frames = texture
 	$Crosshair.texture = cross_texture
-	ammo_bar.max_value = max_ammo
+	ui = find_child("AmmoCount")
 	player.connect("add_ammo", _add_ammo_pickup)
 	$GunBase/AnimatedSprite2D.animation_finished.connect(get_parent().shoot_anim_done)
-	update_bullet_ui()
+	ui.update_bullet_text()
 
 func _process(delta):
 	if player.dead:
@@ -41,20 +42,17 @@ func _process(delta):
 	elif Input.is_action_just_pressed("reload") && current_ammo < max_ammo:
 		reload()
 
-func update_bullet_ui():
-	ammo_text.text = "%s/%s" % [current_ammo, reserve_ammo]
-	ammo_bar.value = current_ammo
-
 func _add_ammo_pickup(amount):
 	reserve_ammo += amount
-	update_bullet_ui()
+	ui.update_bullet_text()
 
 func shoot():
 	if !get_parent().can_shoot:
 		return
 	get_parent().can_shoot = false
 	current_ammo -= 1
-	update_bullet_ui()
+	ui.bullet_ui_shoot()
+	ui.update_bullet_text()
 	sprite.play("shoot")
 	if(!spread):
 		instantiate_bullet()
@@ -95,6 +93,7 @@ func reload():
 		current_ammo += reserve_ammo
 		reserve_ammo = 0
 	sprite.play("reload")
-	update_bullet_ui()
+	ui.bullet_ui_renew()
+	ui.update_bullet_text()
 	
 	return

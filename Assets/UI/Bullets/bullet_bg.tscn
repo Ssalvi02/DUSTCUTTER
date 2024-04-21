@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dcuw74qtq48sd"]
+
+[node name="BulletBG" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(3, 3)
+hframes = 3
+frame = 1

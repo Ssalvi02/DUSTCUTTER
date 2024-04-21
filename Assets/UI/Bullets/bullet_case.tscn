@@ -1,0 +1,64 @@
+[gd_scene load_steps=9 format=3 uid="uid://baqx13pwe5se1"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e1kxp"]
+radius = 4.0
+height = 8.0
+
+[sub_resource type="Curve" id="Curve_drmb3"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.395604), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_74h2d"]
+curve = SubResource("Curve_drmb3")
+
+[sub_resource type="Curve" id="Curve_3x4bl"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.604396), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_gneb8"]
+curve = SubResource("Curve_3x4bl")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kpdr5"]
+lifetime_randomness = 0.4
+particle_flag_disable_z = true
+angle_max = 145.6
+spread = 180.0
+initial_velocity_max = 22.47
+angular_velocity_max = 130.0
+radial_velocity_min = 30.0
+radial_velocity_max = 50.0
+radial_accel_min = 20.0
+radial_accel_max = 30.0
+scale_min = 0.1
+scale_max = 0.2
+scale_curve = SubResource("CurveTexture_gneb8")
+alpha_curve = SubResource("CurveTexture_74h2d")
+turbulence_noise_strength = 20.0
+turbulence_noise_scale = 10.0
+
+[sub_resource type="Gradient" id="Gradient_camun"]
+colors = PackedColorArray(0.666569, 0.666569, 0.666569, 1, 0.666667, 0.666667, 0.666667, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_a6kv5"]
+gradient = SubResource("Gradient_camun")
+
+[node name="RigidBody2D" type="RigidBody2D"]
+texture_filter = 1
+freeze = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_e1kxp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+texture_filter = 1
+scale = Vector2(3, 3)
+hframes = 3
+frame = 2
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 16
+amount_ratio = 0.4014
+process_material = SubResource("ParticleProcessMaterial_kpdr5")
+texture = SubResource("GradientTexture2D_a6kv5")
