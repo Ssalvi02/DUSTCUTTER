@@ -30,6 +30,10 @@ var dead = false
 
 var pickups
 
+var pistol_ammo = 0
+var piercing_ammo = 0
+var shotgun_ammo = 0
+
 func _ready():
 	pickups = get_tree().get_nodes_in_group("pickup")
 	
@@ -47,6 +51,7 @@ func _input(event):
 		$Camera3D.rotation_degrees.x -= event.relative.y * MOUSE_SENS
 
 func _process(delta):
+	$Camera3D.rotation_degrees.x = clamp($Camera3D.rotation_degrees.x, -90, 90)
 	if(Input.is_action_just_pressed("exit")):
 		get_tree().quit()
 	if dead:
@@ -54,15 +59,15 @@ func _process(delta):
 	
 	joystick_controller_camera()
 
-	if Input.is_action_just_pressed("DEBUG_L"):
-		max_health -= 2
-		ui.lose_heart()
-		if current_health > max_health:
-			current_health = max_health
-	
-	if Input.is_action_just_pressed("DEBUG_P"):
-		current_health -= 1
-		ui.take_damage()
+func lose_heart():
+	max_health -= 2
+	ui.lose_heart()
+	if current_health > max_health:
+		current_health = max_health
+
+func take_damage():
+	current_health -= 1
+	ui.take_damage()
 
 func joystick_controller_camera():
 	$Camera3D.rotate_x(Input.get_action_strength("look_up") * JOY_SENS)
@@ -106,9 +111,12 @@ func kill():
 func _on_can_pickup(pickup):
 	
 	if (pickup.is_in_group("consumables")):
-		if(current_gun == pickup.pickup_name):
-			add_ammo.emit(pickup.ammo_value)
-			pickup.queue_free()
+		match pickup.pickup_name:
+			"ammo":
+				add_ammo.emit(pickup.ammo_value)
+				pickup.queue_free()
+			"health":
+				pass
 
 	if (pickup.is_in_group("weapons") and 
 	Input.is_action_just_pressed("interact")):

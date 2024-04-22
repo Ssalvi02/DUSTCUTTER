@@ -12,6 +12,7 @@
 
 [node name="Gun" type="CanvasLayer"]
 script = ExtResource("1_qgorw")
+weapon_type = 0
 bullet_speed = 40.0
 max_ammo = 7
 reserve_ammo = 24

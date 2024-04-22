@@ -18,5 +18,9 @@ texture_filter = 0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("SphereShape3D_oeq5t")
 
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(0, 0, 1, 1)
+light_energy = 2.0
+
 [connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
 [connection signal="area_exited" from="Area3D" to="." method="_on_area_3d_area_exited"]

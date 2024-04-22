@@ -4,6 +4,7 @@ var bullet = load("res://Scenes/Bullet.tscn")
 var instance
 
 @export_category("Gun Attributes")
+@export_enum("Normal", "Pierce", "Shotgun") var weapon_type
 @export var bullet_speed : float = 0
 @export var max_ammo : int = 0
 var current_ammo = max_ammo
