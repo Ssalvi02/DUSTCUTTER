@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://8my68n4c04dk"
-path="res://.godot/imported/TROOD1.png-5da2f54664879c2e9b72bb0d1693424c.ctex"
+uid="uid://bjbqdekeemrgm"
+path="res://.godot/imported/brick_wall.png-2f168c834fbf92a9f23c6585312d9a98.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Enemies/Walk/TROOD1.png"
-dest_files=["res://.godot/imported/TROOD1.png-5da2f54664879c2e9b72bb0d1693424c.ctex"]
+source_file="res://Assets/DungeonModels/brick_wall.png"
+dest_files=["res://.godot/imported/brick_wall.png-2f168c834fbf92a9f23c6585312d9a98.ctex"]
 
 [params]
 

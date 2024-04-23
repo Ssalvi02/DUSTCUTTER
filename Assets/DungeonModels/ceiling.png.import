@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://djrnbp7hvytyk"
-path="res://.godot/imported/TROOB1.png-8addedbd6ac2c6dddedde565181c430e.ctex"
+uid="uid://bm7mdbrknpljn"
+path="res://.godot/imported/ceiling.png-d5b7e2e01fad02bbd792dd3f9055b1ce.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Enemies/Walk/TROOB1.png"
-dest_files=["res://.godot/imported/TROOB1.png-8addedbd6ac2c6dddedde565181c430e.ctex"]
+source_file="res://Assets/DungeonModels/ceiling.png"
+dest_files=["res://.godot/imported/ceiling.png-d5b7e2e01fad02bbd792dd3f9055b1ce.ctex"]
 
 [params]
 

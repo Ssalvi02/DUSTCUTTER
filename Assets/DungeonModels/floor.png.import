@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dacrjp0w4u61s"
-path="res://.godot/imported/TROOJ0.png-7f9aa52d899ff6ad4f3f604e3be4dca3.ctex"
+uid="uid://jlwq6k7erciq"
+path="res://.godot/imported/floor.png-a8a8de016a7578d787806d9358da785c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Enemies/Death/TROOJ0.png"
-dest_files=["res://.godot/imported/TROOJ0.png-7f9aa52d899ff6ad4f3f604e3be4dca3.ctex"]
+source_file="res://Assets/DungeonModels/floor.png"
+dest_files=["res://.godot/imported/floor.png-a8a8de016a7578d787806d9358da785c.ctex"]
 
 [params]
 
@@ -21,7 +21,7 @@ compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
