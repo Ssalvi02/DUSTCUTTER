@@ -23,6 +23,7 @@ var current_ammo = max_ammo
 @onready var player = get_parent()
 
 @onready var ui = $AmmoCount
+@onready var audios = $Audios
 
 func _ready():
 	sprite.sprite_frames = texture
@@ -40,6 +41,8 @@ func _process(delta):
 			shoot()
 		else:
 			reload()
+			if current_ammo <= 0 and reserve_ammo <= 0:
+				audios.get_child(1).play()
 	elif Input.is_action_just_pressed("reload") && current_ammo < max_ammo:
 		reload()
 
@@ -55,11 +58,11 @@ func shoot():
 	ui.bullet_ui_shoot()
 	ui.update_bullet_text()
 	sprite.play("shoot")
+	audios.get_child(0).play()
 	if(!spread):
 		instantiate_bullet()
 	else:
 		instantiate_bullet_spread()
-		pass
 
 func instantiate_bullet_spread():
 	var xaxis = Vector3(1,0,0)

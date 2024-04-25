@@ -1,0 +1,218 @@
+[gd_scene load_steps=13 format=3 uid="uid://jt15t07mnijy"]
+
+[ext_resource type="FontFile" uid="uid://b6jtphl2el04g" path="res://Assets/Audio/Weapons/Pistol/SALVATIO.TTF" id="1_7tn57"]
+[ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_vcmow"]
+[ext_resource type="Theme" uid="uid://bdxeh87c5j7qn" path="res://Assets/UI/theme.tres" id="2_68jv7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_153xa"]
+line_spacing = -45.0
+font_size = 86
+font_color = Color(0.843137, 0.317647, 0.572549, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_hi2xc"]
+line_spacing = -45.0
+font_size = 91
+font_color = Color(0.0431373, 0.615686, 0.372549, 1)
+
+[sub_resource type="Animation" id="Animation_q8ot1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Front:label_settings:font_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [91]
+}
+
+[sub_resource type="Animation" id="Animation_8i2dw"]
+resource_name = "grow"
+length = 1.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Front:label_settings:font_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [90, 96, 90, 96, 90, 96]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4pofa"]
+_data = {
+"RESET": SubResource("Animation_q8ot1"),
+"grow": SubResource("Animation_8i2dw")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_yhd0u"]
+line_spacing = 0.0
+font_size = 28
+font_color = Color(1, 0.494118, 0.67451, 1)
+shadow_size = 0
+shadow_color = Color(0.172549, 0.788235, 0.305882, 1)
+shadow_offset = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_lhetk"]
+line_spacing = 0.0
+font_size = 28
+font_color = Color(1, 0.494118, 0.67451, 1)
+shadow_size = 0
+shadow_color = Color(0.172549, 0.788235, 0.305882, 1)
+shadow_offset = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8ciwp"]
+line_spacing = 0.0
+font_size = 28
+font_color = Color(1, 0.494118, 0.67451, 1)
+shadow_size = 0
+shadow_color = Color(0.172549, 0.788235, 0.305882, 1)
+shadow_offset = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_qhqg8"]
+line_spacing = 0.0
+font_size = 28
+font_color = Color(1, 0.494118, 0.67451, 1)
+shadow_size = 0
+shadow_color = Color(0.172549, 0.788235, 0.305882, 1)
+shadow_offset = Vector2(0, 0)
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vcmow")
+
+[node name="Title" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Back" type="Label" parent="Title"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 102.0
+offset_top = 74.0
+offset_right = 371.0
+offset_bottom = -363.0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_7tn57")
+theme_override_font_sizes/font_size = 86
+text = "dust
+cutter"
+label_settings = SubResource("LabelSettings_153xa")
+
+[node name="Front" type="Label" parent="Title"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0815972
+anchor_top = 0.103395
+anchor_right = 0.319444
+anchor_bottom = 0.447531
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_7tn57")
+theme_override_font_sizes/font_size = 86
+text = "dust
+cutter"
+label_settings = SubResource("LabelSettings_hi2xc")
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Title"]
+libraries = {
+"": SubResource("AnimationLibrary_4pofa")
+}
+autoplay = "grow"
+
+[node name="Select" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.087
+anchor_top = 0.617
+anchor_right = 0.273
+anchor_bottom = 0.927
+offset_left = -0.224007
+offset_top = 0.18396
+offset_right = 0.503998
+offset_bottom = 0.303955
+grow_vertical = 0
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="Continue" type="Label" parent="Select"]
+texture_filter = 1
+layout_mode = 2
+mouse_filter = 1
+theme = ExtResource("2_68jv7")
+theme_override_colors/font_color = Color(1, 0.494118, 0.67451, 1)
+theme_override_colors/font_shadow_color = Color(0.172549, 0.788235, 0.305882, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_outline_size = 0
+text = "Continue"
+label_settings = SubResource("LabelSettings_yhd0u")
+
+[node name="NewGame" type="Label" parent="Select"]
+texture_filter = 1
+layout_mode = 2
+mouse_filter = 1
+theme = ExtResource("2_68jv7")
+theme_override_colors/font_color = Color(1, 0.494118, 0.67451, 1)
+theme_override_colors/font_shadow_color = Color(0.172549, 0.788235, 0.305882, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_outline_size = 0
+text = "New Game"
+label_settings = SubResource("LabelSettings_lhetk")
+
+[node name="Options" type="Label" parent="Select"]
+texture_filter = 1
+layout_mode = 2
+mouse_filter = 1
+theme = ExtResource("2_68jv7")
+theme_override_colors/font_color = Color(1, 0.494118, 0.67451, 1)
+theme_override_colors/font_shadow_color = Color(0.172549, 0.788235, 0.305882, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_outline_size = 0
+text = "Options"
+label_settings = SubResource("LabelSettings_8ciwp")
+
+[node name="Quit" type="Label" parent="Select"]
+texture_filter = 1
+layout_mode = 2
+mouse_filter = 1
+theme = ExtResource("2_68jv7")
+theme_override_colors/font_color = Color(1, 0.494118, 0.67451, 1)
+theme_override_colors/font_shadow_color = Color(0.172549, 0.788235, 0.305882, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_outline_size = 0
+text = "Quit"
+label_settings = SubResource("LabelSettings_qhqg8")
+
+[connection signal="mouse_entered" from="Select/Continue" to="." method="_on_continue_mouse_entered"]
+[connection signal="mouse_exited" from="Select/Continue" to="." method="_on_continue_mouse_exited"]
+[connection signal="mouse_entered" from="Select/NewGame" to="." method="_on_new_game_mouse_entered"]
+[connection signal="mouse_exited" from="Select/NewGame" to="." method="_on_new_game_mouse_exited"]
+[connection signal="mouse_entered" from="Select/Options" to="." method="_on_options_mouse_entered"]
+[connection signal="mouse_exited" from="Select/Options" to="." method="_on_options_mouse_exited"]
+[connection signal="gui_input" from="Select/Quit" to="." method="_on_quit_gui_input"]
+[connection signal="mouse_entered" from="Select/Quit" to="." method="_on_quit_mouse_entered"]
+[connection signal="mouse_exited" from="Select/Quit" to="." method="_on_quit_mouse_exited"]
