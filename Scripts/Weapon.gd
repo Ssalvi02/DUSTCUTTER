@@ -4,16 +4,15 @@ var bullet = load("res://Scenes/Bullet.tscn")
 var instance
 
 @export_category("Gun Attributes")
-@export_enum("Normal", "Pierce", "Shotgun") var weapon_type
+@export var g_name : String = ""
 @export var bullet_speed : float = 0
 @export var max_ammo : int = 0
-var current_ammo = max_ammo
-@export var reserve_ammo : int = 0
+var current_ammo = 0
 @export var fire_rate : float = 0
 @export var spread : bool = false
 @export var spread_count : int = 0 
 @export var pierce : bool = false
-@export var automatic :bool = false
+@export var is_thrown : bool = false
 @export_category("Gun UI/Texture")
 @export var texture : SpriteFrames = null
 @export var cross_texture : Texture = null
@@ -26,12 +25,12 @@ var current_ammo = max_ammo
 @onready var audios = $Audios
 
 func _ready():
+	current_ammo = max_ammo
 	sprite.sprite_frames = texture
 	$Crosshair.texture = cross_texture
 	ui = find_child("AmmoCount")
-	player.connect("add_ammo", _add_ammo_pickup)
 	$GunBase/AnimatedSprite2D.animation_finished.connect(get_parent().shoot_anim_done)
-	ui.update_bullet_text()
+	ui.bullet_ui_show()
 
 func _process(delta):
 	if player.dead:
@@ -40,15 +39,7 @@ func _process(delta):
 		if current_ammo > 0:
 			shoot()
 		else:
-			reload()
-			if current_ammo <= 0 and reserve_ammo <= 0:
-				audios.get_child(1).play()
-	elif Input.is_action_just_pressed("reload") && current_ammo < max_ammo:
-		reload()
-
-func _add_ammo_pickup(amount):
-	reserve_ammo += amount
-	ui.update_bullet_text()
+			audios.get_child(1).play()
 
 func shoot():
 	if !get_parent().can_shoot:
@@ -56,7 +47,6 @@ func shoot():
 	get_parent().can_shoot = false
 	current_ammo -= 1
 	ui.bullet_ui_shoot()
-	ui.update_bullet_text()
 	sprite.play("shoot")
 	audios.get_child(0).play()
 	if(!spread):
@@ -81,23 +71,3 @@ func instantiate_bullet():
 	instance.position = player.raycastgun.global_position
 	instance.transform.basis = player.raycastgun.global_transform.basis
 	add_child(instance)
-
-func reload():
-	if reserve_ammo <= 0:
-		return
-		
-	get_parent().can_shoot = false
-	
-	var ammo_missing = max_ammo - current_ammo
-	
-	if reserve_ammo >= ammo_missing:
-		reserve_ammo -= ammo_missing
-		current_ammo = max_ammo
-	else:
-		current_ammo += reserve_ammo
-		reserve_ammo = 0
-	sprite.play("reload")
-	ui.bullet_ui_renew()
-	ui.update_bullet_text()
-	
-	return

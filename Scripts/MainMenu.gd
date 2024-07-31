@@ -15,13 +15,15 @@ func _physics_process(delta):
 		-1:
 			unlerp_all()
 		0: #Continue
-			lerp_shadow(0)
+			lerp_shadow(active_select)
 		1: #New Game
-			lerp_shadow(1)
+			lerp_shadow(active_select)
 		2: #Options
-			lerp_shadow(2)
+			lerp_shadow(active_select)
 		3: #Quit
-			lerp_shadow(3)
+			lerp_shadow(active_select)
+		4: #Quit
+			lerp_shadow(active_select)
 		_:
 			unlerp_all()
 
@@ -43,9 +45,12 @@ func _on_new_game_mouse_entered():
 
 func _on_options_mouse_entered():
 	active_select = 2
+
+func _on_credits_mouse_entered():
+	active_select = 3
 	
 func _on_quit_mouse_entered():
-	active_select = 3
+	active_select = 4
 
 func _on_continue_mouse_exited():
 	active_select = -1
@@ -59,6 +64,12 @@ func _on_options_mouse_exited():
 func _on_quit_mouse_exited():
 	active_select = -1
 
+func _on_credits_mouse_exited():
+	active_select = -1
+
 func _on_quit_gui_input(event):
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		get_tree().quit()
+
+
+

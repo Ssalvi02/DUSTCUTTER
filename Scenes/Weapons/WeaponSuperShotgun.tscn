@@ -1,22 +1,22 @@
-[gd_scene load_steps=10 format=3 uid="uid://b10bf8sgmt6bi"]
+[gd_scene load_steps=11 format=3 uid="uid://b10bf8sgmt6bi"]
 
 [ext_resource type="Script" path="res://Scripts/Weapon.gd" id="1_cog8v"]
 [ext_resource type="SpriteFrames" uid="uid://csqqfsmani078" path="res://Assets/Sprites/Weapons/SuperShotgun/SuperShotgunframes.tres" id="2_bkw3k"]
-[ext_resource type="Theme" uid="uid://bdxeh87c5j7qn" path="res://Assets/UI/theme.tres" id="2_syvrt"]
 [ext_resource type="Texture2D" uid="uid://bmco7ddg8sddx" path="res://Assets/UI/Crosshairs/shotguncrosshair.png" id="3_116rg"]
 [ext_resource type="Script" path="res://Scripts/BulletUIHandler.gd" id="4_4f0ky"]
 [ext_resource type="Texture2D" uid="uid://mr80pjf7jmjn" path="res://Assets/UI/Crosshairs/pistolcrosshair.png" id="4_anawy"]
 [ext_resource type="Texture2D" uid="uid://bq57lsolpwvij" path="res://Assets/UI/Bullets/bulletcount_bg.png" id="5_5tufy"]
 [ext_resource type="Texture2D" uid="uid://10fymd03upbc" path="res://Assets/UI/Bullets/shotgunshells_spritesheet.png" id="5_k6ge1"]
+[ext_resource type="AudioStream" uid="uid://b65u2fahkkxh6" path="res://Assets/Audio/Weapons/Shotgun/shotgun_sfx.mp3" id="8_8en4s"]
+[ext_resource type="AudioStream" uid="uid://dmi2bxuce4spx" path="res://Assets/Audio/Weapons/Pistol/nobullets6209.mp3" id="9_7c310"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_c0ap0"]
 
 [node name="Gun" type="CanvasLayer"]
 script = ExtResource("1_cog8v")
-weapon_type = 2
+g_name = "supershotgun"
 bullet_speed = 100.0
 max_ammo = 2
-reserve_ammo = 6
 fire_rate = 0.05
 spread = true
 spread_count = 12
@@ -71,22 +71,6 @@ grow_vertical = 0
 script = ExtResource("4_4f0ky")
 bullet_texture = ExtResource("5_k6ge1")
 
-[node name="Label" type="Label" parent="AmmoCount"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -64.0
-offset_bottom = -64.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("2_syvrt")
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_offset_x = 3
-text = "0/0"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="TextureRect" type="TextureRect" parent="AmmoCount"]
 texture_filter = 1
 layout_mode = 1
@@ -112,3 +96,14 @@ grow_vertical = 2
 theme_override_constants/separation = 30
 alignment = 1
 metadata/_edit_use_anchors_ = true
+
+[node name="Audios" type="Node" parent="."]
+
+[node name="ShotSound" type="AudioStreamPlayer" parent="Audios"]
+stream = ExtResource("8_8en4s")
+volume_db = -8.0
+max_polyphony = 7
+
+[node name="NoBulletsSound" type="AudioStreamPlayer" parent="Audios"]
+stream = ExtResource("9_7c310")
+volume_db = -6.0

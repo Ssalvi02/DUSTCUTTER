@@ -6,7 +6,6 @@ var instance_case
 var bullet_bg = load("res://Assets/UI/Bullets/bullet_bg.tscn")
 var instance_bbg
 
-@onready var ammo_text = $Label
 @onready var bullets_texture = null
 @onready var weapon = $".."
 
@@ -19,10 +18,6 @@ func _ready():
 	instantiate_bullet_bg()
 	bullets_bg = $TextureRect/HBoxContainer.get_children()
 	init_bullet_ui()
-
-
-func update_bullet_text():
-	ammo_text.text = "%s/%s" % [weapon.current_ammo, weapon.reserve_ammo]
 
 func bullet_ui_shoot():
 	for i in range(weapon.max_ammo):
@@ -58,7 +53,7 @@ func instantiate_bullet_bg():
 	for i in range(weapon.max_ammo):
 		instance_bbg = bullet_bg.instantiate()
 		instance_bbg.get_child(0).texture = bullet_texture
-		get_child(1).get_child(0).add_child(instance_bbg)
+		get_child(0).get_child(0).add_child(instance_bbg)
 
 func instantiate_bullet_case():
 		var bc = bullet_case.instantiate()

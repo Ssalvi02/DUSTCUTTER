@@ -11,6 +11,7 @@
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_v2eao")
+max_health = 2
 metadata/_edit_vertical_guides_ = [576.0]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
