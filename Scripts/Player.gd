@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+var wepth = load("res://Scenes/ThrowWeapon.tscn")
+var wt
 #Guns
 var revolver = load("res://Scenes/Weapons/WeaponRevolver.tscn")
 var pistol = load("res://Scenes/Weapons/WeaponPistol.tscn")
@@ -123,12 +125,8 @@ func check_throw():
 
 func throw_gun():
 	if gun != null:
+		instantiate_throw()
 		gun.queue_free()
-		gun_p = guns_pickups.get(gun.g_name).instantiate()
-		gun_p.position = position
-		gun_p.can_pickup.connect(_on_can_pickup)
-		can_pickup_again = false 
-		get_tree().root.get_child(0).add_child(gun_p)
 		await get_tree().create_timer(pickup_cool).timeout
 		can_pickup_again = true
 	else:
@@ -147,3 +145,10 @@ func _on_can_pickup(pickup):
 			gun.queue_free()
 		pickup.queue_free()
 		instantiate_gun(pickup.pickup_name)
+
+
+func instantiate_throw():
+	wt = wepth.instantiate()
+	wt.position = raycastgun.global_position
+	wt.transform.basis = raycastgun.global_transform.basis
+	get_parent().add_child(wt)

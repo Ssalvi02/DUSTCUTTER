@@ -5,8 +5,7 @@ extends CharacterBody3D
 enum et {
 	CLOSE,
 	SHOOTING,
-	EXPLODING,
-	STALKER
+	EXPLODING
 }
 
 @export var move_speed : int = 0
@@ -18,7 +17,8 @@ enum et {
 
 var player_in_range = false
 
-var dead = false
+var dead :bool = false
+var stunned : bool = false
 
 func _ready():
 	sprite.sprite_frames = sprite_texture
@@ -27,6 +27,10 @@ func _ready():
 func _physics_process(delta):
 	if sprite.animation == "death" and sprite.frame == 5:
 		sprite.position.y = move_toward(sprite.position.y, 0.445, 0.08)
+		
+	if stunned:
+		$sensePlayer.monitoring = false
+	
 	if dead:
 		$CollisionShape3D.disabled = true
 		return
@@ -40,8 +44,6 @@ func _physics_process(delta):
 		et.SHOOTING:
 			pass
 		et.EXPLODING:
-			pass
-		et.STALKER:
 			pass
 	
 	move_and_slide()
@@ -68,6 +70,14 @@ func kill():
 	sprite.play("death")
 	dead = true
 	$CollisionShape3D.disabled = true
+
+func stun():
+	#sprite.play(stunned)
+	stunned = true
+	await get_tree().create_timer(5).timeout
+	stunned = false
+	$sensePlayer.monitoring = true
+
 
 func _on_sense_player_area_entered(area):
 	if area.name == "PickupArea":
