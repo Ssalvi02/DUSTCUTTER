@@ -1,18 +1,12 @@
 extends CharacterBody3D
 
-var wepth = load("res://Scenes/ThrowWeapon.tscn")
-var wt
 #Guns
 var revolver = load("res://Scenes/Weapons/WeaponRevolver.tscn")
 var pistol = load("res://Scenes/Weapons/WeaponPistol.tscn")
 var sshotgun = load("res://Scenes/Weapons/WeaponSuperShotgun.tscn")
 
-#Guns Pickups
-var revolver_p = load("res://Scenes/WeaponsPickups/PickupRevolver.tscn")
-var pistol_p = load("res://Scenes/WeaponsPickups/PickupPistol.tscn")
-var sshotgun_p = load("res://Scenes/WeaponsPickups/PickupShotgun.tscn")
-
 signal add_ammo(ammo_amount) 
+signal throw_weapon()
 
 @onready var raycastgun = $Camera3D/RayCast3D
 @onready var ui = $PlayerUI
@@ -26,12 +20,6 @@ signal add_ammo(ammo_amount)
 	"pistol": pistol,
 	"revolver": revolver,
 	"supershotgun": sshotgun
-}
-
-@onready var guns_pickups = {
-	"pistol": pistol_p,
-	"revolver": revolver_p,
-	"supershotgun": sshotgun_p
 }
 
 var gun
@@ -125,10 +113,8 @@ func check_throw():
 
 func throw_gun():
 	if gun != null:
-		instantiate_throw()
+		throw_weapon.emit()
 		gun.queue_free()
-		await get_tree().create_timer(pickup_cool).timeout
-		can_pickup_again = true
 	else:
 		return
 
@@ -143,12 +129,11 @@ func _on_can_pickup(pickup):
 	if (Input.is_action_just_pressed("throw") && can_pickup_again):
 		if gun != null:
 			gun.queue_free()
-		pickup.queue_free()
+		pickup.reparent(get_tree().root.get_child(0).get_child(0), false)
+		pickup.visible = false
+		pickup.lock_rotation = true
+		pickup.freeze = true
+		pickup.get_child(1).monitorable = false
+		pickup.get_child(1).monitoring = false
+		pickup.get_child(4).disabled = true
 		instantiate_gun(pickup.pickup_name)
-
-
-func instantiate_throw():
-	wt = wepth.instantiate()
-	wt.position = raycastgun.global_position
-	wt.transform.basis = raycastgun.global_transform.basis
-	get_parent().add_child(wt)
