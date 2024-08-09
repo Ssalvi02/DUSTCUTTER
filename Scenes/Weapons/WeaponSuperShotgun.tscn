@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://b10bf8sgmt6bi"]
+[gd_scene load_steps=12 format=3 uid="uid://b10bf8sgmt6bi"]
 
 [ext_resource type="Script" path="res://Scripts/Weapon.gd" id="1_cog8v"]
 [ext_resource type="SpriteFrames" uid="uid://csqqfsmani078" path="res://Assets/Sprites/Weapons/SuperShotgun/SuperShotgunframes.tres" id="2_bkw3k"]
 [ext_resource type="Texture2D" uid="uid://bmco7ddg8sddx" path="res://Assets/UI/Crosshairs/shotguncrosshair.png" id="3_116rg"]
+[ext_resource type="Texture2D" uid="uid://crkf4bi6njt5u" path="res://Assets/Sprites/Pickups/Shotgun/PSSGZ0.png" id="4_0nvme"]
 [ext_resource type="Script" path="res://Scripts/BulletUIHandler.gd" id="4_4f0ky"]
 [ext_resource type="Texture2D" uid="uid://mr80pjf7jmjn" path="res://Assets/UI/Crosshairs/pistolcrosshair.png" id="4_anawy"]
 [ext_resource type="Texture2D" uid="uid://bq57lsolpwvij" path="res://Assets/UI/Bullets/bulletcount_bg.png" id="5_5tufy"]
@@ -22,6 +23,7 @@ spread = true
 spread_count = 12
 texture = ExtResource("2_bkw3k")
 cross_texture = ExtResource("3_116rg")
+pickup_texture = ExtResource("4_0nvme")
 
 [node name="GunBase" type="Control" parent="."]
 layout_mode = 3

@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://b4gbly8hfmdwe"]
+[gd_scene load_steps=12 format=3 uid="uid://b4gbly8hfmdwe"]
 
 [ext_resource type="Script" path="res://Scripts/Weapon.gd" id="1_bcdc7"]
 [ext_resource type="SpriteFrames" uid="uid://dweu54di5n6p6" path="res://Assets/Sprites/Weapons/Revolver/Revolverframes.tres" id="2_fduya"]
 [ext_resource type="Texture2D" uid="uid://bvwtfmtwro7vo" path="res://Assets/UI/Crosshairs/revolvercrosshair.png" id="3_xdlye"]
 [ext_resource type="Script" path="res://Scripts/BulletUIHandler.gd" id="4_dycq0"]
 [ext_resource type="Texture2D" uid="uid://mr80pjf7jmjn" path="res://Assets/UI/Crosshairs/pistolcrosshair.png" id="4_h8i6x"]
+[ext_resource type="Texture2D" uid="uid://dhg40j5iloasw" path="res://Assets/Sprites/Pickups/Revolver/PPISZ0.png" id="4_urht5"]
 [ext_resource type="Texture2D" uid="uid://dhsia15u2mkah" path="res://Assets/UI/Bullets/revolverbullet_spritesheet.png" id="5_koh5e"]
 [ext_resource type="Texture2D" uid="uid://bq57lsolpwvij" path="res://Assets/UI/Bullets/bulletcount_bg.png" id="5_xir78"]
 [ext_resource type="AudioStream" uid="uid://dwjwvqmtvjt0y" path="res://Assets/Audio/Weapons/Revolver/revolver_sfx.mp3" id="8_jybtd"]
@@ -21,6 +22,7 @@ fire_rate = 0.1
 pierce = true
 texture = ExtResource("2_fduya")
 cross_texture = ExtResource("3_xdlye")
+pickup_texture = ExtResource("4_urht5")
 
 [node name="GunBase" type="Control" parent="."]
 layout_mode = 3

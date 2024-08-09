@@ -16,6 +16,7 @@ var current_ammo = 0
 @export_category("Gun UI/Texture")
 @export var texture : SpriteFrames = null
 @export var cross_texture : Texture = null
+@export var pickup_texture : Texture = null
 
 
 @onready var sprite = $GunBase/AnimatedSprite2D

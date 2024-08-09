@@ -19,6 +19,7 @@ var is_in_pickup_area = false
 
 func _ready():
 	$Sprite3D.texture = sprite
+	player.throw_weapon.connect(_on_player_throw_weapon)
 	add_to_group(group)
 	pass
 
@@ -48,18 +49,17 @@ func _on_area_3d_area_entered(area):
 	is_in_pickup_area = true
 	#Texto para pegar armas / upgrades
 
-
 func _on_area_3d_area_exited(area):
 	is_in_pickup_area = false
 	#Remover texto para pegar armas / upgrades
-
 
 func _on_player_throw_weapon():
 	rootParent()
 	lock_rotation = false
 	freeze = false
 	visible = true
-	position = player.raycastgun.global_position
+	global_position = player.raycastgun.global_position
+	transform.basis = player.raycastgun.global_transform.basis
 	$CollisionShape3D.disabled = false
 	apply_central_impulse(-self.global_transform.basis.z * SPEED)
 	throwing = true

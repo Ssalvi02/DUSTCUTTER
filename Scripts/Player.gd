@@ -114,7 +114,6 @@ func check_throw():
 func throw_gun():
 	if gun != null:
 		throw_weapon.emit()
-		gun.queue_free()
 	else:
 		return
 
@@ -126,9 +125,10 @@ func kill():
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE 
 
 func _on_can_pickup(pickup):
-	if (Input.is_action_just_pressed("throw") && can_pickup_again):
+	if (Input.is_action_just_pressed("throw")):
 		if gun != null:
 			gun.queue_free()
+			return
 		pickup.reparent(get_tree().root.get_child(0).get_child(0), false)
 		pickup.visible = false
 		pickup.lock_rotation = true

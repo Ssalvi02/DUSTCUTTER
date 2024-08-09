@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://c7s7muyhqqa3v"]
+[gd_scene load_steps=11 format=3 uid="uid://c7s7muyhqqa3v"]
 
 [ext_resource type="Script" path="res://Scripts/Weapon.gd" id="1_qgorw"]
 [ext_resource type="SpriteFrames" uid="uid://bsarcr1h2itsk" path="res://Assets/Sprites/Weapons/Pistol/pistolframes.tres" id="2_eh2rl"]
 [ext_resource type="Texture2D" uid="uid://mr80pjf7jmjn" path="res://Assets/UI/Crosshairs/pistolcrosshair.png" id="3_cmt6q"]
+[ext_resource type="Texture2D" uid="uid://dyf7jd4e2m00c" path="res://Assets/Sprites/Pickups/Pistol/TPISZ0.png" id="4_af723"]
 [ext_resource type="Script" path="res://Scripts/BulletUIHandler.gd" id="4_kr041"]
 [ext_resource type="Texture2D" uid="uid://bq57lsolpwvij" path="res://Assets/UI/Bullets/bulletcount_bg.png" id="5_c5uli"]
 [ext_resource type="Texture2D" uid="uid://dvbcb173xlqw2" path="res://Assets/UI/Bullets/bullet_spritesheet.png" id="5_nhs04"]
@@ -19,6 +20,7 @@ max_ammo = 7
 fire_rate = 1.0
 texture = ExtResource("2_eh2rl")
 cross_texture = ExtResource("3_cmt6q")
+pickup_texture = ExtResource("4_af723")
 
 [node name="GunBase" type="Control" parent="."]
 layout_mode = 3

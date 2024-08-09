@@ -1,12 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://b2pp6c1s5ts4m"]
+[gd_scene load_steps=12 format=3 uid="uid://b2pp6c1s5ts4m"]
 
 [ext_resource type="PackedScene" uid="uid://nju2gnnh6ujx" path="res://Scenes/Player.tscn" id="1_ue3he"]
-[ext_resource type="PackedScene" uid="uid://gnoc5ii4lq0h" path="res://Scenes/Enemy.tscn" id="2_2ec88"]
-[ext_resource type="SpriteFrames" uid="uid://ceqcyiigjyh5e" path="res://Assets/Sprites/Enemies/SpriteFrames/demon_close_sprites.tres" id="3_bmjhq"]
 [ext_resource type="Texture2D" uid="uid://dhg40j5iloasw" path="res://Assets/Sprites/Pickups/Revolver/PPISZ0.png" id="5_2cq2l"]
 [ext_resource type="Texture2D" uid="uid://dyf7jd4e2m00c" path="res://Assets/Sprites/Pickups/Pistol/TPISZ0.png" id="5_5iot7"]
-[ext_resource type="Texture2D" uid="uid://crkf4bi6njt5u" path="res://Assets/Sprites/Pickups/Shotgun/PSSGZ0.png" id="6_tnxpt"]
-[ext_resource type="PackedScene" uid="uid://bnjsggo78ap0j" path="res://Scenes/WeaponsPickups/Pickup.tscn" id="6_y7vx6"]
+[ext_resource type="PackedScene" uid="uid://bnjsggo78ap0j" path="res://Scenes/Pickup/Pickup.tscn" id="6_y7vx6"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_awjon"]
 albedo_color = Color(1, 0.847059, 0.764706, 1)
@@ -105,74 +102,14 @@ environment = SubResource("Environment_2jqoc")
 transform = Transform3D(0.213181, 0.834752, -0.507684, -0.323184, 0.550626, 0.769651, 0.922012, -1.3739e-08, 0.387162, 0, 3.1615, 0)
 shadow_enabled = true
 
-[node name="Enemy" parent="." instance=ExtResource("2_2ec88")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -4)
-move_speed = 2
-attack_range = 2
-sprite_texture = ExtResource("3_bmjhq")
-
-[node name="Enemy2" parent="." instance=ExtResource("2_2ec88")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.15241, 0, 0.565727)
-move_speed = 2
-attack_range = 2
-sprite_texture = ExtResource("3_bmjhq")
-
-[node name="Enemy3" parent="." instance=ExtResource("2_2ec88")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.15241, 0, -6.03008)
-move_speed = 2
-attack_range = 2
-sprite_texture = ExtResource("3_bmjhq")
-
-[node name="Enemy4" parent="." instance=ExtResource("2_2ec88")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.66465, 0, -5.97802)
-move_speed = 2
-attack_range = 2
-sprite_texture = ExtResource("3_bmjhq")
-
-[node name="Enemy5" parent="." instance=ExtResource("2_2ec88")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.788917, 0, -11.1588)
-move_speed = 2
-attack_range = 2
-sprite_texture = ExtResource("3_bmjhq")
-
-[node name="Enemy6" parent="." instance=ExtResource("2_2ec88")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.36349, 0, -6.59304)
-move_speed = 2
-attack_range = 2
-sprite_texture = ExtResource("3_bmjhq")
-
-[node name="Enemy7" parent="." instance=ExtResource("2_2ec88")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.36349, 0, -13.1888)
-move_speed = 2
-attack_range = 2
-sprite_texture = ExtResource("3_bmjhq")
-
-[node name="Enemy8" parent="." instance=ExtResource("2_2ec88")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.45357, 0, -13.1368)
-move_speed = 2
-attack_range = 2
-sprite_texture = ExtResource("3_bmjhq")
-
-[node name="Revolver" parent="." instance=ExtResource("6_y7vx6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.298749, 6.52225)
-mass = 10.0
-gravity_scale = 0.0
-pickup_name = "revolver"
-ammo_value = 6
-sprite = ExtResource("5_2cq2l")
-
-[node name="Pistol" parent="." instance=ExtResource("6_y7vx6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.03998, 0.176757, 5.71774)
-can_sleep = false
+[node name="Pickup" parent="." instance=ExtResource("6_y7vx6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00142, 7.00996)
 pickup_name = "pistol"
 ammo_value = 7
 sprite = ExtResource("5_5iot7")
 
-[node name="Shotgun" parent="." instance=ExtResource("6_y7vx6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.65714, 0.318067, 6.35039)
-mass = 10.0
-pickup_name = "supershotgun"
-ammo_value = 2
-sprite = ExtResource("6_tnxpt")
-
-[connection signal="throw_weapon" from="Player" to="Pistol" method="_on_player_throw_weapon"]
+[node name="Pickup2" parent="." instance=ExtResource("6_y7vx6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.79675, 1.00142, 7.85625)
+pickup_name = "revolver"
+ammo_value = 6
+sprite = ExtResource("5_2cq2l")
