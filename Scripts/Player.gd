@@ -88,7 +88,7 @@ func check_throw():
 		throw_gun()
 
 func throw_gun():
-	if gun != null:
+	if gun != null and can_shoot:
 		throw_weapon.emit()
 		gun.queue_free()
 	else:
