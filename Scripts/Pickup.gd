@@ -11,7 +11,11 @@ var first_col : bool = true
 @export var sprite : Texture = null
 @export var group : String = "weapons"
 
+var cooldown : float = 1 
+
 var throwing : bool = false
+var throw_time : float = 0
+
 
 signal can_pickup(pickup)
 signal connect_throw
@@ -29,6 +33,7 @@ func _process(delta):
 		can_pickup.emit(self)
 
 	if throwing:
+		throw_time += delta
 		if ray.is_colliding():
 			$Area3D.monitorable = true
 			$Area3D.monitoring = true
@@ -42,17 +47,25 @@ func _process(delta):
 				if first_col == true :
 					apply_central_impulse(self.global_transform.basis.z * SPEED)
 					first_col = false
+		if throw_time >= cooldown:
+			throw_time = 0
+			unstuck()
 	else:
 		return
 
 
+func unstuck():
+	$Area3D.monitorable = true
+	$Area3D.monitoring = true
+	throwing = false
+
 func _on_area_3d_area_entered(area):
 	is_in_pickup_area = true
-	#Texto para pegar armas / upgrades
+	#Texto para pegar armas 
 
 func _on_area_3d_area_exited(area):
 	is_in_pickup_area = false
-	#Remover texto para pegar armas / upgrades
+	#Remover texto para pegar armas 
 
 func _on_player_throw_weapon():
 	rootParent()
@@ -65,10 +78,14 @@ func _on_player_throw_weapon():
 	apply_central_impulse(-self.global_transform.basis.z * SPEED)
 	throwing = true
 	player.throw_weapon.disconnect(_on_player_throw_weapon)
+	player.get_gun().update_ammo_value.disconnect(_on_update_ammo_value)
 
 func rootParent():
 	self.reparent(get_tree().root.get_child(0), false)
 
 func _on_connect_throw():
 	player.throw_weapon.connect(_on_player_throw_weapon)
+	player.get_gun().update_ammo_value.connect(_on_update_ammo_value)
 
+func _on_update_ammo_value(new_value):
+	ammo_value = new_value

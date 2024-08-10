@@ -1,13 +1,9 @@
 extends CharacterBody3D
 
-#Guns
-var revolver = load("res://Scenes/Weapons/WeaponRevolver.tscn")
-var pistol = load("res://Scenes/Weapons/WeaponPistol.tscn")
-var sshotgun = load("res://Scenes/Weapons/WeaponSuperShotgun.tscn")
-
 signal add_ammo(ammo_amount) 
 signal throw_weapon()
 
+@onready var gc 
 @onready var raycastgun = $Camera3D/RayCast3D
 @onready var ui = $PlayerUI
 
@@ -16,14 +12,7 @@ signal throw_weapon()
 @export var max_health = 6
 @export var current_health = max_health
 
-@onready var weapons = {
-	"pistol": pistol,
-	"revolver": revolver,
-	"supershotgun": sshotgun
-}
-
 var gun
-var gun_p
 
 @export var current_gun = ""
 
@@ -33,14 +22,12 @@ const JOY_SENS = 0.05
 var can_shoot = true
 var dead = false
 
-var pickups
-
 var pickup_throw 
 var pickup_cool = 1
 var can_pickup_again = true
 
 func _ready():
-	get_pickups()
+	gc = get_parent()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _input(event):
@@ -52,18 +39,10 @@ func _input(event):
 
 func _process(delta):
 	$Camera3D.rotation_degrees.x = clamp($Camera3D.rotation_degrees.x, -90, 90)
-	if(Input.is_action_just_pressed("exit")):
-		get_tree().quit()
 	if dead:
 		return
 	
 	joystick_controller_camera()
-
-func get_pickups():
-	pickups = get_tree().get_nodes_in_group("pickup")
-	
-	for i in pickups:
-		i.can_pickup.connect(_on_can_pickup)
 
 func lose_heart():
 	max_health -= 2
@@ -99,12 +78,9 @@ func move():
 		velocity.x = move_toward(velocity.x, 0, move_speed)
 		velocity.z = move_toward(velocity.z, 0, move_speed)
 
-func restart():
-	get_tree().reload_current_scene()
-
 func instantiate_gun(gunName):
 	current_gun = gunName
-	gun = weapons.get(gunName).instantiate()
+	gun = gc.weapons.get(gunName).instantiate()
 	add_child(gun)
 
 func check_throw():
@@ -132,10 +108,13 @@ func _on_can_pickup(pickup):
 			return
 		pickup.reparent(get_tree().root.get_child(0).get_child(0), false)
 		pickup.visible = false
-		pickup.connect_throw.emit()
 		pickup.lock_rotation = true
 		pickup.freeze = true
 		pickup.get_child(1).monitorable = false
 		pickup.get_child(1).monitoring = false
 		pickup.get_child(4).disabled = true
 		instantiate_gun(pickup.pickup_name)
+		pickup.connect_throw.emit()
+
+func get_gun():
+	return gun

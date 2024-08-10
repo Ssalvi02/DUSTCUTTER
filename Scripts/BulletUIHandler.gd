@@ -8,19 +8,27 @@ var instance_bbg
 
 @onready var bullets_texture = null
 @onready var weapon = $".."
+@onready var gc
 
 @export var bullet_texture : Texture = null
 
 var bullets_bg = null
+var p_current_ammo : int 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	gc = get_tree().root.get_child(0)
+	#find current pickup ammo
+	for i in gc.pickups:
+		if weapon.g_name == i.pickup_name:
+			p_current_ammo = i.ammo_value
+
 	instantiate_bullet_bg()
 	bullets_bg = $TextureRect/HBoxContainer.get_children()
 	init_bullet_ui()
 
 func bullet_ui_shoot():
-	for i in range(weapon.max_ammo):
+	for i in range(p_current_ammo):
 		var bullet_case_phys = bullets_bg[i].get_child(1)
 		if i == weapon.current_ammo:
 			bullet_case_phys.freeze = false
@@ -28,7 +36,7 @@ func bullet_ui_shoot():
 			bullet_case_phys.get_child(2).emitting = true
 
 func bullet_ui_show():
-	for i in range(weapon.max_ammo):
+	for i in range(p_current_ammo):
 		var bullet_case_phys = bullets_bg[i].get_child(1)
 		bullet_case_phys.visible = true
 		bullet_case_phys.freeze = true
@@ -43,7 +51,7 @@ func bullet_ui_renew():
 	bullet_ui_show()
 
 func init_bullet_ui():
-	for i in range(weapon.max_ammo):
+	for i in range(p_current_ammo):
 		var ibc = instantiate_bullet_case()
 		bullets_bg[i].add_child(ibc)
 		ibc.visible = false

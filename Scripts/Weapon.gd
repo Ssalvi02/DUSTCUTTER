@@ -24,9 +24,16 @@ var current_ammo = 0
 
 @onready var ui = $AmmoCount
 @onready var audios = $Audios
+@onready var gc
+
+signal update_ammo_value(new_value)
 
 func _ready():
-	current_ammo = max_ammo
+	gc = get_tree().root.get_child(0)
+	for i in gc.pickups:
+		if g_name == i.pickup_name:
+			current_ammo = i.ammo_value
+
 	sprite.sprite_frames = texture
 	$Crosshair.texture = cross_texture
 	ui = find_child("AmmoCount")
@@ -47,6 +54,7 @@ func shoot():
 		return
 	get_parent().can_shoot = false
 	current_ammo -= 1
+	update_ammo_value.emit(current_ammo)
 	ui.bullet_ui_shoot()
 	sprite.play("shoot")
 	audios.get_child(0).play()

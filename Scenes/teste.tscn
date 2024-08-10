@@ -1,5 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://b2pp6c1s5ts4m"]
+[gd_scene load_steps=13 format=3 uid="uid://b2pp6c1s5ts4m"]
 
+[ext_resource type="Script" path="res://Scripts/gameController.gd" id="1_2vpeq"]
 [ext_resource type="PackedScene" uid="uid://nju2gnnh6ujx" path="res://Scenes/Player.tscn" id="1_ue3he"]
 [ext_resource type="Texture2D" uid="uid://dhg40j5iloasw" path="res://Assets/Sprites/Pickups/Revolver/PPISZ0.png" id="5_2cq2l"]
 [ext_resource type="Texture2D" uid="uid://dyf7jd4e2m00c" path="res://Assets/Sprites/Pickups/Pistol/TPISZ0.png" id="5_5iot7"]
@@ -29,6 +30,7 @@ glow_enabled = true
 glow_normalized = true
 
 [node name="World" type="Node3D"]
+script = ExtResource("1_2vpeq")
 
 [node name="Player" parent="." groups=["player"] instance=ExtResource("1_ue3he")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75114, 0, 0)
