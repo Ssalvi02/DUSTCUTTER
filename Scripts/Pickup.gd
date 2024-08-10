@@ -1,6 +1,6 @@
 extends RigidBody3D
 
-var SPEED : int = 20
+var SPEED : int = 60
 var first_col : bool = true 
 
 @onready var ray : RayCast3D = $RayCast3D

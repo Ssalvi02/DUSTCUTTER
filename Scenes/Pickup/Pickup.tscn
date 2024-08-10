@@ -4,7 +4,8 @@
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4nu5t"]
 rough = true
-bounce = 0.1
+bounce = 0.2
+absorbent = true
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_oeq5t"]
 
@@ -12,6 +13,7 @@ bounce = 0.1
 size = Vector3(0.5, 0.5, 0.5)
 
 [node name="Pickup" type="RigidBody3D" groups=["pickup"]]
+mass = 3.0
 physics_material_override = SubResource("PhysicsMaterial_4nu5t")
 can_sleep = false
 lock_rotation = true
@@ -20,7 +22,7 @@ script = ExtResource("1_imvam")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(2.82721, 0, 0, 0, 2.82721, 0, 0, 0, 1, 0, 0, 0)
-billboard = 2
+billboard = 1
 texture_filter = 0
 
 [node name="Area3D" type="Area3D" parent="."]
