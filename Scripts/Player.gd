@@ -114,6 +114,7 @@ func check_throw():
 func throw_gun():
 	if gun != null:
 		throw_weapon.emit()
+		gun.queue_free()
 	else:
 		return
 
@@ -131,6 +132,7 @@ func _on_can_pickup(pickup):
 			return
 		pickup.reparent(get_tree().root.get_child(0).get_child(0), false)
 		pickup.visible = false
+		pickup.connect_throw.emit()
 		pickup.lock_rotation = true
 		pickup.freeze = true
 		pickup.get_child(1).monitorable = false

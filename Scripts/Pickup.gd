@@ -14,12 +14,13 @@ var first_col : bool = true
 var throwing : bool = false
 
 signal can_pickup(pickup)
+signal connect_throw
+signal disconnect_throw
 
 var is_in_pickup_area = false
 
 func _ready():
 	$Sprite3D.texture = sprite
-	player.throw_weapon.connect(_on_player_throw_weapon)
 	add_to_group(group)
 	pass
 
@@ -63,7 +64,11 @@ func _on_player_throw_weapon():
 	$CollisionShape3D.disabled = false
 	apply_central_impulse(-self.global_transform.basis.z * SPEED)
 	throwing = true
+	player.throw_weapon.disconnect(_on_player_throw_weapon)
 
 func rootParent():
 	self.reparent(get_tree().root.get_child(0), false)
+
+func _on_connect_throw():
+	player.throw_weapon.connect(_on_player_throw_weapon)
 
