@@ -5,8 +5,10 @@ var first_col : bool = true
 
 @onready var ray : RayCast3D = $RayCast3D
 @onready var player : CharacterBody3D = $"../Player"
-@export var pickup_name = ""
-@export var ammo_value = 0
+@onready var gc 
+@export var pickup_name : String = ""
+@export var ammo_value : int = 0
+@export var priority : int = 0
 
 @export var sprite : Texture = null
 @export var group : String = "weapons"
@@ -24,13 +26,19 @@ signal disconnect_throw
 var is_in_pickup_area = false
 
 func _ready():
+	gc = get_tree().root.get_child(0)
 	$Sprite3D.texture = sprite
+	$Area3D.priority = priority 
 	add_to_group(group)
 	pass
 
 func _process(delta):
 	if(is_in_pickup_area):
-		can_pickup.emit(self)
+		if player.pickup_area_count > 1:
+			gc.disable_priority_area()
+			can_pickup.emit(self)
+		else: 
+			can_pickup.emit(self)
 
 	if throwing:
 		throw_time += delta
@@ -60,16 +68,17 @@ func unstuck():
 	throwing = false
 
 func _on_area_3d_area_entered(area):
-	is_in_pickup_area = true
-	#Texto para pegar armas 
+	if area.name == "PickupArea":
+		is_in_pickup_area = true
+		#Texto para pegar armas 
 
 func _on_area_3d_area_exited(area):
-	is_in_pickup_area = false
-	#Remover texto para pegar armas 
+	if area.name == "PickupArea":
+		is_in_pickup_area = false
+		#Remover texto para pegar armas 
 
 func _on_player_throw_weapon():
 	rootParent()
-	lock_rotation = false
 	freeze = false
 	visible = true
 	global_position = player.raycastgun.global_position

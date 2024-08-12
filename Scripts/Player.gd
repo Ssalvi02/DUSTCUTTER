@@ -26,8 +26,10 @@ var pickup_throw
 var pickup_cool = 1
 var can_pickup_again = true
 
+var pickup_area_count :int = 0
+
 func _ready():
-	gc = get_parent()
+	gc = get_tree().root.get_child(0)
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _input(event):
@@ -109,7 +111,6 @@ func _on_can_pickup(pickup):
 			return
 		pickup.reparent(get_tree().root.get_child(0).get_child(0), false)
 		pickup.visible = false
-		pickup.lock_rotation = true
 		pickup.freeze = true
 		pickup.get_child(1).monitorable = false
 		pickup.get_child(1).monitoring = false
@@ -119,3 +120,13 @@ func _on_can_pickup(pickup):
 
 func get_gun():
 	return gun
+
+
+func _on_pickup_area_area_entered(area):
+	pickup_area_count += 1
+	print(pickup_area_count)
+
+
+func _on_pickup_area_area_exited(area):
+	pickup_area_count -= 1
+	print(pickup_area_count)

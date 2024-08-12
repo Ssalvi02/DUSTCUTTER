@@ -27,6 +27,7 @@ target_position = Vector3(0, 0, -0.09)
 collision_mask = 3
 
 [node name="PickupArea" type="Area3D" parent="."]
+priority = 1000
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PickupArea"]
 transform = Transform3D(1.43, 0, 0, 0, 1.43, 0, 0, 0, 1.43, 0, 0.721803, 0)
@@ -38,3 +39,6 @@ shape = SubResource("SphereShape3D_pvr72")
 light_energy = 3.0
 light_size = 0.195
 omni_range = 4096.0
+
+[connection signal="area_entered" from="PickupArea" to="." method="_on_pickup_area_area_entered"]
+[connection signal="area_exited" from="PickupArea" to="." method="_on_pickup_area_area_exited"]

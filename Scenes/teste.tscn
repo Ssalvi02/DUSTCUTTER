@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://b2pp6c1s5ts4m"]
 
-[ext_resource type="Script" path="res://Scripts/gameController.gd" id="1_2vpeq"]
+[ext_resource type="Script" path="res://Scripts/GameController.gd" id="1_2vpeq"]
 [ext_resource type="PackedScene" uid="uid://nju2gnnh6ujx" path="res://Scenes/Player.tscn" id="1_ue3he"]
 [ext_resource type="Texture2D" uid="uid://dhg40j5iloasw" path="res://Assets/Sprites/Pickups/Revolver/PPISZ0.png" id="5_2cq2l"]
 [ext_resource type="Texture2D" uid="uid://dyf7jd4e2m00c" path="res://Assets/Sprites/Pickups/Pistol/TPISZ0.png" id="5_5iot7"]
@@ -106,19 +106,21 @@ transform = Transform3D(0.213181, 0.834752, -0.507684, -0.323184, 0.550626, 0.76
 shadow_enabled = true
 
 [node name="Pickup" parent="." instance=ExtResource("6_y7vx6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00142, 7.00996)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0158918, 0.132171, 7.00996)
 pickup_name = "pistol"
 ammo_value = 7
 sprite = ExtResource("5_5iot7")
 
 [node name="Pickup2" parent="." instance=ExtResource("6_y7vx6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.79675, 1.00142, 7.85625)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.227, 0.44451, 6.78502)
 pickup_name = "revolver"
 ammo_value = 6
+priority = 1
 sprite = ExtResource("5_2cq2l")
 
 [node name="Pickup3" parent="." instance=ExtResource("6_y7vx6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 4)
 pickup_name = "supershotgun"
 ammo_value = 2
+priority = 2
 sprite = ExtResource("6_qvsqo")

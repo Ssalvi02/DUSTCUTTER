@@ -27,3 +27,16 @@ func get_pickups():
 	pickups = get_tree().get_nodes_in_group("pickup")
 	for i in pickups:
 		i.can_pickup.connect(player._on_can_pickup)
+
+func disable_priority_area():
+	for i in pickups:
+		match i.priority:
+			0:
+				i.is_in_pickup_area = false
+				return
+			1:
+				i.is_in_pickup_area = false
+				return
+			2:
+				i.is_in_pickup_area = false
+				return

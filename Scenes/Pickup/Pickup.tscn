@@ -10,7 +10,7 @@ absorbent = true
 [sub_resource type="SphereShape3D" id="SphereShape3D_oeq5t"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nri56"]
-size = Vector3(0.5, 0.5, 0.5)
+size = Vector3(0.5, 0.5, 0.134521)
 
 [node name="Pickup" type="RigidBody3D" groups=["pickup"]]
 mass = 3.0
@@ -22,7 +22,7 @@ script = ExtResource("1_imvam")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(2.82721, 0, 0, 0, 2.82721, 0, 0, 0, 1, 0, 0, 0)
-billboard = 1
+shaded = true
 texture_filter = 0
 
 [node name="Area3D" type="Area3D" parent="."]
@@ -31,8 +31,13 @@ texture_filter = 0
 shape = SubResource("SphereShape3D_oeq5t")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-light_color = Color(0, 0, 1, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.068059, 0)
+light_color = Color(0.999107, 0.831064, 0.508813, 1)
 light_energy = 2.0
+light_size = 0.042
+light_specular = 0.0
+light_bake_mode = 1
+omni_range = 0.407
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 transform = Transform3D(1.52, 0, 0, 0, 1.52, 0, 0, 0, 1.52, 0, 0, 0.0238323)
