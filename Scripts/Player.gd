@@ -124,9 +124,7 @@ func get_gun():
 
 func _on_pickup_area_area_entered(area):
 	pickup_area_count += 1
-	print(pickup_area_count)
 
 
 func _on_pickup_area_area_exited(area):
 	pickup_area_count -= 1
-	print(pickup_area_count)
