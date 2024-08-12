@@ -14,6 +14,8 @@ var sshotgun = load("res://Scenes/Weapons/WeaponSuperShotgun.tscn")
 #Pickups
 var pickups
 
+var player_area_pickups : Array
+
 @onready var player = $Player
 
 func _ready():
@@ -27,16 +29,16 @@ func get_pickups():
 	pickups = get_tree().get_nodes_in_group("pickup")
 	for i in pickups:
 		i.can_pickup.connect(player._on_can_pickup)
+		i.player_area_pickup_enter.connect(_add_player_area_list)
+		i.player_area_pickup_enter.connect(_remove_player_area_list)
+
+func _add_player_area_list(pickup):
+	player_area_pickups.append(pickup)
+
+func _remove_player_area_list(pickup):
+	player_area_pickups.erase(pickup)
 
 func disable_priority_area():
 	for i in pickups:
-		match i.priority:
-			0:
-				i.is_in_pickup_area = false
-				return
-			1:
-				i.is_in_pickup_area = false
-				return
-			2:
-				i.is_in_pickup_area = false
-				return
+		if i.is_in_pickup_area == true:
+			i.is_in_pickup_area == false

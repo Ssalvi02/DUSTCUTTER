@@ -6,11 +6,14 @@ signal throw_weapon()
 @onready var gc 
 @onready var raycastgun = $Camera3D/RayCast3D
 @onready var ui = $PlayerUI
+@onready var area = $PickupArea
 
 @export_category("Attributes")
-@export var move_speed = 5.0
-@export var max_health = 6
+@export var move_speed : float = 5.0
+@export var run_speed : float = 8.0
+@export var max_health : int = 2
 @export var current_health = max_health
+var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 var gun
 
@@ -26,6 +29,8 @@ var pickup_throw
 var pickup_cool = 1
 var can_pickup_again = true
 
+var running = false
+
 var pickup_area_count :int = 0
 
 func _ready():
@@ -35,15 +40,20 @@ func _ready():
 func _input(event):
 	if(dead):
 		return
+
 	if event is InputEventMouseMotion:
 		rotation_degrees.y -= event.relative.x * MOUSE_SENS
 		$Camera3D.rotation_degrees.x -= event.relative.y * MOUSE_SENS
 
 func _process(delta):
 	$Camera3D.rotation_degrees.x = clamp($Camera3D.rotation_degrees.x, -90, 90)
+
 	if dead:
 		return
-	
+
+	if !is_on_floor():
+		velocity.y -= gravity * delta
+
 	joystick_controller_camera()
 
 func lose_heart():
@@ -71,14 +81,24 @@ func _physics_process(delta):
 	move_and_slide()
 
 func move():
+	if Input.is_action_just_pressed("run"):
+		running = !running
 	var input_dir = Input.get_vector("move_left", "move_right", "move_foward", "move_backward")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
-		velocity.x = direction.x * move_speed
-		velocity.z = direction.z * move_speed
+			if running:
+				velocity.x = direction.x * run_speed
+				velocity.z = direction.z * run_speed
+			else:
+				velocity.x = direction.x * move_speed
+				velocity.z = direction.z * move_speed
 	else:
 		velocity.x = move_toward(velocity.x, 0, move_speed)
 		velocity.z = move_toward(velocity.z, 0, move_speed)
+	
+	if Input.is_action_just_pressed("jump") && is_on_floor():
+		velocity.y = 5
+		pass
 
 func instantiate_gun(gunName):
 	current_gun = gunName
@@ -121,10 +141,10 @@ func _on_can_pickup(pickup):
 func get_gun():
 	return gun
 
-
 func _on_pickup_area_area_entered(area):
 	pickup_area_count += 1
-
+	print(pickup_area_count)
 
 func _on_pickup_area_area_exited(area):
 	pickup_area_count -= 1
+	print(pickup_area_count)

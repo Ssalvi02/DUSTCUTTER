@@ -20,10 +20,13 @@ var throw_time : float = 0
 
 
 signal can_pickup(pickup)
+signal player_area_pickup_enter(pickup)
+signal player_area_pickup_leave(pickup)
 signal connect_throw
 signal disconnect_throw
 
 var is_in_pickup_area = false
+
 
 func _ready():
 	gc = get_tree().root.get_child(0)
@@ -69,11 +72,13 @@ func unstuck():
 
 func _on_area_3d_area_entered(area):
 	if area.name == "PickupArea":
+		player_area_pickup_enter.emit(self)
 		is_in_pickup_area = true
 		#Texto para pegar armas 
 
 func _on_area_3d_area_exited(area):
 	if area.name == "PickupArea":
+		player_area_pickup_leave.emit(self)
 		is_in_pickup_area = false
 		#Remover texto para pegar armas 
 
