@@ -20,8 +20,6 @@ var throw_time : float = 0
 
 
 signal can_pickup(pickup)
-signal player_area_pickup_enter(pickup)
-signal player_area_pickup_leave(pickup)
 signal connect_throw
 signal disconnect_throw
 
@@ -37,11 +35,8 @@ func _ready():
 
 func _process(delta):
 	if(is_in_pickup_area):
-		if player.pickup_area_count > 1:
-			gc.disable_priority_area()
-			can_pickup.emit(self)
-		else: 
-			can_pickup.emit(self)
+		gc.check_gun_priority()
+		can_pickup.emit(self)
 
 	if throwing:
 		throw_time += delta
@@ -72,13 +67,11 @@ func unstuck():
 
 func _on_area_3d_area_entered(area):
 	if area.name == "PickupArea":
-		player_area_pickup_enter.emit(self)
 		is_in_pickup_area = true
 		#Texto para pegar armas 
 
 func _on_area_3d_area_exited(area):
 	if area.name == "PickupArea":
-		player_area_pickup_leave.emit(self)
 		is_in_pickup_area = false
 		#Remover texto para pegar armas 
 

@@ -29,7 +29,7 @@ collision_mask = 3
 priority = 1000
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PickupArea"]
-transform = Transform3D(1.43, 0, 0, 0, 1.43, 0, 0, 0, 1.43, 0, 0.721803, 0)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.721803, 0)
 shape = SubResource("SphereShape3D_pvr72")
 
 [node name="PlayerUI" parent="." instance=ExtResource("2_gcyro")]

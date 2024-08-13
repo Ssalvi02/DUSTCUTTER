@@ -29,16 +29,14 @@ func get_pickups():
 	pickups = get_tree().get_nodes_in_group("pickup")
 	for i in pickups:
 		i.can_pickup.connect(player._on_can_pickup)
-		i.player_area_pickup_enter.connect(_add_player_area_list)
-		i.player_area_pickup_enter.connect(_remove_player_area_list)
 
-func _add_player_area_list(pickup):
-	player_area_pickups.append(pickup)
+func check_gun_priority():
+	for i in player.player_area_pickups:
+		for j in player.player_area_pickups:
+			if i.priority > j.priority:
+				j.is_in_pickup_area = false
 
-func _remove_player_area_list(pickup):
-	player_area_pickups.erase(pickup)
-
-func disable_priority_area():
-	for i in pickups:
-		if i.is_in_pickup_area == true:
-			i.is_in_pickup_area == false
+func recheck_pickup_area():
+	for i in player.player_area_pickups:
+		i.is_in_pickup_area = true
+	check_gun_priority()

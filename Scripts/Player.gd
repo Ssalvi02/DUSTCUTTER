@@ -32,6 +32,7 @@ var can_pickup_again = true
 var running = false
 
 var pickup_area_count :int = 0
+var player_area_pickups : Array
 
 func _ready():
 	gc = get_tree().root.get_child(0)
@@ -113,6 +114,7 @@ func throw_gun():
 	if gun != null:
 		throw_weapon.emit()
 		can_shoot = true
+		gc.recheck_pickup_area()
 		gun.queue_free()
 	else:
 		return
@@ -142,9 +144,7 @@ func get_gun():
 	return gun
 
 func _on_pickup_area_area_entered(area):
-	pickup_area_count += 1
-	print(pickup_area_count)
+	player_area_pickups.append(area.get_parent())
 
 func _on_pickup_area_area_exited(area):
-	pickup_area_count -= 1
-	print(pickup_area_count)
+	player_area_pickups.erase(area.get_parent())
