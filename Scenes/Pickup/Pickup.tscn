@@ -46,6 +46,10 @@ target_position = Vector3(0, 0, -1)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_nri56")
 
+[node name="Audios" type="Node" parent="."]
+
+[node name="Throw" type="AudioStreamPlayer" parent="Audios"]
+
 [connection signal="connect_throw" from="." to="." method="_on_connect_throw"]
 [connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
 [connection signal="area_exited" from="Area3D" to="." method="_on_area_3d_area_exited"]

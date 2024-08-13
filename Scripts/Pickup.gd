@@ -18,16 +18,21 @@ var cooldown : float = 1
 var throwing : bool = false
 var throw_time : float = 0
 
-
+#Signals and control
 signal can_pickup(pickup)
 signal connect_throw
 signal disconnect_throw
 
 var is_in_pickup_area = false
 
+#Audio
+@onready var sounds = $Audios
+@export var grab_sound : AudioStreamMP3
+@export var throw_sound : AudioStreamMP3
 
 func _ready():
 	gc = get_tree().root.get_child(0)
+	sounds.find_child("Throw").stream = throw_sound
 	$Sprite3D.texture = sprite
 	$Area3D.priority = priority 
 	add_to_group(group)
@@ -39,6 +44,7 @@ func _process(delta):
 		can_pickup.emit(self)
 
 	if throwing:
+		sounds.find_child("Throw").play()
 		throw_time += delta
 		if ray.is_colliding():
 			$Area3D.monitorable = true
