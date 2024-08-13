@@ -131,14 +131,18 @@ func _on_can_pickup(pickup):
 		if gun != null:
 			gun.queue_free()
 			return
-		pickup.reparent(get_tree().root.get_child(0).get_child(0), false)
-		pickup.visible = false
-		pickup.freeze = true
-		pickup.get_child(1).monitorable = false
-		pickup.get_child(1).monitoring = false
-		pickup.get_child(4).disabled = true
-		instantiate_gun(pickup.pickup_name)
-		pickup.connect_throw.emit()
+		pickup_handler(pickup)
+
+
+func pickup_handler(pickup):
+	pickup.reparent(get_tree().root.get_child(0).get_child(0), false)
+	pickup.visible = false
+	pickup.freeze = true
+	pickup.get_child(1).monitorable = false
+	pickup.get_child(1).monitoring = false
+	pickup.get_child(4).disabled = true
+	instantiate_gun(pickup.pickup_name)
+	pickup.connect_throw.emit()
 
 func get_gun():
 	return gun

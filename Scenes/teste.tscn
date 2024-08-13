@@ -1,10 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://b2pp6c1s5ts4m"]
+[gd_scene load_steps=17 format=3 uid="uid://b2pp6c1s5ts4m"]
 
-[ext_resource type="Script" path="res://Scripts/GameController.gd" id="1_2vpeq"]
+[ext_resource type="Script" path="res://Scripts/gameController.gd" id="1_2vpeq"]
 [ext_resource type="PackedScene" uid="uid://nju2gnnh6ujx" path="res://Scenes/Player.tscn" id="1_ue3he"]
 [ext_resource type="Texture2D" uid="uid://ctj67bh2vgy6r" path="res://Assets/Sprites/Pickups/Pistol/pistol.png" id="4_r7m0y"]
 [ext_resource type="Texture2D" uid="uid://dhg40j5iloasw" path="res://Assets/Sprites/Pickups/Revolver/PPISZ0.png" id="5_2cq2l"]
-[ext_resource type="AudioStream" uid="uid://bq36i1tr77t4b" path="res://Assets/Audio/Weapons/Pistol/pistol_grab.mp3" id="5_65gon"]
 [ext_resource type="Texture2D" uid="uid://crkf4bi6njt5u" path="res://Assets/Sprites/Pickups/Shotgun/PSSGZ0.png" id="6_qvsqo"]
 [ext_resource type="AudioStream" uid="uid://bxor7guakjwm7" path="res://Assets/Audio/Weapons/Throw/throw.mp3" id="6_r2wb0"]
 [ext_resource type="PackedScene" uid="uid://bnjsggo78ap0j" path="res://Scenes/Pickup/Pickup.tscn" id="6_y7vx6"]
@@ -114,7 +113,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0158918, 0.132171, 7.00996)
 pickup_name = "pistol"
 ammo_value = 7
 sprite = ExtResource("4_r7m0y")
-grab_sound = ExtResource("5_65gon")
 throw_sound = ExtResource("6_r2wb0")
 
 [node name="Pickup2" parent="." instance=ExtResource("6_y7vx6")]

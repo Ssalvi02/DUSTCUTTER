@@ -27,7 +27,6 @@ var is_in_pickup_area = false
 
 #Audio
 @onready var sounds = $Audios
-@export var grab_sound : AudioStreamMP3
 @export var throw_sound : AudioStreamMP3
 
 func _ready():
@@ -44,8 +43,8 @@ func _process(delta):
 		can_pickup.emit(self)
 
 	if throwing:
-		sounds.find_child("Throw").play()
 		throw_time += delta
+		
 		if ray.is_colliding():
 			$Area3D.monitorable = true
 			$Area3D.monitoring = true
@@ -82,6 +81,7 @@ func _on_area_3d_area_exited(area):
 		#Remover texto para pegar armas 
 
 func _on_player_throw_weapon():
+	sounds.find_child("Throw").play()
 	rootParent()
 	freeze = false
 	visible = true

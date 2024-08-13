@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b10bf8sgmt6bi"]
+[gd_scene load_steps=13 format=3 uid="uid://b10bf8sgmt6bi"]
 
 [ext_resource type="Script" path="res://Scripts/Weapon.gd" id="1_cog8v"]
 [ext_resource type="SpriteFrames" uid="uid://csqqfsmani078" path="res://Assets/Sprites/Weapons/SuperShotgun/SuperShotgunframes.tres" id="2_bkw3k"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Scripts/BulletUIHandler.gd" id="4_4f0ky"]
 [ext_resource type="Texture2D" uid="uid://mr80pjf7jmjn" path="res://Assets/UI/Crosshairs/pistolcrosshair.png" id="4_anawy"]
 [ext_resource type="Texture2D" uid="uid://bq57lsolpwvij" path="res://Assets/UI/Bullets/bulletcount_bg.png" id="5_5tufy"]
+[ext_resource type="AudioStream" uid="uid://cn3x5y424aiyk" path="res://Assets/Audio/Weapons/Shotgun/shotgungrab.mp3" id="5_iacpo"]
 [ext_resource type="Texture2D" uid="uid://10fymd03upbc" path="res://Assets/UI/Bullets/shotgunshells_spritesheet.png" id="5_k6ge1"]
 [ext_resource type="AudioStream" uid="uid://b65u2fahkkxh6" path="res://Assets/Audio/Weapons/Shotgun/shotgun_sfx.mp3" id="8_8en4s"]
 [ext_resource type="AudioStream" uid="uid://dmi2bxuce4spx" path="res://Assets/Audio/Weapons/Pistol/nobullets6209.mp3" id="9_7c310"]
@@ -24,6 +25,7 @@ spread_count = 12
 texture = ExtResource("2_bkw3k")
 cross_texture = ExtResource("3_116rg")
 pickup_texture = ExtResource("4_0nvme")
+grab_sound = ExtResource("5_iacpo")
 
 [node name="GunBase" type="Control" parent="."]
 layout_mode = 3
@@ -109,3 +111,6 @@ max_polyphony = 7
 [node name="NoBulletsSound" type="AudioStreamPlayer" parent="Audios"]
 stream = ExtResource("9_7c310")
 volume_db = -6.0
+
+[node name="Grab" type="AudioStreamPlayer" parent="Audios"]
+volume_db = -8.0

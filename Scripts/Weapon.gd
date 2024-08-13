@@ -13,11 +13,11 @@ var current_ammo = 0
 @export var spread_count : int = 0 
 @export var pierce : bool = false
 @export var is_thrown : bool = false
-@export_category("Gun UI/Texture")
+@export_category("Gun UI/Sounds")
 @export var texture : SpriteFrames = null
 @export var cross_texture : Texture = null
 @export var pickup_texture : Texture = null
-
+@export var grab_sound : AudioStreamMP3
 
 @onready var sprite = $GunBase/AnimatedSprite2D
 @onready var player = get_parent()
@@ -29,11 +29,14 @@ var current_ammo = 0
 signal update_ammo_value(new_value)
 
 func _ready():
+	audios.find_child("Grab").stream = grab_sound
 	gc = get_tree().root.get_child(0)
+
 	for i in gc.pickups:
 		if g_name == i.pickup_name:
 			current_ammo = i.ammo_value
 
+	audios.find_child("Grab").play()
 	sprite.sprite_frames = texture
 	$Crosshair.texture = cross_texture
 	ui = find_child("AmmoCount")
