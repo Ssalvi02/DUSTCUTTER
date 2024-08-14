@@ -12,6 +12,7 @@ enum et {
 @export var attack_range : int = 0
 @export var sprite_texture : SpriteFrames = null 
 @export var enemy_type : et;
+@export var stun_time : int = 3
 
 @onready var player : CharacterBody3D = get_tree().get_first_node_in_group("player")
 
@@ -76,9 +77,11 @@ func kill():
 	$CollisionShape3D.disabled = true
 
 func stun():
+	if stunned:
+		return
 	#sprite.play(stunned)
 	stunned = true
-	await get_tree().create_timer(3).timeout
+	await get_tree().create_timer(stun_time).timeout
 	stunned = false
 	$sensePlayer.monitoring = true
 

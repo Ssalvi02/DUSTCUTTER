@@ -24,5 +24,6 @@ func _on_area_3d_body_entered(body):
 			i.collision_layer = 1
 			i.collision_mask = 1
 		print(body)
+		body.stun()
 		await get_tree().create_timer(5).timeout
 		queue_free()

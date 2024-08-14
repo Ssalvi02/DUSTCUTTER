@@ -1,6 +1,6 @@
 extends RigidBody3D
 
-var SPEED : int = 60
+var SPEED : int = 20
 
 @onready var ray : RayCast3D = $RayCast3D
 @onready var player : CharacterBody3D = $"../Player"
@@ -28,6 +28,8 @@ var is_in_pickup_area = false
 @onready var sounds = $Audios
 @export var throw_sound : AudioStreamMP3
 
+var first_col : bool = true
+
 func _ready():
 	gc = get_tree().root.get_child(0)
 	sounds.find_child("Throw").stream = throw_sound
@@ -51,11 +53,16 @@ func _process(delta):
 
 			if ray.get_collider().has_method("stun"):
 				ray.get_collider().stun()
+				
+			if first_col and ray.get_collider().is_in_group("enemies"):
+				apply_central_impulse(global_transform.basis.z * (SPEED+5))
+				first_col = false
 
 		if throw_time >= cooldown:
 			throw_time = 0
 			unstuck()
 	else:
+		first_col = true
 		return
 
 func knockback(dir, kick_force, kick_raycast_pos):

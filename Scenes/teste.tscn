@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=3 uid="uid://b2pp6c1s5ts4m"]
 
-[ext_resource type="Script" path="res://Scripts/GameController.gd" id="1_2vpeq"]
+[ext_resource type="Script" path="res://Scripts/gameController.gd" id="1_2vpeq"]
 [ext_resource type="PackedScene" uid="uid://nju2gnnh6ujx" path="res://Scenes/Player.tscn" id="1_ue3he"]
 [ext_resource type="Texture2D" uid="uid://ctj67bh2vgy6r" path="res://Assets/Sprites/Pickups/Pistol/pistol.png" id="4_r7m0y"]
 [ext_resource type="Texture2D" uid="uid://dhg40j5iloasw" path="res://Assets/Sprites/Pickups/Revolver/PPISZ0.png" id="5_2cq2l"]
