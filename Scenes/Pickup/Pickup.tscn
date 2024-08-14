@@ -17,7 +17,6 @@ mass = 3.0
 physics_material_override = SubResource("PhysicsMaterial_4nu5t")
 can_sleep = false
 lock_rotation = true
-freeze = true
 script = ExtResource("1_imvam")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]

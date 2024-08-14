@@ -5,6 +5,7 @@ signal throw_weapon()
 
 @onready var gc 
 @onready var raycastgun = $Camera3D/RayCast3D
+@onready var raycastkick = $Camera3D/RayCast3DK
 @onready var ui = $PlayerUI
 @onready var area = $PickupArea
 
@@ -13,6 +14,7 @@ signal throw_weapon()
 @export var run_speed : float = 8.0
 @export var max_health : int = 2
 @export var current_health = max_health
+@export var KICK_FORCE : int = 20
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 var gun
@@ -77,6 +79,13 @@ func joystick_controller_camera():
 func _physics_process(delta):
 	if dead:
 		return
+	if Input.is_action_just_pressed("kick"):
+		await get_tree().create_timer(0.1).timeout
+		if raycastkick.is_colliding():
+			var obj = raycastkick.get_collider()
+			print(obj)
+			if obj.has_method("knockback"):
+				obj.knockback(-raycastkick.global_transform.basis.z, KICK_FORCE, raycastkick.get_collision_point())
 	move()
 	check_throw()
 	move_and_slide()

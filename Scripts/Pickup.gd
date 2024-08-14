@@ -64,6 +64,8 @@ func _process(delta):
 	else:
 		return
 
+func knockback(a, kick_force, kick_raycast_pos):
+	apply_impulse(a * kick_force * 20, kick_raycast_pos)
 
 func unstuck():
 	$Area3D.monitorable = true

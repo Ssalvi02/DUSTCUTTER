@@ -19,6 +19,7 @@ var player_in_range = false
 
 var dead :bool = false
 var stunned : bool = false
+var kicked : bool = false
 
 func _ready():
 	sprite.sprite_frames = sprite_texture
@@ -40,7 +41,8 @@ func _physics_process(delta):
 	
 	match enemy_type:
 		et.CLOSE:
-			closeRangeHandle()
+			if !kicked:
+				closeRangeHandle()
 		et.SHOOTING:
 			pass
 		et.EXPLODING:
@@ -74,10 +76,16 @@ func kill():
 func stun():
 	#sprite.play(stunned)
 	stunned = true
-	await get_tree().create_timer(5).timeout
+	await get_tree().create_timer(3).timeout
 	stunned = false
 	$sensePlayer.monitoring = true
 
+func knockback(dir, force , kick_raycast_pos):
+	kicked = true
+	velocity = dir * force
+	await get_tree().create_timer(0.3).timeout
+	stun()
+	kicked = false
 
 func _on_sense_player_area_entered(area):
 	if area.name == "PickupArea":
