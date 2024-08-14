@@ -31,6 +31,8 @@ func _physics_process(delta):
 		
 	if stunned:
 		$sensePlayer.monitoring = false
+		if kicked:
+			kill()
 	
 	if dead:
 		$CollisionShape3D.disabled = true

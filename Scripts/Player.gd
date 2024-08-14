@@ -157,7 +157,9 @@ func get_gun():
 	return gun
 
 func _on_pickup_area_area_entered(area):
-	player_area_pickups.append(area.get_parent())
+	if area.get_parent().is_in_group("pickup"):
+		player_area_pickups.append(area.get_parent())
 
 func _on_pickup_area_area_exited(area):
-	player_area_pickups.erase(area.get_parent())
+	if area.get_parent().is_in_group("pickup"):
+		player_area_pickups.erase(area.get_parent())

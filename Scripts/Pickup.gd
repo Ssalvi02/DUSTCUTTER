@@ -1,7 +1,6 @@
 extends RigidBody3D
 
 var SPEED : int = 60
-var first_col : bool = true 
 
 @onready var ray : RayCast3D = $RayCast3D
 @onready var player : CharacterBody3D = $"../Player"
@@ -49,23 +48,18 @@ func _process(delta):
 			$Area3D.monitorable = true
 			$Area3D.monitoring = true
 			throwing = false
-			
+
 			if ray.get_collider().has_method("stun"):
 				ray.get_collider().stun()
-				
-			if(ray.get_collider().is_in_group("enemies")):
-				#bounce back
-				if first_col == true :
-					apply_central_impulse(self.global_transform.basis.z * SPEED)
-					first_col = false
+
 		if throw_time >= cooldown:
 			throw_time = 0
 			unstuck()
 	else:
 		return
 
-func knockback(a, kick_force, kick_raycast_pos):
-	apply_impulse(a * kick_force * 20, kick_raycast_pos)
+func knockback(dir, kick_force, kick_raycast_pos):
+	apply_impulse(dir * kick_force, kick_raycast_pos)
 
 func unstuck():
 	$Area3D.monitorable = true

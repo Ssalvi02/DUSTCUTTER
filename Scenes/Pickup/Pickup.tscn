@@ -5,7 +5,6 @@
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4nu5t"]
 rough = true
 bounce = 0.2
-absorbent = true
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_oeq5t"]
 
@@ -13,7 +12,6 @@ absorbent = true
 size = Vector3(0.5, 0.5, 0.134521)
 
 [node name="Pickup" type="RigidBody3D" groups=["pickup"]]
-mass = 3.0
 physics_material_override = SubResource("PhysicsMaterial_4nu5t")
 can_sleep = false
 lock_rotation = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b2pp6c1s5ts4m"]
+[gd_scene load_steps=20 format=3 uid="uid://b2pp6c1s5ts4m"]
 
 [ext_resource type="Script" path="res://Scripts/GameController.gd" id="1_2vpeq"]
 [ext_resource type="PackedScene" uid="uid://nju2gnnh6ujx" path="res://Scenes/Player.tscn" id="1_ue3he"]
@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://duiaeofd6t6nn" path="res://Assets/Audio/Weapons/Throw/throw3.mp3" id="10_fw43x"]
 [ext_resource type="PackedScene" uid="uid://gnoc5ii4lq0h" path="res://Scenes/Enemy.tscn" id="10_i816w"]
 [ext_resource type="SpriteFrames" uid="uid://ceqcyiigjyh5e" path="res://Assets/Sprites/Enemies/SpriteFrames/demon_close_sprites.tres" id="11_rs7pt"]
+[ext_resource type="PackedScene" uid="uid://cy1ajt6o0gv0c" path="res://Scenes/door.tscn" id="12_rum8k"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_awjon"]
 albedo_color = Color(1, 0.847059, 0.764706, 1)
@@ -138,22 +139,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -6)
 move_speed = 2
 sprite_texture = ExtResource("11_rs7pt")
 
-[node name="Enemy2" parent="." instance=ExtResource("10_i816w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.80891, 0, -1.38319)
-move_speed = 2
-sprite_texture = ExtResource("11_rs7pt")
-
-[node name="Enemy3" parent="." instance=ExtResource("10_i816w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.84181, 0, 0.368505)
-move_speed = 2
-sprite_texture = ExtResource("11_rs7pt")
-
-[node name="Enemy4" parent="." instance=ExtResource("10_i816w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.11281, 0, -5.88523)
-move_speed = 2
-sprite_texture = ExtResource("11_rs7pt")
-
-[node name="Enemy5" parent="." instance=ExtResource("10_i816w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.45871, 0, -4.25185)
-move_speed = 2
-sprite_texture = ExtResource("11_rs7pt")
+[node name="Door" parent="." instance=ExtResource("12_rum8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.936, 1.38201, 0)
