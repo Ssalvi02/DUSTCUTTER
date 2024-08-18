@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://5qhiwbuy1k0f"]
+[gd_scene load_steps=9 format=3 uid="uid://5qhiwbuy1k0f"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerUIHandler.gd" id="1_keby0"]
+[ext_resource type="FontFile" uid="uid://bcclqg7n66168" path="res://Assets/Fonts/SALVATIO.TTF" id="2_sardw"]
+[ext_resource type="FontFile" uid="uid://bxq2fb8f7p6sd" path="res://Assets/Fonts/MiniMOOD.ttf" id="3_67bfn"]
 
 [sub_resource type="Animation" id="Animation_g0lnd"]
 resource_name = "screenflicker_ammo"
@@ -9,6 +11,28 @@ resource_name = "screenflicker_ammo"
 _data = {
 "screenflicker_ammo": SubResource("Animation_g0lnd")
 }
+
+[sub_resource type="LabelSettings" id="LabelSettings_voabl"]
+font = ExtResource("2_sardw")
+font_size = 42
+font_color = Color(1, 0.494118, 0.67451, 1)
+shadow_size = 2
+shadow_color = Color(0.172549, 0.788235, 0.305882, 1)
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="LabelSettings" id="LabelSettings_gq72d"]
+font = ExtResource("2_sardw")
+font_size = 72
+font_color = Color(0.172549, 0.788235, 0.305882, 1)
+shadow_size = 3
+shadow_color = Color(1, 0.494118, 0.67451, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_oo7rc"]
+font = ExtResource("3_67bfn")
+font_size = 32
+font_color = Color(1, 0.494118, 0.67451, 1)
+shadow_size = 3
+shadow_color = Color(0.172549, 0.788235, 0.305882, 1)
 
 [node name="PlayerUI" type="Control"]
 layout_mode = 3
@@ -32,3 +56,73 @@ theme_override_constants/v_separation = 45
 libraries = {
 "": SubResource("AnimationLibrary_xhnx5")
 }
+
+[node name="UpperText" type="VFlowContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 42.0
+offset_top = 18.0
+offset_right = -42.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="EnemyCount" type="Label" parent="UpperText"]
+texture_filter = 1
+layout_mode = 2
+text = "KILL EM ALL "
+label_settings = SubResource("LabelSettings_voabl")
+uppercase = true
+
+[node name="Timer" type="Label" parent="UpperText"]
+texture_filter = 1
+layout_mode = 2
+text = "00:00:00"
+label_settings = SubResource("LabelSettings_voabl")
+
+[node name="CenterText" type="HFlowContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -162.5
+offset_top = -53.5
+offset_right = 162.5
+offset_bottom = 53.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="LevelComplete" type="Label" parent="CenterText"]
+visible = false
+texture_filter = 1
+layout_mode = 2
+text = "JOB DONE
+press esc to exit"
+label_settings = SubResource("LabelSettings_gq72d")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BottomText" type="HFlowContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -69.0
+offset_top = -229.0
+offset_right = 71.0
+offset_bottom = -185.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="PickupText" type="Label" parent="BottomText"]
+visible = false
+layout_mode = 2
+text = "Grab "
+label_settings = SubResource("LabelSettings_oo7rc")

@@ -14,6 +14,7 @@ normal_enabled = true
 normal_texture = ExtResource("2_tvvdt")
 clearcoat_roughness = 1.0
 anisotropy = -0.09
+refraction_texture_channel = 1
 uv1_scale = Vector3(1.185, 1.185, 1.185)
 uv1_triplanar = true
 uv1_world_triplanar = true

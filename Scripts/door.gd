@@ -18,9 +18,11 @@ func _on_area_3d_body_entered(body):
 	if body.is_in_group("enemies"):
 		door_static.visible = false
 		find_child("Shards").visible = true
+		self.add_to_group("door_shards")
 		for i in door_shards:
+			i.add_to_group("door_shards")
 			i.freeze = false
-			i.apply_impulse(ray.target_position * 5)
+			i.linear_velocity = linear_velocity
 			i.collision_layer = 1
 			i.collision_mask = 1
 		print(body)

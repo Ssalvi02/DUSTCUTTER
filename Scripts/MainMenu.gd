@@ -17,6 +17,8 @@ func _physics_process(delta):
 		0: #Continue
 			lerp_shadow(active_select)
 		1: #New Game
+			if(Input.is_action_just_pressed("select")):
+				get_tree().change_scene_to_file("res://Scenes/Levels/Level1.tscn")
 			lerp_shadow(active_select)
 		2: #Options
 			lerp_shadow(active_select)
@@ -70,6 +72,3 @@ func _on_credits_mouse_exited():
 func _on_quit_gui_input(event):
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		get_tree().quit()
-
-
-

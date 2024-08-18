@@ -75,11 +75,14 @@ func unstuck():
 
 func _on_area_3d_area_entered(area):
 	if area.name == "PickupArea":
+		player.ui.find_child("BottomText").find_child("PickupText").text = "Grab " + pickup_name
+		player.ui.find_child("BottomText").find_child("PickupText").visible = true
 		is_in_pickup_area = true
 		#Texto para pegar armas 
 
 func _on_area_3d_area_exited(area):
 	if area.name == "PickupArea":
+		player.ui.find_child("BottomText").find_child("PickupText").visible = false
 		is_in_pickup_area = false
 		#Remover texto para pegar armas 
 

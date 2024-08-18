@@ -8,21 +8,24 @@ enum et {
 	EXPLODING
 }
 
-@export var move_speed : int = 0
-@export var attack_range : int = 0
+@export var move_speed : int
+@export var attack_range : int
 @export var sprite_texture : SpriteFrames = null 
 @export var enemy_type : et;
 @export var stun_time : int = 3
 
-@onready var player : CharacterBody3D = get_tree().get_first_node_in_group("player")
+@onready var player : CharacterBody3D = get_tree().root.get_child(0).find_child("Player")
+@onready var gc 
 
 var player_in_range = false
 
 var dead :bool = false
 var stunned : bool = false
 var kicked : bool = false
+var firs_col : bool = true
 
 func _ready():
+	gc = get_tree().root.get_child(0)
 	sprite.sprite_frames = sprite_texture
 	sprite.play("walk")
 
@@ -32,8 +35,9 @@ func _physics_process(delta):
 		
 	if stunned:
 		$sensePlayer.monitoring = false
-		if kicked:
+		if kicked && firs_col:
 			kill()
+			firs_col = false
 	
 	if dead:
 		$CollisionShape3D.disabled = true
@@ -72,6 +76,7 @@ func closeRangeHandle():
 		velocity = Vector3.ZERO
 
 func kill():
+	gc.kill_count += 1
 	sprite.play("death")
 	dead = true
 	$CollisionShape3D.disabled = true

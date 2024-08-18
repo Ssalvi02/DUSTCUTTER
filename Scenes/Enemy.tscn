@@ -4,7 +4,7 @@
 [ext_resource type="SpriteFrames" uid="uid://ceqcyiigjyh5e" path="res://Assets/Sprites/Enemies/SpriteFrames/demon_close_sprites.tres" id="2_jrbbh"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0mf31"]
-radius = 0.712438
+radius = 0.758768
 height = 2.02662
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mn6l3"]
@@ -17,7 +17,7 @@ script = ExtResource("1_bp34t")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 process_mode = 3
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.879007, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.935039, 0)
 shape = SubResource("CapsuleShape3D_0mf31")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
