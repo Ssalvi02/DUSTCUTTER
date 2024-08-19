@@ -1,7 +1,7 @@
 extends RigidBody3D
 
 @onready var ray : RayCast3D = $RayCast3D
-@onready var door_static : MeshInstance3D = $MeshInstance3D
+@onready var door_static : MeshInstance3D = $Door
 var door_shards : Array
 
 

@@ -293,7 +293,7 @@ environment = SubResource("Environment_n0nue")
 [node name="Doors" type="Node3D" parent="."]
 
 [node name="Door" parent="Doors" instance=ExtResource("6_7cosv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.216442, 1.60778, -6.27667)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.216442, 1.67038, -6.27667)
 
 [node name="Door2" type="RigidBody3D" parent="Doors"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.80314, 1.60778, -13.2788)
