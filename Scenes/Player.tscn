@@ -39,6 +39,7 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.721803, 0)
 shape = SubResource("SphereShape3D_pvr72")
 
 [node name="PlayerUI" parent="." instance=ExtResource("2_gcyro")]
+script = null
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 light_energy = 3.0

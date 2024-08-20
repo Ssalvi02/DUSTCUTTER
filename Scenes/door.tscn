@@ -322,7 +322,7 @@ lock_rotation = true
 script = ExtResource("1_lc186")
 
 [node name="Door" type="MeshInstance3D" parent="."]
-transform = Transform3D(2.86603e-15, -2.18557e-09, -1, -1.5, -2.18557e-09, 0, -6.55671e-08, 0.05, -4.37114e-08, 0, 0, 0)
+transform = Transform3D(3.0571e-15, -2.18557e-09, -1, -1.6, -2.18557e-09, -4.23516e-22, -6.99382e-08, 0.05, -4.37114e-08, 0, 0, 0)
 mesh = SubResource("ArrayMesh_vnsm4")
 skeleton = NodePath("")
 

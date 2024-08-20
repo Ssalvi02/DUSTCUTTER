@@ -76,10 +76,11 @@ func closeRangeHandle():
 		velocity = Vector3.ZERO
 
 func kill():
+	$DetectBodies.monitoring = false
 	gc.kill_count += 1
 	sprite.play("death")
-	dead = true
 	$CollisionShape3D.disabled = true
+	dead = true
 
 func stun():
 	if stunned:
@@ -105,3 +106,8 @@ func _on_sense_player_area_entered(area):
 func _on_sense_player_area_exited(area):
 	if area.name == "PickupArea":
 		player_in_range = false
+
+
+func _on_detect_bodies_body_entered(body):
+	if body.name == "Player":
+		body.kill()

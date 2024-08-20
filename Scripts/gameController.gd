@@ -20,6 +20,7 @@ var player_area_pickups : Array
 @onready var playerui = $Player.ui
 @onready var playerui_ec = playerui.find_child("UpperText").find_child("EnemyCount")
 @onready var playerui_t = playerui.find_child("UpperText").find_child("Timer")
+@onready var playerui_death = playerui.find_child("DeathUI")
 @onready var level_timer = $Timer
 
 var kill_count = 0
@@ -30,14 +31,21 @@ func _ready():
 	playerui_ec.text = "kill em all " + str(kill_count) + "/" + str(get_enemy_count())
 
 func _process(delta):
+	if(Input.is_action_just_pressed("exit")):
+		get_tree().quit()
+
 	playerui_ec.text = "kill em all " + str(kill_count) + "/" + str(get_enemy_count())
-	
+
 	if(kill_count == get_enemy_count()):
 		level_timer.stop()
 		playerui.find_child("CenterText").find_child("LevelComplete").visible = true
 	
-	if(Input.is_action_just_pressed("exit")):
-		get_tree().quit()
+	if player.dead:
+		for i in playerui.get_children():
+			i.visible = false
+		playerui_death.visible = true
+		if Input.is_action_just_pressed("restart"):
+			get_tree().reload_current_scene()
 
 func get_pickups():
 	pickups = get_tree().get_nodes_in_group("pickup")

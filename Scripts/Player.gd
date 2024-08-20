@@ -12,8 +12,6 @@ signal throw_weapon()
 @export_category("Attributes")
 @export var move_speed : float = 5.0
 @export var run_speed : float = 8.0
-@export var max_health : int = 2
-@export var current_health = max_health
 @export var KICK_FORCE : int = 20
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -58,16 +56,6 @@ func _process(delta):
 		velocity.y -= gravity * delta
 
 	joystick_controller_camera()
-
-func lose_heart():
-	max_health -= 2
-	ui.lose_heart()
-	if current_health > max_health:
-		current_health = max_health
-
-func take_damage():
-	current_health -= 1
-	ui.take_damage()
 
 func joystick_controller_camera():
 	$Camera3D.rotate_x(Input.get_action_strength("look_up") * JOY_SENS)
@@ -134,6 +122,7 @@ func shoot_anim_done():
 func kill():
 	dead = true
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE 
+	#get_tree().paused = true
 
 func _on_can_pickup(pickup):
 	if (Input.is_action_just_pressed("throw")):

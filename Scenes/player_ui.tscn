@@ -1,16 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://5qhiwbuy1k0f"]
+[gd_scene load_steps=8 format=3 uid="uid://5qhiwbuy1k0f"]
 
-[ext_resource type="Script" path="res://Scripts/PlayerUIHandler.gd" id="1_keby0"]
 [ext_resource type="FontFile" uid="uid://bcclqg7n66168" path="res://Assets/Fonts/SALVATIO.TTF" id="2_sardw"]
 [ext_resource type="FontFile" uid="uid://bxq2fb8f7p6sd" path="res://Assets/Fonts/MiniMOOD.ttf" id="3_67bfn"]
-
-[sub_resource type="Animation" id="Animation_g0lnd"]
-resource_name = "screenflicker_ammo"
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_xhnx5"]
-_data = {
-"screenflicker_ammo": SubResource("Animation_g0lnd")
-}
 
 [sub_resource type="LabelSettings" id="LabelSettings_voabl"]
 font = ExtResource("2_sardw")
@@ -34,6 +25,19 @@ font_color = Color(1, 0.494118, 0.67451, 1)
 shadow_size = 3
 shadow_color = Color(0.172549, 0.788235, 0.305882, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_pd64d"]
+font = ExtResource("2_sardw")
+font_size = 72
+font_color = Color(0.909804, 0.137255, 0.215686, 1)
+shadow_size = 5
+shadow_color = Color(0.0156863, 0.0196078, 0.0980392, 1)
+shadow_offset = Vector2(5, 2)
+
+[sub_resource type="LabelSettings" id="LabelSettings_p7pvw"]
+font = ExtResource("3_67bfn")
+font_size = 28
+font_color = Color(0.0156863, 0.0196078, 0.0980392, 1)
+
 [node name="PlayerUI" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -41,21 +45,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_keby0")
-
-[node name="HFlowContainer" type="HFlowContainer" parent="."]
-layout_mode = 2
-offset_left = 40.0
-offset_top = 504.0
-offset_right = 42.0
-offset_bottom = 594.0
-theme_override_constants/h_separation = 45
-theme_override_constants/v_separation = 45
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_xhnx5")
-}
 
 [node name="UpperText" type="VFlowContainer" parent="."]
 layout_mode = 1
@@ -82,7 +71,8 @@ layout_mode = 2
 text = "00:00:00"
 label_settings = SubResource("LabelSettings_voabl")
 
-[node name="CenterText" type="HFlowContainer" parent="."]
+[node name="CenterText" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -95,7 +85,6 @@ offset_right = 162.5
 offset_bottom = 53.5
 grow_horizontal = 2
 grow_vertical = 2
-alignment = 1
 
 [node name="LevelComplete" type="Label" parent="CenterText"]
 visible = false
@@ -126,3 +115,68 @@ visible = false
 layout_mode = 2
 text = "Grab "
 label_settings = SubResource("LabelSettings_oo7rc")
+
+[node name="DeathUI" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterText" type="Label" parent="DeathUI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "DEAD"
+label_settings = SubResource("LabelSettings_pd64d")
+
+[node name="RestartText" type="Label" parent="DeathUI"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -484.0
+offset_top = -71.0
+offset_right = -32.0
+offset_bottom = -32.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "PRESS R TO RESTART"
+label_settings = SubResource("LabelSettings_p7pvw")
+
+[node name="BG" type="ColorRect" parent="DeathUI/RestartText"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -10.0
+offset_top = -8.0
+offset_right = 10.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.909804, 0.137255, 0.215686, 1)
+
+[node name="BG" type="ColorRect" parent="DeathUI"]
+z_index = -10
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.917647, 0.164706, 0.32549, 0.27451)

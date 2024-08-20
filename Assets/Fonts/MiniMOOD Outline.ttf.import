@@ -15,6 +15,7 @@ dest_files=["res://.godot/imported/MiniMOOD Outline.ttf-3d1cc7fd9ffb2b3c5f6b64f2
 Rendering=null
 antialiasing=1
 generate_mipmaps=false
+disable_embedded_bitmaps=true
 multichannel_signed_distance_field=false
 msdf_pixel_range=8
 msdf_size=48
