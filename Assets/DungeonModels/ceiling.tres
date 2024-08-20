@@ -5,7 +5,6 @@
 
 [resource]
 resource_name = "ceiling"
-vertex_color_use_as_albedo = true
 albedo_texture = ExtResource("1_ekpvo")
 metallic_specular = 0.0
 normal_enabled = true
@@ -16,7 +15,6 @@ clearcoat_roughness = 0.0
 anisotropy = -1.0
 ao_light_affect = 1.0
 subsurf_scatter_strength = 0.5
-refraction_enabled = true
 refraction_scale = 1.0
 refraction_texture_channel = 2
 uv1_scale = Vector3(6, 6, 6)

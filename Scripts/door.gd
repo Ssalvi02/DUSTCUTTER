@@ -11,8 +11,6 @@ func _ready():
 func knockback(a, kick_force, kick_raycast_pos):
 	freeze = false
 	apply_impulse(ray.target_position * kick_force)
-	for i in door_shards:
-		i.find_child("CollisionShape3D").disabled = false
 
 func _on_area_3d_body_entered(body):
 	if body.is_in_group("enemies"):
@@ -25,7 +23,7 @@ func _on_area_3d_body_entered(body):
 			i.linear_velocity = linear_velocity
 			i.collision_layer = 1
 			i.collision_mask = 1
-		print(body)
 		body.stun()
+		print(body)
 		await get_tree().create_timer(5).timeout
 		queue_free()
