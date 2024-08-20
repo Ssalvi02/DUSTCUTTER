@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://gnoc5ii4lq0h"]
+[gd_scene load_steps=5 format=3 uid="uid://gnoc5ii4lq0h"]
 
 [ext_resource type="Script" path="res://Scripts/Enemy.gd" id="1_bp34t"]
 [ext_resource type="SpriteFrames" uid="uid://ceqcyiigjyh5e" path="res://Assets/Sprites/Enemies/SpriteFrames/demon_close_sprites.tres" id="2_jrbbh"]
@@ -6,9 +6,6 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0mf31"]
 margin = 0.08
 radius = 0.8
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_mn6l3"]
-size = Vector3(10, 1, 10)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4hqch"]
 radius = 1.0
@@ -29,13 +26,6 @@ texture_filter = 0
 sprite_frames = ExtResource("2_jrbbh")
 animation = &"idle"
 
-[node name="sensePlayer" type="Area3D" parent="."]
-monitorable = false
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="sensePlayer"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("BoxShape3D_mn6l3")
-
 [node name="DetectBodies" type="Area3D" parent="."]
 collision_layer = 3
 collision_mask = 2
@@ -44,6 +34,7 @@ collision_mask = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.807083, 0)
 shape = SubResource("CapsuleShape3D_4hqch")
 
-[connection signal="area_entered" from="sensePlayer" to="." method="_on_sense_player_area_entered"]
-[connection signal="area_exited" from="sensePlayer" to="." method="_on_sense_player_area_exited"]
+[node name="DetectPlayer" type="RayCast3D" parent="."]
+collision_mask = 2
+
 [connection signal="body_entered" from="DetectBodies" to="." method="_on_detect_bodies_body_entered"]

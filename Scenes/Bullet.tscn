@@ -25,7 +25,6 @@ mesh = SubResource("BoxMesh_4p3ba")
 surface_material_override/0 = ExtResource("2_w7d6a")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
-transform = Transform3D(1.52, 0, 0, 0, 1.52, 0, 0, 0, 1.52, 0, 0, 2.955)
 target_position = Vector3(0, 0, -2)
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
