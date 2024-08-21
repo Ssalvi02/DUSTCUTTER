@@ -47,6 +47,9 @@ func _process(delta):
 		if Input.is_action_just_pressed("restart"):
 			get_tree().reload_current_scene()
 
+func _physics_process(delta: float) -> void:
+	get_tree().call_group("enemies", "update_target_loc", player.global_transform.origin)
+
 func get_pickups():
 	pickups = get_tree().get_nodes_in_group("pickup")
 	for i in pickups:

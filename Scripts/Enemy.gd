@@ -16,7 +16,7 @@ enum et {
 
 @onready var player : CharacterBody3D = get_tree().root.get_child(0).find_child("Player")
 @onready var gc 
-@onready var ray = $DetectPlayer
+@onready var nav = $NavigationAgent3D
 
 var player_in_range = false
 
@@ -28,18 +28,21 @@ var firs_col : bool = true
 func _ready():
 	gc = get_tree().root.get_child(0)
 	sprite.sprite_frames = sprite_texture
-	$DetectPlayer.target_position = player.global_position
 	sprite.play("walk")
+	set_physics_process(false)
+	call_deferred("enemy_setup")
+
+func enemy_setup():
+	await get_tree().physics_frame
+	set_physics_process(true)
 
 func _physics_process(delta):
-	if sprite.animation == "death" and sprite.frame == 5:
-		sprite.position.y = move_toward(sprite.position.y, 0.445, 0.08)
-		
 	if stunned:
 		if kicked && firs_col:
 			kill()
 			firs_col = false
-	
+		return
+
 	if dead:
 		$CollisionShape3D.disabled = true
 		return
@@ -50,38 +53,24 @@ func _physics_process(delta):
 	match enemy_type:
 		et.CLOSE:
 			if !kicked:
-				closeRangeHandle()
+				var current_loc = global_transform.origin
+				var next_loc = nav.get_next_path_position()
+				var new_vel = (next_loc - current_loc).normalized() * move_speed
+				nav.set_velocity(new_vel)
 		et.SHOOTING:
 			pass
 		et.EXPLODING:
 			pass
-	
-	move_and_slide()
 
-func playerInRange() -> bool :
-	if ray.is_colliding() && ray.get_collider().name == "Player":
-		sprite.play("walk")
-		return true
-	else:
-		sprite.play("idle")
-		return false
-
-func closeRangeHandle():
-	$DetectPlayer.target_position = player.global_position - global_position
-	if playerInRange():
-		var dir = player.global_position - global_position
-		dir.y = 0
-		dir = dir.normalized()
-		velocity = dir * move_speed
-	else:
-		sprite.play("idle")
-		velocity = Vector3.ZERO
+func update_target_loc(target_loc):
+	nav.set_target_position(target_loc)
 
 func kill():
 	$DetectBodies.monitoring = false
+	nav.avoidance_enabled = false
 	gc.kill_count += 1
 	sprite.play("death")
-	$CollisionShape3D.disabled = true
+	$CollisionShape3D.call_deferred("set_disabled", true)
 	dead = true
 
 func stun():
@@ -102,6 +91,16 @@ func knockback(dir, force , kick_raycast_pos):
 	stun()
 	kicked = false
 
+func knockback_door():
+	velocity = Vector3.FORWARD * 20
+	await get_tree().create_timer(.5).timeout
+	$CollisionShape3D.call_deferred("set_disabled", true)
+
 func _on_detect_bodies_body_entered(body):
 	if body.name == "Player" && !stunned or kicked:
 		body.kill()
+
+func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
+	if !dead && !stunned:
+		velocity = velocity.move_toward(safe_velocity, 0.25)
+		move_and_slide()
