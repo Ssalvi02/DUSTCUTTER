@@ -53,10 +53,6 @@ func _process(delta):
 
 			if ray.get_collider().has_method("stun"):
 				ray.get_collider().stun()
-				
-			if first_col and ray.get_collider().is_in_group("enemies"):
-				apply_central_impulse(global_transform.basis.z * (SPEED+5))
-				first_col = false
 
 		if throw_time >= cooldown:
 			throw_time = 0

@@ -5,10 +5,10 @@ extends Control
 var active_select = -1
 var labels = null
 
+const loading_scene = "res://Scenes/UI/loading.tscn"
 
 func _ready():
 	labels = select.get_children()
-	pass 
 
 func _physics_process(delta):
 	match active_select:
@@ -18,7 +18,7 @@ func _physics_process(delta):
 			lerp_shadow(active_select)
 		1: #New Game
 			if(Input.is_action_just_pressed("select")):
-				get_tree().change_scene_to_file("res://Scenes/Levels/Level1.tscn")
+				get_tree().change_scene_to_file(loading_scene)
 			lerp_shadow(active_select)
 		2: #Options
 			lerp_shadow(active_select)

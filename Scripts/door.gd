@@ -4,8 +4,10 @@ extends RigidBody3D
 @onready var door_static : MeshInstance3D = $Door
 var door_shards : Array
 
+@export var ray_dir : Vector3 = Vector3(0,0,-1)
 
 func _ready():
+	ray.target_position = ray_dir
 	door_shards = find_child("Shards").get_children() 
 
 func knockback(a, kick_force, kick_raycast_pos):

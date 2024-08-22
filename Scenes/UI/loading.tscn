@@ -1,0 +1,63 @@
+[gd_scene load_steps=6 format=3 uid="uid://bwopldyyhirv1"]
+
+[ext_resource type="Script" path="res://Scripts/loading.gd" id="1_5kxqx"]
+[ext_resource type="Texture2D" uid="uid://d0wvpy5kn5ylx" path="res://Assets/UI/loadbg.png" id="1_c17qp"]
+[ext_resource type="Texture2D" uid="uid://csgnuubj2gqj4" path="res://Assets/UI/loadfg.png" id="2_xsc2t"]
+[ext_resource type="FontFile" uid="uid://bcclqg7n66168" path="res://Assets/Fonts/SALVATIO.TTF" id="3_n4ew4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_p7031"]
+font = ExtResource("3_n4ew4")
+font_size = 100
+font_color = Color(0.909804, 0.137255, 0.215686, 1)
+shadow_color = Color(0.72549, 0.054902, 0.290196, 1)
+shadow_offset = Vector2(3, 2)
+
+[node name="Load" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5kxqx")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0156863, 0.0196078, 0.0980392, 1)
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 252.0
+offset_top = 203.0
+offset_right = -252.0
+offset_bottom = -237.0
+grow_horizontal = 2
+grow_vertical = 2
+nine_patch_stretch = true
+texture_under = ExtResource("1_c17qp")
+texture_progress = ExtResource("2_xsc2t")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -182.0
+offset_top = -180.0
+offset_right = 182.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "!',LOADING,'!"
+label_settings = SubResource("LabelSettings_p7031")

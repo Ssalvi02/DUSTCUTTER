@@ -29,12 +29,6 @@ func _ready():
 	gc = get_tree().root.get_child(0)
 	sprite.sprite_frames = sprite_texture
 	sprite.play("walk")
-	set_physics_process(false)
-	call_deferred("enemy_setup")
-
-func enemy_setup():
-	await get_tree().physics_frame
-	set_physics_process(true)
 
 func _physics_process(delta):
 	if stunned:
@@ -49,21 +43,26 @@ func _physics_process(delta):
 	
 	if player == null:
 		return
-	
+	check_player_in_range()
 	match enemy_type:
 		et.CLOSE:
-			if !kicked:
-				var current_loc = global_transform.origin
-				var next_loc = nav.get_next_path_position()
-				var new_vel = (next_loc - current_loc).normalized() * move_speed
-				nav.set_velocity(new_vel)
+			if !kicked && player_in_range:
+				var direction = Vector3()
+				nav.target_position = player.global_position
+				direction = (nav.get_next_path_position() - global_position).normalized()
+				velocity = direction * move_speed
+				move_and_slide()
 		et.SHOOTING:
 			pass
 		et.EXPLODING:
 			pass
 
-func update_target_loc(target_loc):
-	nav.set_target_position(target_loc)
+func check_player_in_range():
+	$PlayerRange.target_position = player.global_position-$PlayerRange.global_position
+	if self.name == "Enemy2":
+		print($PlayerRange.get_collider())
+	if $PlayerRange.is_colliding() && $PlayerRange.get_collider().name == "Player":
+		player_in_range = true
 
 func kill():
 	$DetectBodies.monitoring = false
@@ -79,7 +78,8 @@ func stun():
 	#sprite.play(stunned)
 	stunned = true
 	await get_tree().create_timer(stun_time).timeout
-	if $DetectBodies.get_overlapping_bodies().size() > 0:
+	if ($DetectBodies.monitoring == true &&
+	$DetectBodies.get_overlapping_bodies().size() > 0):
 		player.kill()
 	stunned = false
 	
@@ -99,8 +99,3 @@ func knockback_door():
 func _on_detect_bodies_body_entered(body):
 	if body.name == "Player" && !stunned or kicked:
 		body.kill()
-
-func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
-	if !dead && !stunned:
-		velocity = velocity.move_toward(safe_velocity, 0.25)
-		move_and_slide()
