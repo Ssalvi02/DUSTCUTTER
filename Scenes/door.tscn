@@ -1,8 +1,10 @@
-[gd_scene load_steps=32 format=4 uid="uid://cy1ajt6o0gv0c"]
+[gd_scene load_steps=34 format=4 uid="uid://cy1ajt6o0gv0c"]
 
 [ext_resource type="Script" path="res://Scripts/door.gd" id="1_lc186"]
 [ext_resource type="Texture2D" uid="uid://dmam2lscjk06e" path="res://Scenes/door_normal_Door_02_Brown.png" id="2_rhbm5"]
 [ext_resource type="Texture2D" uid="uid://d132bt80el0wv" path="res://Scenes/door_shrads_Door_02_Brown.png" id="3_o4hor"]
+[ext_resource type="AudioStream" uid="uid://cqkvyrwk0ih51" path="res://Assets/Audio/Door/door_kick.wav" id="4_ah2lm"]
+[ext_resource type="AudioStream" uid="uid://dstkocqhs0ejg" path="res://Assets/Audio/Door/door_break.wav" id="5_xiwwa"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gtyjp"]
 resource_name = "DoorMat"
@@ -44,7 +46,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_kldh3")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xba3j"]
-size = Vector3(1.9, 2.8, 0.1)
+size = Vector3(2, 2.92969, 0.1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7r01m"]
 size = Vector3(2, 3, 0.1)
@@ -328,6 +330,7 @@ mesh = SubResource("ArrayMesh_vnsm4")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0372071, 0)
 shape = SubResource("BoxShape3D_xba3j")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
@@ -442,5 +445,16 @@ skeleton = NodePath("")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Shards/RigidBody3D7"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.609221, -4.25562e-09, 0.620394)
 shape = SubResource("ConvexPolygonShape3D_uhc0k")
+
+[node name="Audios" type="Node3D" parent="."]
+
+[node name="Kick" type="AudioStreamPlayer3D" parent="Audios"]
+stream = ExtResource("4_ah2lm")
+pitch_scale = 0.7
+max_polyphony = 100
+
+[node name="Break" type="AudioStreamPlayer3D" parent="Audios"]
+stream = ExtResource("5_xiwwa")
+pitch_scale = 0.8
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

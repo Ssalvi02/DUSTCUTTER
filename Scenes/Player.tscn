@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://nju2gnnh6ujx"]
+[gd_scene load_steps=6 format=3 uid="uid://nju2gnnh6ujx"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_v2eao"]
 [ext_resource type="PackedScene" uid="uid://5qhiwbuy1k0f" path="res://Scenes/player_ui.tscn" id="2_gcyro"]
+[ext_resource type="Script" path="res://Scripts/CameraShake.gd" id="2_ovisn"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3bm3w"]
 
@@ -19,6 +20,7 @@ shape = SubResource("CapsuleShape3D_3bm3w")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+script = ExtResource("2_ovisn")
 
 [node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, -0.399631)
@@ -28,7 +30,7 @@ collision_mask = 5
 [node name="RayCast3DK" type="RayCast3D" parent="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0480347, -0.399631)
 target_position = Vector3(0, 0, -1.5)
-collision_mask = 5
+collision_mask = 69
 debug_shape_custom_color = Color(1, 0, 0, 1)
 
 [node name="PickupArea" type="Area3D" parent="."]

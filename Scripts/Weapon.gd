@@ -48,9 +48,13 @@ func _process(delta):
 		return
 	if(Input.is_action_just_pressed("shoot")):
 		if current_ammo > 0:
+			cause_trauma(0.5)
 			shoot()
 		else:
 			audios.get_child(1).play()
+
+func cause_trauma(trauma_amount):
+		get_parent().find_child("Camera3D").add_trauma(trauma_amount)
 
 func shoot():
 	if !get_parent().can_shoot:

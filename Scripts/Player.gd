@@ -69,6 +69,7 @@ func _physics_process(delta):
 		return
 	if Input.is_action_just_pressed("kick"):
 		await get_tree().create_timer(0.1).timeout
+		cause_trauma(5)
 		if raycastkick.is_colliding():
 			var obj = raycastkick.get_collider()
 			print(obj)
@@ -77,6 +78,9 @@ func _physics_process(delta):
 	move()
 	check_throw()
 	move_and_slide()
+
+func cause_trauma(trauma_amount):
+		$Camera3D.add_trauma(trauma_amount)
 
 func move():
 	if Input.is_action_just_pressed("run"):
@@ -110,6 +114,7 @@ func check_throw():
 func throw_gun():
 	if gun != null:
 		throw_weapon.emit()
+		cause_trauma(2)
 		can_shoot = true
 		gc.recheck_pickup_area()
 		gun.queue_free()

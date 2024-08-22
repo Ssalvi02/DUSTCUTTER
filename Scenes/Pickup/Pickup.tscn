@@ -12,6 +12,7 @@ bounce = 0.2
 size = Vector3(0.5, 0.5, 0.134521)
 
 [node name="Pickup" type="RigidBody3D" groups=["pickup"]]
+collision_layer = 64
 physics_material_override = SubResource("PhysicsMaterial_4nu5t")
 can_sleep = false
 lock_rotation = true

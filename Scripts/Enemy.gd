@@ -59,8 +59,6 @@ func _physics_process(delta):
 
 func check_player_in_range():
 	$PlayerRange.target_position = player.global_position-$PlayerRange.global_position
-	if self.name == "Enemy2":
-		print($PlayerRange.get_collider())
 	if $PlayerRange.is_colliding() && $PlayerRange.get_collider().name == "Player":
 		player_in_range = true
 
