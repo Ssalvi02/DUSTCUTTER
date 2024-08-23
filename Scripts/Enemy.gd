@@ -55,11 +55,11 @@ func _physics_process(delta):
 				nav.target_position = player.global_position
 				direction = (nav.get_next_path_position() - global_position).normalized()
 				velocity = direction * move_speed
-				move_and_slide()
 		et.SHOOTING:
 			pass
 		et.EXPLODING:
 			pass
+	move_and_slide()
 
 func check_player_in_range():
 	$PlayerRange.target_position = player.global_position-$PlayerRange.global_position

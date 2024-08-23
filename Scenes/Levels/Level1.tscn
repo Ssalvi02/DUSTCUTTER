@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ca8yf3dr85wfk"]
+[gd_scene load_steps=17 format=3 uid="uid://ca8yf3dr85wfk"]
 
 [ext_resource type="Script" path="res://Scripts/gameController.gd" id="1_obw8i"]
 [ext_resource type="MeshLibrary" uid="uid://bkad74nua7i8y" path="res://Assets/Meshes/MeshLib.tres" id="2_8v682"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://ctj67bh2vgy6r" path="res://Assets/Sprites/Pickups/Pistol/pistol.png" id="7_bpbgl"]
 [ext_resource type="AudioStream" uid="uid://bxor7guakjwm7" path="res://Assets/Audio/Weapons/Throw/throw.mp3" id="8_xoute"]
 [ext_resource type="PackedScene" uid="uid://gnoc5ii4lq0h" path="res://Scenes/Enemy.tscn" id="9_2d6va"]
+[ext_resource type="SpriteFrames" uid="uid://dl48ygly07opf" path="res://Assets/Sprites/Enemies/SpriteFrames/demon_close_OH_sprites.tres" id="9_iff5w"]
 [ext_resource type="SpriteFrames" uid="uid://ceqcyiigjyh5e" path="res://Assets/Sprites/Enemies/SpriteFrames/demon_close_sprites.tres" id="10_vlnjk"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2c6pl"]
@@ -99,6 +100,7 @@ sprite = ExtResource("7_bpbgl")
 throw_sound = ExtResource("8_xoute")
 
 [node name="Pickup2" parent="." instance=ExtResource("6_lbtgk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.2959, 0.332442, -5.22797)
 pickup_name = "pistol"
 ammo_value = 7
 sprite = ExtResource("7_bpbgl")
@@ -115,7 +117,7 @@ sprite_texture = ExtResource("10_vlnjk")
 [node name="Enemy4" parent="Enemies" instance=ExtResource("9_2d6va")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.9811, -0.0282698, -13.0707)
 move_speed = 2
-sprite_texture = ExtResource("10_vlnjk")
+sprite_texture = ExtResource("9_iff5w")
 
 [node name="Enemy5" parent="Enemies" instance=ExtResource("9_2d6va")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.8752, -0.0282698, -13.0707)
@@ -130,7 +132,7 @@ sprite_texture = ExtResource("10_vlnjk")
 [node name="Enemy6" parent="Enemies" instance=ExtResource("9_2d6va")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.3169, -0.0282698, -8.74503)
 move_speed = 2
-sprite_texture = ExtResource("10_vlnjk")
+sprite_texture = ExtResource("9_iff5w")
 
 [node name="Enemy10" parent="Enemies" instance=ExtResource("9_2d6va")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.3169, -0.0282698, 1.75765)
@@ -150,7 +152,7 @@ sprite_texture = ExtResource("10_vlnjk")
 [node name="Enemy2" parent="Enemies" instance=ExtResource("9_2d6va")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.56895, -0.02827, -4.08529)
 move_speed = 2
-sprite_texture = ExtResource("10_vlnjk")
+sprite_texture = ExtResource("9_iff5w")
 
 [node name="Enemy3" parent="Enemies" instance=ExtResource("9_2d6va")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.89478, -0.02827, -3.65478)

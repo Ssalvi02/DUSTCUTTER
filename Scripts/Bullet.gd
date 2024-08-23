@@ -11,13 +11,14 @@ extends Node3D
 @onready var ray : RayCast3D = $RayCast3D
 @onready var particle : GPUParticles3D = $GPUParticles3D
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	position += transform.basis * Vector3(0,0,-SPEED) * delta
 	if ray.is_colliding():
-		generate_decal()
 		if ray.get_collider().has_method("kill"):
 			ray.get_collider().kill()
+			
+		if !ray.get_collider().is_in_group("enemies"):
+			generate_decal()
 			
 		if(!pierce or !ray.get_collider().is_in_group("enemies")):
 			mesh.visible = false
