@@ -68,7 +68,8 @@ func _physics_process(delta):
 	if dead:
 		return
 	if Input.is_action_just_pressed("kick"):
-		await get_tree().create_timer(0.1).timeout
+		$Audios/Kick.play()
+		await get_tree().create_timer(0.2).timeout
 		cause_trauma(5)
 		if raycastkick.is_colliding():
 			var obj = raycastkick.get_collider()
@@ -100,7 +101,6 @@ func move():
 	
 	if Input.is_action_just_pressed("jump") && is_on_floor():
 		velocity.y = 5
-		pass
 
 func instantiate_gun(gunName):
 	current_gun = gunName

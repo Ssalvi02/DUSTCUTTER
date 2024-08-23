@@ -48,7 +48,6 @@ func _process(delta):
 		return
 	if(Input.is_action_just_pressed("shoot")):
 		if current_ammo > 0:
-			cause_trauma(0.5)
 			shoot()
 		else:
 			audios.get_child(1).play()
@@ -64,6 +63,7 @@ func shoot():
 	update_ammo_value.emit(current_ammo)
 	ui.bullet_ui_shoot()
 	sprite.play("shoot")
+	cause_trauma(0.5)
 	audios.get_child(0).play()
 	if(!spread):
 		instantiate_bullet()

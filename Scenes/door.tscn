@@ -450,11 +450,13 @@ shape = SubResource("ConvexPolygonShape3D_uhc0k")
 
 [node name="Kick" type="AudioStreamPlayer3D" parent="Audios"]
 stream = ExtResource("4_ah2lm")
+volume_db = -6.0
 pitch_scale = 0.7
 max_polyphony = 100
 
 [node name="Break" type="AudioStreamPlayer3D" parent="Audios"]
 stream = ExtResource("5_xiwwa")
+volume_db = -6.0
 pitch_scale = 0.8
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

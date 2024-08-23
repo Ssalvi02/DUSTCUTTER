@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://8fsl720f15gp"]
+
+[ext_resource type="Texture2D" uid="uid://l28nn54x1yuy" path="res://Assets/UI/grabber.png" id="1_30dl7"]
+[ext_resource type="Script" path="res://Scripts/decal.gd" id="1_dv6q2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_28t8v"]
+albedo_color = Color(0.537011, 0.537011, 0.537011, 1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xu1nu"]
+emission_shape = 1
+emission_sphere_radius = 0.05
+direction = Vector3(0, 1, 0)
+gravity = Vector3(0, 9.8, 0)
+
+[sub_resource type="BoxMesh" id="BoxMesh_p0tqn"]
+size = Vector3(0.03, 0.03, 0.03)
+
+[node name="Decal" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+script = ExtResource("1_dv6q2")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1.5, 0, 0, 0, -6.55671e-08, 1.5, 0, -1.5, -6.55671e-08, 0, 0, 0)
+shaded = true
+texture_filter = 0
+texture = ExtResource("1_30dl7")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0190664, -8.33417e-10)
+material_override = SubResource("StandardMaterial3D_28t8v")
+emitting = false
+one_shot = true
+speed_scale = 0.3
+explosiveness = 0.8
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_xu1nu")
+draw_pass_1 = SubResource("BoxMesh_p0tqn")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

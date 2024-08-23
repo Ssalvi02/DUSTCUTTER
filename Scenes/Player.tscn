@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://nju2gnnh6ujx"]
+[gd_scene load_steps=7 format=3 uid="uid://nju2gnnh6ujx"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_v2eao"]
 [ext_resource type="PackedScene" uid="uid://5qhiwbuy1k0f" path="res://Scenes/player_ui.tscn" id="2_gcyro"]
 [ext_resource type="Script" path="res://Scripts/CameraShake.gd" id="2_ovisn"]
+[ext_resource type="AudioStream" uid="uid://bxu6b1bikfds0" path="res://Assets/Audio/Player/kick.mp3" id="4_jorwx"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3bm3w"]
 
@@ -46,6 +47,11 @@ shape = SubResource("SphereShape3D_pvr72")
 light_energy = 3.0
 light_size = 0.195
 omni_range = 4096.0
+
+[node name="Audios" type="Node3D" parent="."]
+
+[node name="Kick" type="AudioStreamPlayer3D" parent="Audios"]
+stream = ExtResource("4_jorwx")
 
 [connection signal="area_entered" from="PickupArea" to="." method="_on_pickup_area_area_entered"]
 [connection signal="area_exited" from="PickupArea" to="." method="_on_pickup_area_area_exited"]

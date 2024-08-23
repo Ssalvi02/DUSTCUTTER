@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://gnoc5ii4lq0h"]
+[gd_scene load_steps=7 format=3 uid="uid://gnoc5ii4lq0h"]
 
 [ext_resource type="Script" path="res://Scripts/Enemy.gd" id="1_bp34t"]
 [ext_resource type="SpriteFrames" uid="uid://ceqcyiigjyh5e" path="res://Assets/Sprites/Enemies/SpriteFrames/demon_close_sprites.tres" id="2_jrbbh"]
+[ext_resource type="AudioStream" uid="uid://cxesfoqmo21s" path="res://Assets/Audio/Enemies/Close/growl-96998.mp3" id="3_x8gwt"]
+[ext_resource type="AudioStream" uid="uid://dmmskm63j1h7x" path="res://Assets/Audio/Enemies/Close/small-monster-attack-195712.mp3" id="4_75hvw"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0mf31"]
 margin = 0.08
@@ -45,5 +47,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 target_position = Vector3(0, 0, 0)
 collision_mask = 7
 
+[node name="Audios" type="Node3D" parent="."]
+
+[node name="Growl" type="AudioStreamPlayer3D" parent="Audios"]
+stream = ExtResource("3_x8gwt")
+volume_db = -12.0
+pitch_scale = 1.3
+
+[node name="Attack" type="AudioStreamPlayer3D" parent="Audios"]
+stream = ExtResource("4_75hvw")
+pitch_scale = 1.3
+
+[node name="Death" type="AudioStreamPlayer3D" parent="Audios"]
+
 [connection signal="body_entered" from="DetectBodies" to="." method="_on_detect_bodies_body_entered"]
 [connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]
+[connection signal="finished" from="Audios/Growl" to="." method="_on_growl_finished"]

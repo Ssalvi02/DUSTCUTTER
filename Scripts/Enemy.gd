@@ -19,6 +19,7 @@ enum et {
 @onready var nav = $NavigationAgent3D
 
 var player_in_range = false
+var sound_has_played = false
 
 var dead :bool = false
 var stunned : bool = false
@@ -48,6 +49,9 @@ func _physics_process(delta):
 		et.CLOSE:
 			if !kicked && player_in_range:
 				var direction = Vector3()
+				if !sound_has_played:
+					sound_has_played = true
+					$Audios/Growl.play()
 				nav.target_position = player.global_position
 				direction = (nav.get_next_path_position() - global_position).normalized()
 				velocity = direction * move_speed
@@ -63,6 +67,7 @@ func check_player_in_range():
 		player_in_range = true
 
 func kill():
+	$Audios/Death.play()
 	$DetectBodies.monitoring = false
 	nav.avoidance_enabled = false
 	gc.kill_count += 1
@@ -78,6 +83,7 @@ func stun():
 	await get_tree().create_timer(stun_time).timeout
 	if ($DetectBodies.monitoring == true &&
 	$DetectBodies.get_overlapping_bodies().size() > 0):
+		attack()
 		player.kill()
 	stunned = false
 	
@@ -94,6 +100,15 @@ func knockback_door():
 	await get_tree().create_timer(.5).timeout
 	$CollisionShape3D.call_deferred("set_disabled", true)
 
+func attack():
+	sprite.play("attack")
+	$Audios/Attack.play()
+
 func _on_detect_bodies_body_entered(body):
 	if body.name == "Player" && !stunned or kicked:
+		attack()
 		body.kill()
+
+
+func _on_growl_finished() -> void:
+	$Audios/Growl.queue_free()
