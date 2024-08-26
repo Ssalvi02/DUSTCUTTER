@@ -100,6 +100,7 @@ func move():
 		velocity.z = move_toward(velocity.z, 0, move_speed)
 	
 	if Input.is_action_just_pressed("jump") && is_on_floor():
+		cause_trauma(.5)
 		velocity.y = 5
 
 func instantiate_gun(gunName):

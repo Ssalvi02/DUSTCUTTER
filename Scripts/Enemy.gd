@@ -78,7 +78,7 @@ func kill():
 func stun():
 	if stunned:
 		return
-	#sprite.play(stunned)
+	sprite.play("idle")
 	stunned = true
 	await get_tree().create_timer(stun_time).timeout
 	if ($DetectBodies.monitoring == true &&
